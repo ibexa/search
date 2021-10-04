@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Search\View;
+namespace Ibexa\Search\View;
 
 use eZ\Publish\API\Repository\SearchService;
 use eZ\Publish\API\Repository\Values\Content\Language;
@@ -15,7 +15,7 @@ use eZ\Publish\Core\MVC\Symfony\View\Configurator;
 use eZ\Publish\Core\MVC\Symfony\View\ParametersInjector;
 use eZ\Publish\Core\Pagination\Pagerfanta\ContentSearchHitAdapter;
 use eZ\Publish\Core\QueryType\QueryType;
-use Ibexa\Platform\Search\Mapper\PagerSearchContentToDataMapper;
+use Ibexa\Search\Mapper\PagerSearchContentToDataMapper;
 use Pagerfanta\Pagerfanta;
 
 class SearchViewBuilder implements ViewBuilder
@@ -109,3 +109,5 @@ class SearchViewBuilder implements ViewBuilder
         return $filter;
     }
 }
+
+class_alias(SearchViewBuilder::class, 'Ibexa\Platform\Search\View\SearchViewBuilder');

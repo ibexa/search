@@ -6,15 +6,15 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Search\View;
+namespace Ibexa\Search\View;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\SectionService;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent;
 use eZ\Publish\Core\MVC\Symfony\View\ViewEvents;
-use Ibexa\Platform\Bundle\Search\Form\Data\SearchData;
-use Ibexa\Platform\Bundle\Search\Form\Type\SearchType;
+use Ibexa\Bundle\Search\Form\Data\SearchData;
+use Ibexa\Bundle\Search\Form\Type\SearchType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -125,3 +125,5 @@ class SearchViewFilter implements EventSubscriberInterface
         ]);
     }
 }
+
+class_alias(SearchViewFilter::class, 'Ibexa\Platform\Search\View\SearchViewFilter');

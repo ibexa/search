@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\Type;
+namespace Ibexa\Bundle\Search\Form\Type;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Ibexa\Platform\Bundle\Search\Form\Data\SearchData;
+use Ibexa\Bundle\Search\Form\Data\SearchData;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType as CoreSearchType;
 use Symfony\Component\Form\AbstractType;
@@ -93,3 +93,5 @@ final class SearchType extends AbstractType
         ]);
     }
 }
+
+class_alias(SearchType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\SearchType');
