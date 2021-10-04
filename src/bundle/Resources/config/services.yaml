@@ -8,11 +8,11 @@ services:
       autowire: true
       public: false
 
-  Ibexa\Platform\Bundle\Search\Controller\SearchController:
+  Ibexa\Bundle\Search\Controller\SearchController:
       tags:
           - controller.service_arguments
 
-  Ibexa\Platform\Search\Mapper\PagerSearchContentToDataMapper:
+  Ibexa\Search\Mapper\PagerSearchContentToDataMapper:
       arguments:
           $contentTypeService: '@ezpublish.api.service.content_type'
           $userService: '@ezpublish.api.service.user'
@@ -20,6 +20,6 @@ services:
           $translationHelper: '@ezpublish.translation_helper'
           $languageService: '@ezpublish.api.service.language'
 
-  Ibexa\Platform\Search\QueryType\SearchQueryType:
+  Ibexa\Search\QueryType\SearchQueryType:
       arguments:
           $searchService: '@ezpublish.api.service.search'
