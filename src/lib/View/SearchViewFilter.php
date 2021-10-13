@@ -71,7 +71,7 @@ class SearchViewFilter implements EventSubscriberInterface
         $controllerAction = $event->getParameters()->get('_controller');
 
         if (
-            'Ibexa\Platform\Bundle\Search\Controller\SearchController::searchAction' !== $controllerAction
+            'Ibexa\Bundle\Search\Controller\SearchController::searchAction' !== $controllerAction
         ) {
             return;
         }
