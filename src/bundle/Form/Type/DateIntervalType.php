@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\Type;
+namespace Ibexa\Bundle\Search\Form\Type;
 
-use Ibexa\Platform\Bundle\Search\Form\DataTransformer\DateIntervalTransformer;
+use Ibexa\Bundle\Search\Form\DataTransformer\DateIntervalTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,3 +34,5 @@ class DateIntervalType extends AbstractType
             ->addModelTransformer(new DateIntervalTransformer());
     }
 }
+
+class_alias(DateIntervalType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\DateIntervalType');

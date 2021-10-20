@@ -6,10 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Search\View;
+namespace Ibexa\Search\View;
 
 use eZ\Publish\Core\MVC\Symfony\View\BaseView;
 
 class SearchView extends BaseView
 {
 }
+
+class_alias(SearchView::class, 'Ibexa\Platform\Search\View\SearchView');

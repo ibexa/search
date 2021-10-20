@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\Data;
+namespace Ibexa\Bundle\Search\Form\Data;
 
 use eZ\Publish\API\Repository\Values\Content\Language;
 use eZ\Publish\API\Repository\Values\Content\Section;
@@ -216,3 +216,5 @@ class SearchData
             null !== $subtree;
     }
 }
+
+class_alias(SearchData::class, 'Ibexa\Platform\Bundle\Search\Form\Data\SearchData');
