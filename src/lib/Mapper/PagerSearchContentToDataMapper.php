@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Search\Mapper;
+namespace Ibexa\Search\Mapper;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
@@ -160,3 +160,5 @@ class PagerSearchContentToDataMapper
         }
     }
 }
+
+class_alias(PagerSearchContentToDataMapper::class, 'Ibexa\Platform\Search\Mapper\PagerSearchContentToDataMapper');

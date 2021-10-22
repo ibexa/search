@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\Data;
+namespace Ibexa\Bundle\Search\Form\Data;
 
 class SearchUsersData
 {
@@ -42,3 +42,5 @@ class SearchUsersData
         $this->possibleUsers = $possibleUsers;
     }
 }
+
+class_alias(SearchUsersData::class, 'Ibexa\Platform\Bundle\Search\Form\Data\SearchUsersData');

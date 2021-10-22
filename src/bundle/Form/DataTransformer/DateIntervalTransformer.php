@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\DataTransformer;
+namespace Ibexa\Bundle\Search\Form\DataTransformer;
 
 use DateTime;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -54,3 +54,5 @@ class DateIntervalTransformer implements DataTransformerInterface
         ];
     }
 }
+
+class_alias(DateIntervalTransformer::class, 'Ibexa\Platform\Bundle\Search\Form\DataTransformer\DateIntervalTransformer');
