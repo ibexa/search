@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\ChoiceLoader;
+namespace Ibexa\Bundle\Search\Form\ChoiceLoader;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
@@ -95,3 +95,5 @@ class ContentTypeChoiceLoader implements ChoiceLoaderInterface
         return $this->loadChoiceList($value)->getValuesForChoices($choices);
     }
 }
+
+class_alias(ContentTypeChoiceLoader::class, 'Ibexa\Platform\Bundle\Search\Form\ChoiceLoader\ContentTypeChoiceLoader');

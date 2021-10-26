@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\Type;
+namespace Ibexa\Bundle\Search\Form\Type;
 
 use eZ\Publish\API\Repository\SectionService;
 use Symfony\Component\Form\AbstractType;
@@ -48,3 +48,5 @@ class SectionChoiceType extends AbstractType
         return ChoiceType::class;
     }
 }
+
+class_alias(SectionChoiceType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\SectionChoiceType');

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Search\View;
+namespace Ibexa\Search\View;
 
 use eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface;
 use eZ\Publish\Core\MVC\Symfony\View\View;
@@ -51,3 +51,5 @@ class SearchViewProvider implements ViewProvider
         return $view;
     }
 }
+
+class_alias(SearchViewProvider::class, 'Ibexa\Platform\Search\View\SearchViewProvider');

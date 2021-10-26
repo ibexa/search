@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Controller;
+namespace Ibexa\Bundle\Search\Controller;
 
-use Ibexa\Platform\Search\View\SearchView;
+use Ibexa\Search\View\SearchView;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SearchController extends AbstractController
@@ -18,3 +18,5 @@ class SearchController extends AbstractController
         return $view;
     }
 }
+
+class_alias(SearchController::class, 'Ibexa\Platform\Bundle\Search\Controller\SearchController');

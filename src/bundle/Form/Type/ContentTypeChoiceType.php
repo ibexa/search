@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\Type;
+namespace Ibexa\Bundle\Search\Form\Type;
 
 use eZ\Publish\API\Repository\ContentTypeService;
-use Ibexa\Platform\Bundle\Search\Form\ChoiceLoader\ContentTypeChoiceLoader;
+use Ibexa\Bundle\Search\Form\ChoiceLoader\ContentTypeChoiceLoader;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -46,3 +46,5 @@ class ContentTypeChoiceType extends AbstractType
             ]);
     }
 }
+
+class_alias(ContentTypeChoiceType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\ContentTypeChoiceType');

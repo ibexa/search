@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\DependencyInjection;
+namespace Ibexa\Bundle\Search\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class IbexaPlatformSearchExtension extends Extension implements PrependExtensionInterface
+class IbexaSearchExtension extends Extension implements PrependExtensionInterface
 {
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -53,3 +53,5 @@ class IbexaPlatformSearchExtension extends Extension implements PrependExtension
         ]);
     }
 }
+
+class_alias(IbexaSearchExtension::class, 'Ibexa\Platform\Bundle\Search\DependencyInjection\IbexaPlatformSearchExtension');

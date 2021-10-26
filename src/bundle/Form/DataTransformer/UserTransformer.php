@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\DataTransformer;
+namespace Ibexa\Bundle\Search\Form\DataTransformer;
 
 use eZ\Publish\API\Repository\UserService;
 use eZ\Publish\API\Repository\Values\User\User;
@@ -80,3 +80,5 @@ class UserTransformer implements DataTransformerInterface
         }
     }
 }
+
+class_alias(UserTransformer::class, 'Ibexa\Platform\Bundle\Search\Form\DataTransformer\UserTransformer');

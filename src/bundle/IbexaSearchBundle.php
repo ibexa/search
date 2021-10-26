@@ -4,14 +4,14 @@
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace Ibexa\Platform\Bundle\Search;
+namespace Ibexa\Bundle\Search;
 
-use Ibexa\Platform\Bundle\Search\DependencyInjection\Configuration\Parser\Search;
-use Ibexa\Platform\Bundle\Search\DependencyInjection\Configuration\Parser\SearchView;
+use Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\Search;
+use Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\SearchView;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class IbexaPlatformSearchBundle extends Bundle
+class IbexaSearchBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
@@ -23,3 +23,5 @@ class IbexaPlatformSearchBundle extends Bundle
         $core->addConfigParser(new SearchView());
     }
 }
+
+class_alias(IbexaSearchBundle::class, 'Ibexa\Platform\Bundle\Search\IbexaPlatformSearchBundle');
