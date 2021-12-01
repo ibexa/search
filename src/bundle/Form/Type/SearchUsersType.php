@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Bundle\Search\Form\Type;
 
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\SearchService;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Bundle\Search\Form\Data\SearchUsersData;
 use Ibexa\Bundle\Search\Form\DataTransformer\UsersTransformer;
 use Symfony\Component\Form\AbstractType;
@@ -19,10 +19,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchUsersType extends AbstractType
 {
-    /** @var \eZ\Publish\API\Repository\Repository */
+    /** @var \Ibexa\Contracts\Core\Repository\Repository */
     private $repository;
 
-    /** @var \eZ\Publish\API\Repository\SearchService */
+    /** @var \Ibexa\Contracts\Core\Repository\SearchService */
     private $searchService;
 
     /** @var string */

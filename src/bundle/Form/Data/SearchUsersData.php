@@ -13,7 +13,7 @@ class SearchUsersData
     /** @var string */
     private $query;
 
-    /** @var \eZ\Publish\API\Repository\Values\Content\Content[] */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content[] */
     private $possibleUsers;
 
     public function __construct(array $possibleUsers = [], ?string $query = null)

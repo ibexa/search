@@ -8,14 +8,14 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\View;
 
-use eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface;
-use eZ\Publish\Core\MVC\Symfony\View\View;
-use eZ\Publish\Core\MVC\Symfony\View\ViewProvider;
+use Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface;
+use Ibexa\Core\MVC\Symfony\View\View;
+use Ibexa\Core\MVC\Symfony\View\ViewProvider;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 class SearchViewProvider implements ViewProvider
 {
-    /** @var \eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface */
+    /** @var \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface */
     protected $matcherFactory;
 
     public function __construct(MatcherFactoryInterface $matcherFactory)

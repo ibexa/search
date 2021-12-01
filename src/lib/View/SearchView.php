@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\View;
 
-use eZ\Publish\Core\MVC\Symfony\View\BaseView;
+use Ibexa\Core\MVC\Symfony\View\BaseView;
 
 class SearchView extends BaseView
 {

@@ -8,20 +8,20 @@ declare(strict_types=1);
 
 namespace Ibexa\Bundle\Search\Form\Type;
 
-use eZ\Publish\API\Repository\SectionService;
+use Ibexa\Contracts\Core\Repository\SectionService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SectionChoiceType extends AbstractType
 {
-    /** @var SectionService */
+    /** @var \Ibexa\Contracts\Core\Repository\SectionService */
     private $sectionService;
 
     /**
      * SectionChoiceType constructor.
      *
-     * @param SectionService $sectionService
+     * @param \Ibexa\Contracts\Core\Repository\SectionService $sectionService
      */
     public function __construct(SectionService $sectionService)
     {

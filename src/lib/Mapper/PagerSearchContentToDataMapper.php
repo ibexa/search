@@ -8,37 +8,37 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\Mapper;
 
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\LanguageService;
-use eZ\Publish\API\Repository\UserService;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\API\Repository\Values\Content\Language;
-use eZ\Publish\API\Repository\Values\User\User;
-use eZ\Publish\Core\Helper\TranslationHelper;
-use eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
-use eZ\Publish\Core\Repository\LocationResolver\LocationResolver;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\LanguageService;
+use Ibexa\Contracts\Core\Repository\UserService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Contracts\Core\Repository\Values\Content\Language;
+use Ibexa\Contracts\Core\Repository\Values\User\User;
+use Ibexa\Core\Helper\TranslationHelper;
+use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
+use Ibexa\Core\Repository\LocationResolver\LocationResolver;
 use Pagerfanta\Pagerfanta;
 
 class PagerSearchContentToDataMapper
 {
-    /** @var \eZ\Publish\API\Repository\ContentTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
     private $contentTypeService;
 
-    /** @var \eZ\Publish\API\Repository\UserService */
+    /** @var \Ibexa\Contracts\Core\Repository\UserService */
     private $userService;
 
-    /** @var \eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
+    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
     private $userLanguagePreferenceProvider;
 
-    /** @var \eZ\Publish\Core\Helper\TranslationHelper */
+    /** @var \Ibexa\Core\Helper\TranslationHelper */
     protected $translationHelper;
 
-    /** @var \eZ\Publish\API\Repository\LanguageService */
+    /** @var \Ibexa\Contracts\Core\Repository\LanguageService */
     private $languageService;
 
-    /** @var \eZ\Publish\Core\Repository\LocationResolver\LocationResolver */
+    /** @var \Ibexa\Core\Repository\LocationResolver\LocationResolver */
     private $locationResolver;
 
     public function __construct(
@@ -62,9 +62,9 @@ class PagerSearchContentToDataMapper
         $data = [];
         $contentTypeIds = [];
 
-        /** @var \eZ\Publish\API\Repository\Values\Content\Search\SearchHit $searchHit */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit $searchHit */
         foreach ($pager as $searchHit) {
-            /** @var \eZ\Publish\API\Repository\Values\Content\Content $content */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content $content */
             $content = $searchHit->valueObject;
             $contentInfo = $content->contentInfo;
 
@@ -98,10 +98,10 @@ class PagerSearchContentToDataMapper
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Content $content
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
      * @param bool $filterDisabled
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Language[]
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Language[]
      */
     protected function getAvailableTranslations(
         Content $content,
@@ -152,7 +152,7 @@ class PagerSearchContentToDataMapper
         foreach ($data as $idx => $item) {
             // get content type from bulk-loaded list or fallback to lazy loaded one if not present
             $contentTypeId = $item['contentTypeId'];
-            /** @var \eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType */
             $contentType = $contentTypes[$contentTypeId] ?? $item['content']->getContentType();
 
             $data[$idx]['type'] = $contentType->getName();

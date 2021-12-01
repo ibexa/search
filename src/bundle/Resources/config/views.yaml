@@ -6,14 +6,14 @@ services:
             - { name: ezpublish.view_provider, type: Ibexa\Search\View\SearchView, priority: 10 }
 
     ibexa.platform.view.search.matcher_factory:
-        class: eZ\Bundle\EzPublishCoreBundle\Matcher\ServiceAwareMatcherFactory
+        class: Ibexa\Bundle\Core\Matcher\ServiceAwareMatcherFactory
         arguments:
-            $viewMatcherRegistry: '@eZ\Bundle\EzPublishCoreBundle\Matcher\ViewMatcherRegistry'
+            $viewMatcherRegistry: '@Ibexa\Bundle\Core\Matcher\ViewMatcherRegistry'
             $repository: '@ezpublish.api.repository'
             $relativeNamespace: Ibexa\Search\View
 
     ibexa.platform.user.view.search.matcher_factory.dynamically_configured:
-        class: eZ\Publish\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
+        class: Ibexa\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
         decorates: ibexa.platform.view.search.matcher_factory
         arguments:
             $innerConfigurableMatcherFactory: '@ibexa.platform.user.view.search.matcher_factory.dynamically_configured.inner'

@@ -8,21 +8,21 @@ declare(strict_types=1);
 
 namespace Ibexa\Bundle\Search\Form\Type;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Core\MVC\ConfigResolverInterface;
 use Ibexa\Bundle\Search\Form\Data\SearchData;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as CoreTextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use eZ\Publish\API\Repository\PermissionResolver;
+use Ibexa\Contracts\Core\Repository\PermissionResolver;
 
 final class SearchType extends AbstractType
 {
-    /** @var \eZ\Publish\API\Repository\PermissionResolver */
+    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
     private $permissionResolver;
 
-    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    /** @var \Ibexa\Core\MVC\ConfigResolverInterface */
     private $configResolver;
 
     public function __construct(
@@ -37,7 +37,7 @@ final class SearchType extends AbstractType
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array $options
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

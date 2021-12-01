@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Bundle\Search\Form\Type;
 
-use eZ\Publish\API\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Bundle\Search\Form\ChoiceLoader\ContentTypeChoiceLoader;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -16,10 +16,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentTypeChoiceType extends AbstractType
 {
-    /** @var \eZ\Publish\API\Repository\ContentTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
     protected $contentTypeService;
 
-    /** @var \Ibexa\Platform\Bundle\Search\Form\ChoiceLoader\ContentTypeChoiceLoader */
+    /** @var \Ibexa\Bundle\Search\Form\ChoiceLoader\ContentTypeChoiceLoader */
     private $contentTypeChoiceLoader;
 
     public function __construct(

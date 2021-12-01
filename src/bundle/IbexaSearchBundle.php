@@ -15,8 +15,8 @@ class IbexaSearchBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
-        /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $core */
-        $core = $container->getExtension('ezpublish');
+        /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $core */
+        $core = $container->getExtension('ibexa');
 
         $core->addDefaultSettings(__DIR__ . '/Resources/config', ['default_settings.yaml']);
         $core->addConfigParser(new Search());
