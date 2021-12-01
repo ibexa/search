@@ -1,20 +1,20 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Search\QueryType;
 
+use Ibexa\Bundle\Search\Form\Data\SearchData;
 use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Core\QueryType\OptionsResolverBasedQueryType;
-use Ibexa\Bundle\Search\Form\Data\SearchData;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchQueryType extends OptionsResolverBasedQueryType

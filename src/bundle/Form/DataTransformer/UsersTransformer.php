@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Bundle\Search\Form\DataTransformer;
 
+use Ibexa\Bundle\Search\Form\Data\SearchUsersData;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
-use Ibexa\Bundle\Search\Form\Data\SearchUsersData;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -79,14 +79,14 @@ class UsersTransformer implements DataTransformerInterface
 
         $searchService = $this->searchService;
 
-        $result = $this->repository->sudo(function () use ($searchService, $filter) {
+        $result = $this->repository->sudo(static function () use ($searchService, $filter) {
             return $searchService->findContent(new Query([
                 'filter' => $filter,
             ]));
         });
 
         return new SearchUsersData(
-            array_map(function (SearchHit $searchHit) {
+            array_map(static function (SearchHit $searchHit) {
                 return $searchHit->valueObject;
             }, $result->searchHits),
             $value

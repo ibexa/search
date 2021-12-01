@@ -1,21 +1,21 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Bundle\Search\Form\Type;
 
-use Ibexa\Core\MVC\ConfigResolverInterface;
 use Ibexa\Bundle\Search\Form\Data\SearchData;
+use Ibexa\Contracts\Core\Repository\PermissionResolver;
+use Ibexa\Core\MVC\ConfigResolverInterface;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as CoreTextType;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Ibexa\Contracts\Core\Repository\PermissionResolver;
 
 final class SearchType extends AbstractType
 {
