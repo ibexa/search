@@ -38,7 +38,7 @@
         "phpunit/phpunit": "^8.5",
         "friendsofphp/php-cs-fixer": "^2.16",
         "ibexa/code-style": "^1.0",
-        "ibexa/doctrine-dbal-schema": "^4.0@dev"
+        "ibexa/doctrine-schema": "^4.0@dev"
     },
     "scripts": {
         "fix-cs": "@php ./vendor/bin/php-cs-fixer fix -v --show-progress=estimating"
