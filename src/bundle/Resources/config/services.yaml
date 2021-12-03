@@ -16,7 +16,7 @@ services:
       arguments:
           $contentTypeService: '@ezpublish.api.service.content_type'
           $userService: '@ezpublish.api.service.user'
-          $userLanguagePreferenceProvider: '@eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProvider'
+          $userLanguagePreferenceProvider: '@Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProvider'
           $translationHelper: '@ezpublish.translation_helper'
           $languageService: '@ezpublish.api.service.language'
 

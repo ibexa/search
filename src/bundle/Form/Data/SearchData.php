@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Bundle\Search\Form\Data;
 
-use eZ\Publish\API\Repository\Values\Content\Language;
-use eZ\Publish\API\Repository\Values\Content\Section;
-use eZ\Publish\API\Repository\Values\User\User;
+use Ibexa\Contracts\Core\Repository\Values\Content\Language;
+use Ibexa\Contracts\Core\Repository\Values\Content\Section;
+use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class SearchData
@@ -30,10 +30,10 @@ class SearchData
     /** @var string */
     private $query;
 
-    /** @var \eZ\Publish\API\Repository\Values\Content\Section */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Section */
     private $section;
 
-    /** @var \eZ\Publish\API\Repository\Values\ContentType\ContentType[] */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType[] */
     private $contentTypes;
 
     /** @var array */
@@ -42,16 +42,16 @@ class SearchData
     /** @var array */
     private $created;
 
-    /** @var \eZ\Publish\API\Repository\Values\User\User */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\User\User */
     private $creator;
 
     /** @var string|null */
     private $subtree;
 
-    /** @var \eZ\Publish\API\Repository\Values\Content\Language|null */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Language|null */
     private $searchLanguage;
 
-    /** @var \eZ\Publish\API\Repository\Values\User\User[] */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\User\User[] */
     private $searchUsersData;
 
     public function __construct(

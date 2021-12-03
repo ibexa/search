@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Bundle\Search;
@@ -15,8 +15,8 @@ class IbexaSearchBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
-        /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $core */
-        $core = $container->getExtension('ezpublish');
+        /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $core */
+        $core = $container->getExtension('ibexa');
 
         $core->addDefaultSettings(__DIR__ . '/Resources/config', ['default_settings.yaml']);
         $core->addConfigParser(new Search());
