@@ -4,7 +4,7 @@
     <div>
         <div>
             <section>
-                {% include '@ezdesign/search/form.html.twig' with { form: form } %}
+                {% include '@ibexadesign/search/form.html.twig' with { form: form } %}
 
                 {% if results is defined %}
 
@@ -45,7 +45,7 @@
                                 </thead>
                                 <tbody>
                                 {% for row in results %}
-                                    {% include '@ezdesign/search/list_item.html.twig' with { row: row } %}
+                                    {% include '@ibexadesign/search/list_item.html.twig' with { row: row } %}
                                 {% endfor %}
                                 </tbody>
                             </table>
