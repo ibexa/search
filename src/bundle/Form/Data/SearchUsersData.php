@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\Data;
+namespace Ibexa\Bundle\Search\Form\Data;
 
 class SearchUsersData
 {
     /** @var string */
     private $query;
 
-    /** @var \eZ\Publish\API\Repository\Values\Content\Content[] */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content[] */
     private $possibleUsers;
 
     public function __construct(array $possibleUsers = [], ?string $query = null)
@@ -42,3 +42,5 @@ class SearchUsersData
         $this->possibleUsers = $possibleUsers;
     }
 }
+
+class_alias(SearchUsersData::class, 'Ibexa\Platform\Bundle\Search\Form\Data\SearchUsersData');

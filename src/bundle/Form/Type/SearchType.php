@@ -1,28 +1,28 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\Type;
+namespace Ibexa\Bundle\Search\Form\Type;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Ibexa\Platform\Bundle\Search\Form\Data\SearchData;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\SearchType as CoreSearchType;
+use Ibexa\Bundle\Search\Form\Data\SearchData;
+use Ibexa\Contracts\Core\Repository\PermissionResolver;
+use Ibexa\Core\MVC\ConfigResolverInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType as CoreTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use eZ\Publish\API\Repository\PermissionResolver;
 
 final class SearchType extends AbstractType
 {
-    /** @var \eZ\Publish\API\Repository\PermissionResolver */
+    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
     private $permissionResolver;
 
-    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    /** @var \Ibexa\Core\MVC\ConfigResolverInterface */
     private $configResolver;
 
     public function __construct(
@@ -37,12 +37,12 @@ final class SearchType extends AbstractType
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array $options
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('query', CoreSearchType::class, ['required' => false])
+            ->add('query', CoreTextType::class, ['required' => false])
             ->add('page', HiddenType::class, ['empty_data' => 1])
             ->add('limit', HiddenType::class, [
                 'empty_data' => $this->configResolver->getParameter('search.pagination.limit'),
@@ -90,6 +90,9 @@ final class SearchType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => SearchData::class,
+            'translation_domain' => 'search',
         ]);
     }
 }
+
+class_alias(SearchType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\SearchType');

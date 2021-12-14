@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\Type;
+namespace Ibexa\Bundle\Search\Form\Type;
 
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\SearchService;
-use Ibexa\Platform\Bundle\Search\Form\Data\SearchUsersData;
-use Ibexa\Platform\Bundle\Search\Form\DataTransformer\UsersTransformer;
+use Ibexa\Bundle\Search\Form\Data\SearchUsersData;
+use Ibexa\Bundle\Search\Form\DataTransformer\UsersTransformer;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\SearchService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,10 +19,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchUsersType extends AbstractType
 {
-    /** @var \eZ\Publish\API\Repository\Repository */
+    /** @var \Ibexa\Contracts\Core\Repository\Repository */
     private $repository;
 
-    /** @var \eZ\Publish\API\Repository\SearchService */
+    /** @var \Ibexa\Contracts\Core\Repository\SearchService */
     private $searchService;
 
     /** @var string */
@@ -61,3 +61,5 @@ class SearchUsersType extends AbstractType
         ]);
     }
 }
+
+class_alias(SearchUsersType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\SearchUsersType');

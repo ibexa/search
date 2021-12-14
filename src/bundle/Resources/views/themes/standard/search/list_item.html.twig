@@ -5,7 +5,7 @@
             'languageCode': row.translation_language_code,
         }) }}">{{ row.name }}</a>
     </td>
-    <td>{{ row.modified|ez_full_datetime }}</td>
+    <td>{{ row.modified|ibexa_full_datetime }}</td>
     <td>{{ row.type }}</td>
     {% if form.search_language.vars.choices|length > 1 %}
         <td>
