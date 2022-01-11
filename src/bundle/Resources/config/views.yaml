@@ -3,7 +3,7 @@ services:
         arguments:
             $matcherFactory: '@ibexa.platform.user.view.search.matcher_factory.dynamically_configured'
         tags:
-            - { name: ezpublish.view_provider, type: Ibexa\Search\View\SearchView, priority: 10 }
+            - { name: ibexa.view.provider, type: Ibexa\Search\View\SearchView, priority: 10 }
 
     ibexa.platform.view.search.matcher_factory:
         class: Ibexa\Bundle\Core\Matcher\ServiceAwareMatcherFactory
@@ -38,4 +38,4 @@ services:
             $pagerSearchContentToDataMapper: '@Ibexa\Search\Mapper\PagerSearchContentToDataMapper'
             $searchQueryType: '@Ibexa\Search\QueryType\SearchQueryType'
         tags:
-            - { name: ibexa.view_builder }
+            - { name: ibexa.view.builder }
