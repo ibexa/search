@@ -2,18 +2,18 @@ services:
     Ibexa\Bundle\Search\Form\Type\SearchType:
         arguments:
             $permissionResolver: '@Ibexa\Contracts\Core\Repository\PermissionResolver'
-            $configResolver: '@ezpublish.config.resolver'
+            $configResolver: '@ibexa.config.resolver'
         tags:
             - { name: form.type, alias: Ibexa\Bundle\Search\Form\Type\SearchType }
 
     Ibexa\Bundle\Search\Form\ChoiceLoader\ConfiguredLanguagesChoiceLoader:
         arguments:
-            $languageService: '@ezpublish.api.service.language'
-            $configResolver: '@ezpublish.config.resolver'
+            $languageService: '@ibexa.api.service.language'
+            $configResolver: '@ibexa.config.resolver'
 
     Ibexa\Bundle\Search\Form\Type\UserType:
         arguments:
-            $userService: '@ezpublish.api.service.user'
+            $userService: '@ibexa.api.service.user'
         tags:
             - { name: form.type, alias: Ibexa\Bundle\Search\Form\Type\UserType }
 
@@ -25,12 +25,12 @@ services:
 
     Ibexa\Bundle\Search\Form\ChoiceLoader\ContentTypeChoiceLoader:
         arguments:
-            $contentTypeService: '@ezpublish.api.service.content_type'
+            $contentTypeService: '@ibexa.api.service.content_type'
             $userLanguagePreferenceProvider: '@Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProvider'
 
     Ibexa\Bundle\Search\Form\Type\ContentTypeChoiceType:
         arguments:
-            $contentTypeService: '@ezpublish.api.service.content_type'
+            $contentTypeService: '@ibexa.api.service.content_type'
             $contentTypeChoiceLoader: '@Ibexa\Bundle\Search\Form\ChoiceLoader\ContentTypeChoiceLoader'
         tags:
             - { name: form.type, alias: Ibexa\Bundle\Search\Form\Type\ContentTypeChoiceType }
@@ -43,8 +43,8 @@ services:
 
     Ibexa\Bundle\Search\Form\Type\SearchUsersType:
         arguments:
-            $repository: '@ezpublish.api.repository'
-            $searchService: '@ezpublish.api.service.search'
+            $repository: '@ibexa.api.repository'
+            $searchService: '@ibexa.api.service.search'
             $userContentTypeIdentifier: '%ezplatform.user.content_type_identifier%'
         tags:
             - { name: form.type, alias: Ibexa\Bundle\Search\Form\Type\SearchUsersType }
