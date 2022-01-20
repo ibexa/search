@@ -14,12 +14,12 @@ services:
 
   Ibexa\Search\Mapper\PagerSearchContentToDataMapper:
       arguments:
-          $contentTypeService: '@ezpublish.api.service.content_type'
-          $userService: '@ezpublish.api.service.user'
+          $contentTypeService: '@ibexa.api.service.content_type'
+          $userService: '@ibexa.api.service.user'
           $userLanguagePreferenceProvider: '@Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProvider'
-          $translationHelper: '@ezpublish.translation_helper'
-          $languageService: '@ezpublish.api.service.language'
+          $translationHelper: '@Ibexa\Core\Helper\TranslationHelper'
+          $languageService: '@ibexa.api.service.language'
 
   Ibexa\Search\QueryType\SearchQueryType:
       arguments:
-          $searchService: '@ezpublish.api.service.search'
+          $searchService: '@ibexa.api.service.search'
