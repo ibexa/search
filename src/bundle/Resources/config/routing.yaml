@@ -1,4 +1,4 @@
-ezplatform.search:
+ibexa.search:
     path: /search
     methods: ['GET']
     defaults:
