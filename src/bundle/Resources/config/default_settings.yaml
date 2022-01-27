@@ -4,5 +4,5 @@ parameters:
     ezsettings.site_group.search_view:
         full:
             default:
-                template: "@@ezdesign/search/index.html.twig"
+                template: "@@ibexadesign/search/index.html.twig"
                 match: []
