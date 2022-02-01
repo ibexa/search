@@ -45,6 +45,6 @@ services:
         arguments:
             $repository: '@ibexa.api.repository'
             $searchService: '@ibexa.api.service.search'
-            $userContentTypeIdentifier: '%ezplatform.user.content_type_identifier%'
+            $userContentTypeIdentifier: '%ibexa.user.content_type_identifier%'
         tags:
             - { name: form.type, alias: Ibexa\Bundle\Search\Form\Type\SearchUsersType }
