@@ -1,6 +1,6 @@
 | Question      | Answer
 | ------------- | ---
-| Tickets       |  [EZP-XXXXX](https://jira.ez.no/browse/EZP-XXXXX) <!-- URLs to JIRA issue(s) (or N/A) -->
+| Tickets       |  [EZP-XXXXX](https://jira.ibexa.co/browse/EZP-XXXXX) <!-- URLs to JIRA issue(s) (or N/A) -->
 | Bug fix?      | yes/no
 | New feature?  | yes/no
 | BC breaks?    | yes/no
