@@ -8,19 +8,19 @@
     },
     "autoload": {
         "psr-4": {
-            "Ibexa\\Platform\\Bundle\\Search\\": "src/bundle/",
-            "Ibexa\\Platform\\Search\\": "src/lib/",
             "Ibexa\\Search\\": "src/lib/",
             "Ibexa\\Bundle\\Search\\": "src/bundle/",
-            "Ibexa\\Contracts\\Search\\": "src/contracts/"
+            "Ibexa\\Contracts\\Search\\": "src/contracts/",
+            "Ibexa\\Platform\\Bundle\\Search\\": "src/bundle/",
+            "Ibexa\\Platform\\Search\\": "src/lib/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ibexa\\Platform\\Tests\\Bundle\\Search\\": "tests/bundle/",
-            "Ibexa\\Platform\\Tests\\Search\\": "tests/lib/",
             "Ibexa\\Tests\\Search\\": "tests/lib/",
-            "Ibexa\\Tests\\Bundle\\Search\\": "tests/bundle/"
+            "Ibexa\\Tests\\Bundle\\Search\\": "tests/bundle/",
+            "Ibexa\\Platform\\Tests\\Bundle\\Search\\": "tests/bundle/",
+            "Ibexa\\Platform\\Tests\\Search\\": "tests/lib/"
         }
     },
     "require": {
