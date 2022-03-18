@@ -4,7 +4,7 @@
     <div>
         <div>
             <section>
-                {% include '@ezdesign/search/form.html.twig' with { form: form } %}
+                {% include '@ibexadesign/search/form.html.twig' with { form: form } %}
 
                 {% if results is defined %}
 
@@ -45,7 +45,7 @@
                                 </thead>
                                 <tbody>
                                 {% for row in results %}
-                                    {% include '@ezdesign/search/list_item.html.twig' with { row: row } %}
+                                    {% include '@ibexadesign/search/list_item.html.twig' with { row: row } %}
                                 {% endfor %}
                                 </tbody>
                             </table>
@@ -56,11 +56,11 @@
                                 <span>
                                     {{ 'pagination.viewing'|trans({
                                         '%viewing%': pager.currentPageResults|length,
-                                        '%total%': pager.nbResults}, 'pagination')|desc('Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items')|raw }}
+                                        '%total%': pager.nbResults}, 'pagination')|desc('Viewing %viewing% out of %total% items')|raw }}
                                 </span>
                             </div>
                             <div>
-                                {{ pagerfanta(pager, 'ez', {'pageParameter': '[search][page]'}) }}
+                                {{ pagerfanta(pager, 'ibexa', {'pageParameter': '[search][page]'}) }}
                             </div>
                         {% endif %}
                     {% endif %}

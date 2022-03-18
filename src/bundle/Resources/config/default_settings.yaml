@@ -1,8 +1,8 @@
 parameters:
-    ezsettings.default.search.pagination.limit: 10
+    ibexa.site_access.config.default.search.pagination.limit: 10
 
-    ezsettings.site_group.search_view:
+    ibexa.site_access.config.site_group.search_view:
         full:
             default:
-                template: "@@ezdesign/search/index.html.twig"
+                template: "@@ibexadesign/search/index.html.twig"
                 match: []

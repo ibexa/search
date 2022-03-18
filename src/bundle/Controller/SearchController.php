@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Controller;
+namespace Ibexa\Bundle\Search\Controller;
 
-use Ibexa\Platform\Search\View\SearchView;
+use Ibexa\Search\View\SearchView;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SearchController extends AbstractController
@@ -18,3 +18,5 @@ class SearchController extends AbstractController
         return $view;
     }
 }
+
+class_alias(SearchController::class, 'Ibexa\Platform\Bundle\Search\Controller\SearchController');

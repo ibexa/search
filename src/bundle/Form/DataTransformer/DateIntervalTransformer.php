@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\DataTransformer;
+namespace Ibexa\Bundle\Search\Form\DataTransformer;
 
 use DateTime;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -35,8 +35,8 @@ class DateIntervalTransformer implements DataTransformerInterface
      *
      * @throws \Exception
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
-     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
     public function reverseTransform($value)
     {
@@ -54,3 +54,5 @@ class DateIntervalTransformer implements DataTransformerInterface
         ];
     }
 }
+
+class_alias(DateIntervalTransformer::class, 'Ibexa\Platform\Bundle\Search\Form\DataTransformer\DateIntervalTransformer');

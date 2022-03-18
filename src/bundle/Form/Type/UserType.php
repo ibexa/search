@@ -1,22 +1,22 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Bundle\Search\Form\Type;
+namespace Ibexa\Bundle\Search\Form\Type;
 
-use eZ\Publish\API\Repository\UserService;
-use Ibexa\Platform\Bundle\Search\Form\DataTransformer\UserTransformer;
+use Ibexa\Bundle\Search\Form\DataTransformer\UserTransformer;
+use Ibexa\Contracts\Core\Repository\UserService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class UserType extends AbstractType
 {
-    /** @var \eZ\Publish\API\Repository\UserService */
+    /** @var \Ibexa\Contracts\Core\Repository\UserService */
     protected $userService;
 
     public function __construct(UserService $userService)
@@ -34,3 +34,5 @@ class UserType extends AbstractType
         return HiddenType::class;
     }
 }
+
+class_alias(UserType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\UserType');

@@ -1,13 +1,13 @@
 {% trans_default_domain 'search' %}
 
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {{ form_start(form) }}
 <div>
     {{ form_widget(form.query) }}
     <span>
         <span {% if form.search_language.vars.choices|length == 1 %}hidden{% endif %}>
-            {{ form_widget(form.search_language, {'attr': {'class': 'ez-search-form__language-selector'}}) }}
+            {{ form_widget(form.search_language, {'attr': {'class': 'ibexa-search-form__language-selector'}}) }}
         </span>
     </span>
 </div>
@@ -19,14 +19,14 @@
                 <select hidden>
                     <option data-default="{{ 'search.any.content.type'|trans|desc('Any Content Type') }}" value="">{{ 'search.any.content.type'|trans|desc('Any Content Type') }}</option>
                 </select>
-            {{ form_widget(form.content_types, {'attr': {'class': 'ez-filters__select'}}) }}
+            {{ form_widget(form.content_types, {'attr': {'class': 'ibexa-filters__select'}}) }}
         </div>
     </div>
     <div>
         {% if form.section is defined %}
             <div>
                 <label>{{ 'search.section'|trans|desc('Section') }}:</label>
-                {{ form_widget(form.section, {'attr': {'class': 'ez-filters__select'}}) }}
+                {{ form_widget(form.section, {'attr': {'class': 'ibexa-filters__select'}}) }}
             </div>
         {% endif %}
     </div>

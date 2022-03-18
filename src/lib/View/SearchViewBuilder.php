@@ -1,38 +1,38 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace Ibexa\Platform\Search\View;
+namespace Ibexa\Search\View;
 
-use eZ\Publish\API\Repository\SearchService;
-use eZ\Publish\API\Repository\Values\Content\Language;
-use eZ\Publish\Core\MVC\Symfony\View\Builder\ViewBuilder;
-use eZ\Publish\Core\MVC\Symfony\View\Configurator;
-use eZ\Publish\Core\MVC\Symfony\View\ParametersInjector;
-use eZ\Publish\Core\Pagination\Pagerfanta\ContentSearchHitAdapter;
-use eZ\Publish\Core\QueryType\QueryType;
-use Ibexa\Platform\Search\Mapper\PagerSearchContentToDataMapper;
+use Ibexa\Contracts\Core\Repository\SearchService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Language;
+use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
+use Ibexa\Core\MVC\Symfony\View\Configurator;
+use Ibexa\Core\MVC\Symfony\View\ParametersInjector;
+use Ibexa\Core\Pagination\Pagerfanta\ContentSearchHitAdapter;
+use Ibexa\Core\QueryType\QueryType;
+use Ibexa\Search\Mapper\PagerSearchContentToDataMapper;
 use Pagerfanta\Pagerfanta;
 
 class SearchViewBuilder implements ViewBuilder
 {
-    /** @var \eZ\Publish\Core\MVC\Symfony\View\Configurator */
+    /** @var \Ibexa\Core\MVC\Symfony\View\Configurator */
     private $viewConfigurator;
 
-    /** @var \eZ\Publish\Core\MVC\Symfony\View\ParametersInjector */
+    /** @var \Ibexa\Core\MVC\Symfony\View\ParametersInjector */
     private $viewParametersInjector;
 
-    /** @var \eZ\Publish\API\Repository\SearchService */
+    /** @var \Ibexa\Contracts\Core\Repository\SearchService */
     private $searchService;
 
-    /** @var \Ibexa\Platform\Search\Mapper\PagerSearchContentToDataMapper */
+    /** @var \Ibexa\Search\Mapper\PagerSearchContentToDataMapper */
     private $pagerSearchContentToDataMapper;
 
-    /** @var \eZ\Publish\Core\QueryType\QueryType */
+    /** @var \Ibexa\Core\QueryType\QueryType */
     private $searchQueryType;
 
     public function __construct(
@@ -51,7 +51,7 @@ class SearchViewBuilder implements ViewBuilder
 
     public function matches($argument): bool
     {
-        return 'Ibexa\Platform\Bundle\Search\Controller\SearchController::searchAction' === $argument;
+        return 'Ibexa\Bundle\Search\Controller\SearchController::searchAction' === $argument;
     }
 
     public function buildView(array $parameters): SearchView
@@ -102,3 +102,5 @@ class SearchViewBuilder implements ViewBuilder
         ];
     }
 }
+
+class_alias(SearchViewBuilder::class, 'Ibexa\Platform\Search\View\SearchViewBuilder');
