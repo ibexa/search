@@ -39,7 +39,7 @@ class IbexaSearchExtension extends Extension implements PrependExtensionInterfac
     {
         $container->prependExtensionConfig('jms_translation', [
             'configs' => [
-                'ezplatform_search' => [
+                'ibexa_search' => [
                     'dirs' => [
                         __DIR__ . '/../../',
                     ],
