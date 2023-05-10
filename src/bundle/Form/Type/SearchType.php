@@ -76,7 +76,7 @@ final class SearchType extends AbstractType
             $builder->add('section', SectionChoiceType::class, [
                 'required' => false,
                 'multiple' => false,
-                'placeholder' => /** @Desc("Any section") */ 'search.section.any',
+                'placeholder' => /** @Desc("All") */ 'search.section.any',
             ]);
         }
     }
