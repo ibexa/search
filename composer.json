@@ -25,7 +25,7 @@
     },
     "require": {
         "php": "^7.4 || ^8.0",
-        "ibexa/core": "~4.5.0@dev",
+        "ibexa/core": "~4.5.0",
         "symfony/dependency-injection": "^5.0",
         "symfony/http-kernel": "^5.0",
         "symfony/http-foundation": "^5.0",
@@ -38,7 +38,7 @@
         "phpunit/phpunit": "^8.5",
         "friendsofphp/php-cs-fixer": "^3.0",
         "ibexa/code-style": "^1.0",
-        "ibexa/doctrine-schema": "~4.5.0@dev"
+        "ibexa/doctrine-schema": "~4.5.0"
     },
     "scripts": {
         "fix-cs": "php-cs-fixer fix -v --show-progress=estimating",
