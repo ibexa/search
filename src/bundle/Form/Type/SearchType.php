@@ -80,6 +80,14 @@ final class SearchType extends AbstractType
                 'placeholder' => /** @Desc("All") */ 'search.section.any',
             ]);
         }
+
+        $builder->add(
+            'sort',
+            SortingDefintionChoiceType::class,
+            [
+                'property_path' => 'sortingDefinition',
+            ]
+        );
     }
 
     /**

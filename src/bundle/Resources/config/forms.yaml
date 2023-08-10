@@ -41,6 +41,12 @@ services:
         tags:
             - { name: form.type, alias: Ibexa\Bundle\Search\Form\Type\SectionChoiceType }
 
+    Ibexa\Bundle\Search\Form\Type\SortingDefintionChoiceType:
+        arguments:
+            $providers: !tagged_iterator { tag: 'ibexa.search.sorting_definition.provider' }
+        tags:
+            - { name: form.type, alias: Ibexa\Bundle\Search\Form\Type\SortingDefintionChoiceType }
+
     Ibexa\Bundle\Search\Form\Type\SearchUsersType:
         arguments:
             $repository: '@ibexa.api.repository'

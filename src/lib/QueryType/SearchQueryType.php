@@ -12,7 +12,6 @@ use Ibexa\Bundle\Search\Form\Data\SearchData;
 use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
-use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Core\QueryType\OptionsResolverBasedQueryType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -42,8 +41,8 @@ class SearchQueryType extends OptionsResolverBasedQueryType
             $query->filter = new Criterion\LogicalAnd($criteria);
         }
 
-        if (!$this->searchService->supports(SearchService::CAPABILITY_SCORING)) {
-            $query->sortClauses[] = new SortClause\DateModified(Query::SORT_ASC);
+        if ($searchData->getSortingDefinition() !== null) {
+            $query->sortClauses = $searchData->getSortingDefinition()->getSortClauses();
         }
 
         return $query;
