@@ -105,6 +105,40 @@
         <source>Content Type</source>
         <target>Content Type</target>
         <note>key: search.type</note>
+      <trans-unit id="fa5761c7de14d55bfe7d064dbed7b0414618d0ee" resname="sort_definition.date_modified_asc.label">
+        <source>Sort by modification date (ASC)</source>
+        <target state="new">Sort by modification date (ASC)</target>
+        <note>key: sort_definition.date_modified_asc.label</note>
+      </trans-unit>
+      <trans-unit id="d347942d7df28fc0e37401cc6a4466647d5522bd" resname="sort_definition.date_modified_desc.label">
+        <source>Sort by modification date (DESC)</source>
+        <target state="new">Sort by modification date (DESC)</target>
+        <note>key: sort_definition.date_modified_desc.label</note>
+      </trans-unit>
+      <trans-unit id="9bdd88504463f9d98eb8c8ba59275d1004ce7c77" resname="sort_definition.date_published_asc.label">
+        <source>Sort by publication date (ASC)</source>
+        <target state="new">Sort by publication date (ASC)</target>
+        <note>key: sort_definition.date_published_asc.label</note>
+      </trans-unit>
+      <trans-unit id="93987e74fb2a656b65a99df21aa80c82ebe4a03d" resname="sort_definition.date_published_desc.label">
+        <source>Sort by publication date (DESC)</source>
+        <target state="new">Sort by publication date (DESC)</target>
+        <note>key: sort_definition.date_published_desc.label</note>
+      </trans-unit>
+      <trans-unit id="5e8c9a364b0b2991a3ce09833b5f29cd51b3ed46" resname="sort_definition.name_asc.label">
+        <source>Sort by name A-Z</source>
+        <target state="new">Sort by name A-Z</target>
+        <note>key: sort_definition.name_asc.label</note>
+      </trans-unit>
+      <trans-unit id="cd6190374822df1268eb795d0d9ad7708145c9cf" resname="sort_definition.name_desc.label">
+        <source>Sort by name Z-A</source>
+        <target state="new">Sort by name Z-A</target>
+        <note>key: sort_definition.name_desc.label</note>
+      </trans-unit>
+      <trans-unit id="48c4f8e4803da42f9c8cd166032d872a88f344c1" resname="sort_defintion.relevance.label">
+        <source>Sort by relevance</source>
+        <target state="new">Sort by relevance</target>
+        <note>key: sort_defintion.relevance.label</note>
       </trans-unit>
     </body>
   </file>
