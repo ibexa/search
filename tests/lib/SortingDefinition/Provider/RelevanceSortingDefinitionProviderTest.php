@@ -19,8 +19,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class RelevanceSortingDefinitionProviderTest extends TestCase
 {
+    /** @var \Symfony\Contracts\Translation\TranslatorInterface&\PHPUnit\Framework\MockObject\MockObject) */
     private TranslatorInterface $translator;
 
+    /** @var \Ibexa\Contracts\Core\Repository\SearchService&\PHPUnit\Framework\MockObject\MockObject */
     private SearchService $searchService;
 
     private RelevanceSortingDefinitionProvider $provider;

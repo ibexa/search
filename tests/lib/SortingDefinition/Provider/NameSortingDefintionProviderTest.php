@@ -94,7 +94,6 @@ final class NameSortingDefintionProviderTest extends TestCase
         );
     }
 
-
     private function setSearchEngine(string $engine): void
     {
         $this->configurationProvider
