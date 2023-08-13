@@ -6,10 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Search\SortingDefinition;
+namespace Ibexa\Contracts\Search\SortingDefinition;
 
-use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface;
-
+/**
+ * Default SortingDefinitionInterface implementation.
+ */
 final class SortingDefinition implements SortingDefinitionInterface
 {
     private string $identifier;

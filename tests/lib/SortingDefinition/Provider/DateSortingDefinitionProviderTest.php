@@ -11,8 +11,8 @@ namespace Ibexa\Tests\Search\SortingDefinition\Provider;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\DateModified;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\DatePublished;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinition;
 use Ibexa\Search\SortingDefinition\Provider\DateSortingDefinitionProvider;
-use Ibexa\Search\SortingDefinition\SortingDefinition;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 

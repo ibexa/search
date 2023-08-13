@@ -12,8 +12,8 @@ use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\DateModified;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Score;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinition;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefintionProviderInterface;
-use Ibexa\Search\SortingDefinition\SortingDefinition;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class RelevanceSortingDefinitionProvider implements SortingDefintionProviderInterface
