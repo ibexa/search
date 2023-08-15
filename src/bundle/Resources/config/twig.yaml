@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Ibexa\Bundle\Search\Twig\Extension\SearchFacetsExtension:
+        tags:
+            -   name: twig.extension

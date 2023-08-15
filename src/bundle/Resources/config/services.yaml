@@ -1,5 +1,6 @@
 imports:
   - { resource: forms.yaml }
+  - { resource: twig.yaml }
   - { resource: sorting_definitions.yaml }
   - { resource: views.yaml }
 

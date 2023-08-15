@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Bundle\Search\Form\Data;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResultCollection;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface;
@@ -54,6 +55,8 @@ class SearchData
 
     /** @var \Ibexa\Contracts\Core\Repository\Values\User\User[] */
     private $searchUsersData;
+
+    private ?AggregationResultCollection $aggregations;
 
     private ?SortingDefinitionInterface $sortingDefinition;
 
@@ -229,6 +232,16 @@ class SearchData
             !empty($created) ||
             !empty($creator) ||
             null !== $subtree;
+    }
+
+    public function getAggregations(): ?AggregationResultCollection
+    {
+        return $this->aggregations;
+    }
+
+    public function setAggregations(?AggregationResultCollection $aggregations): void
+    {
+        $this->aggregations = $aggregations;
     }
 }
 
