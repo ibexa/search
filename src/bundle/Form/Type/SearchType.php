@@ -11,6 +11,7 @@ namespace Ibexa\Bundle\Search\Form\Type;
 use Ibexa\Bundle\Search\Form\Data\SearchData;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as CoreTextType;
@@ -90,7 +91,7 @@ final class SearchType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => SearchData::class,
-            'translation_domain' => 'search',
+            'translation_domain' => 'ibexa_search',
         ]);
     }
 }
