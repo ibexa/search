@@ -77,10 +77,10 @@ final class DateSortingDefinitionProvider implements SortingDefintionProviderInt
     public static function getTranslationMessages(): array
     {
         return [
-            (new Message('sort_definition.date_published_asc.label', 'ibexa_search'))->setDesc('Sort by publication date (ASC)'),
-            (new Message('sort_definition.date_published_desc.label', 'ibexa_search'))->setDesc('Sort by publication date (DESC)'),
-            (new Message('sort_definition.date_modified_asc.label', 'ibexa_search'))->setDesc('Sort by modification date (ASC)'),
-            (new Message('sort_definition.date_modified_desc.label', 'ibexa_search'))->setDesc('Sort by modification date (DESC)'),
+            (new Message('sort_definition.date_published_asc.label', 'ibexa_search'))->setDesc('Sort by publication date (Oldest)'),
+            (new Message('sort_definition.date_published_desc.label', 'ibexa_search'))->setDesc('Sort by publication date (Newest)'),
+            (new Message('sort_definition.date_modified_asc.label', 'ibexa_search'))->setDesc('Sort by modification date (Oldest)'),
+            (new Message('sort_definition.date_modified_desc.label', 'ibexa_search'))->setDesc('Sort by modification date (Newest)'),
         ];
     }
 }

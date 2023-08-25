@@ -106,23 +106,23 @@
         <target>Content Type</target>
         <note>key: search.type</note>
       <trans-unit id="fa5761c7de14d55bfe7d064dbed7b0414618d0ee" resname="sort_definition.date_modified_asc.label">
-        <source>Sort by modification date (ASC)</source>
-        <target state="new">Sort by modification date (ASC)</target>
+        <source>Sort by modification date (Oldest)</source>
+        <target state="new">Sort by modification date (Oldest)</target>
         <note>key: sort_definition.date_modified_asc.label</note>
       </trans-unit>
       <trans-unit id="d347942d7df28fc0e37401cc6a4466647d5522bd" resname="sort_definition.date_modified_desc.label">
-        <source>Sort by modification date (DESC)</source>
-        <target state="new">Sort by modification date (DESC)</target>
+        <source>Sort by modification date (Newest)</source>
+        <target state="new">Sort by modification date (Newest)</target>
         <note>key: sort_definition.date_modified_desc.label</note>
       </trans-unit>
       <trans-unit id="9bdd88504463f9d98eb8c8ba59275d1004ce7c77" resname="sort_definition.date_published_asc.label">
-        <source>Sort by publication date (ASC)</source>
-        <target state="new">Sort by publication date (ASC)</target>
+        <source>Sort by publication date (Oldest)</source>
+        <target state="new">Sort by publication date (Oldest)</target>
         <note>key: sort_definition.date_published_asc.label</note>
       </trans-unit>
       <trans-unit id="93987e74fb2a656b65a99df21aa80c82ebe4a03d" resname="sort_definition.date_published_desc.label">
-        <source>Sort by publication date (DESC)</source>
-        <target state="new">Sort by publication date (DESC)</target>
+        <source>Sort by publication date (Newest)</source>
+        <target state="new">Sort by publication date (Newest)</target>
         <note>key: sort_definition.date_published_desc.label</note>
       </trans-unit>
       <trans-unit id="5e8c9a364b0b2991a3ce09833b5f29cd51b3ed46" resname="sort_definition.name_asc.label">
