@@ -1,4 +1,4 @@
-{% trans_default_domain 'search' %}
+{% trans_default_domain 'ibexa_search' %}
 
 {% block content %}
     <div>
@@ -54,9 +54,13 @@
                         {% if pager.haveToPaginate %}
                             <div>
                                 <span>
-                                    {{ 'pagination.viewing'|trans({
+                                    {{ 'pagination.viewing'|trans(
+                                        {
                                         '%viewing%': pager.currentPageResults|length,
-                                        '%total%': pager.nbResults}, 'pagination')|desc('Viewing %viewing% out of %total% items')|raw }}
+                                        '%total%': pager.nbResults
+                                        },
+                                        'ibexa_search'
+                                    )|desc('Viewing %viewing% out of %total% items')|raw }}
                                 </span>
                             </div>
                             <div>
