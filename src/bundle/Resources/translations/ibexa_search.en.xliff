@@ -105,6 +105,7 @@
         <source>Content Type</source>
         <target>Content Type</target>
         <note>key: search.type</note>
+      </trans-unit>
       <trans-unit id="fa5761c7de14d55bfe7d064dbed7b0414618d0ee" resname="sort_definition.date_modified_asc.label">
         <source>Sort by modification date (Oldest)</source>
         <target state="new">Sort by modification date (Oldest)</target>
