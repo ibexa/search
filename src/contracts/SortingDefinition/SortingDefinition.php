@@ -22,6 +22,9 @@ final class SortingDefinition implements SortingDefinitionInterface
 
     private int $priority;
 
+    /**
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[] $sortClauses
+     */
     public function __construct(string $identifier, string $label, array $sortClauses, int $priority = 0)
     {
         $this->identifier = $identifier;

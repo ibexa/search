@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Ibexa\Search\QueryType;
 
 use Ibexa\Bundle\Search\Form\Data\SearchData;
-use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
@@ -18,14 +17,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchQueryType extends OptionsResolverBasedQueryType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\SearchService */
-    private $searchService;
-
-    public function __construct(SearchService $searchService)
-    {
-        $this->searchService = $searchService;
-    }
-
     protected function doGetQuery(array $parameters): Query
     {
         /** @var \Ibexa\Bundle\Search\Form\Data\SearchData $searchData */

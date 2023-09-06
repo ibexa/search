@@ -50,6 +50,9 @@ final class RelevanceSortingDefinitionProvider implements SortingDefintionProvid
         );
     }
 
+    /**
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[]
+     */
     public function getSortClauses(): array
     {
         if ($this->searchService->supports(SearchService::CAPABILITY_SCORING)) {

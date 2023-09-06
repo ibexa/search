@@ -66,6 +66,9 @@ final class NameSortingDefintionProvider implements SortingDefintionProviderInte
         );
     }
 
+    /**
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[]
+     */
     private function getSortClauses(bool $reverse): array
     {
         $direction = $reverse ? Query::SORT_DESC : Query::SORT_ASC;
