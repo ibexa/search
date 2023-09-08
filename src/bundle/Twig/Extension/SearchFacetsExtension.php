@@ -37,9 +37,13 @@ final class SearchFacetsExtension extends AbstractExtension
      */
     public function getChoicesAsFacets(
         array $choices,
-        TermAggregationResult $terms,
+        ?TermAggregationResult $terms,
         ?callable $comparator = null
     ): array {
+        if ($terms === null) {
+            return $choices;
+        }
+
         if ($comparator === null) {
             $comparator = static function (ChoiceView $choice, TermAggregationResultEntry $term): bool {
                 return $choice->data == $term->getKey();
