@@ -43,7 +43,7 @@ services:
 
     Ibexa\Bundle\Search\Form\Type\SortingDefintionChoiceType:
         arguments:
-            $providers: !tagged_iterator { tag: 'ibexa.search.sorting_definition.provider' }
+            $sortingDefinitionRegistry: '@Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface'
         tags:
             - { name: form.type, alias: Ibexa\Bundle\Search\Form\Type\SortingDefintionChoiceType }
 

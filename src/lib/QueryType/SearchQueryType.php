@@ -12,11 +12,19 @@ use Ibexa\Bundle\Search\Form\Data\SearchData;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\QueryType\OptionsResolverBasedQueryType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchQueryType extends OptionsResolverBasedQueryType
 {
+    private SortingDefinitionRegistryInterface $sortingDefinitionRegistry;
+
+    public function __construct(SortingDefinitionRegistryInterface $sortingDefinitionRegistry)
+    {
+        $this->sortingDefinitionRegistry = $sortingDefinitionRegistry;
+    }
+
     protected function doGetQuery(array $parameters): Query
     {
         /** @var \Ibexa\Bundle\Search\Form\Data\SearchData $searchData */
@@ -32,8 +40,9 @@ class SearchQueryType extends OptionsResolverBasedQueryType
             $query->filter = new Criterion\LogicalAnd($criteria);
         }
 
-        if ($searchData->getSortingDefinition() !== null) {
-            $query->sortClauses = $searchData->getSortingDefinition()->getSortClauses();
+        $sortingDefinition = $searchData->getSortingDefinition() ?? $this->sortingDefinitionRegistry->getDefaultSortingDefinition();
+        if ($sortingDefinition !== null) {
+            $query->sortClauses = $sortingDefinition->getSortClauses();
         }
 
         return $query;

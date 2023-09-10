@@ -1,6 +1,6 @@
 imports:
   - { resource: forms.yaml }
-  - { resource: sorting_definition_providers.yaml }
+  - { resource: sorting_definitions.yaml }
   - { resource: views.yaml }
 
 services:

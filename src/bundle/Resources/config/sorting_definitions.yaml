@@ -15,3 +15,10 @@ services:
     Ibexa\Search\SortingDefinition\Provider\DateSortingDefinitionProvider:
         tags:
             -   name: ibexa.search.sorting_definition.provider
+
+    Ibexa\Search\SortingDefinition\SortingDefinitionRegistry:
+        arguments:
+            $providers: !tagged_iterator { tag: 'ibexa.search.sorting_definition.provider' }
+
+    Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface:
+        alias: Ibexa\Search\SortingDefinition\SortingDefinitionRegistry
