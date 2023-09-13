@@ -11,6 +11,7 @@ namespace Ibexa\Search\QueryType;
 use Ibexa\Bundle\Search\Form\Data\SearchData;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentId;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\QueryType\OptionsResolverBasedQueryType;
@@ -44,6 +45,9 @@ class SearchQueryType extends OptionsResolverBasedQueryType
         if ($sortingDefinition !== null) {
             $query->sortClauses = $sortingDefinition->getSortClauses();
         }
+
+        // Search results order MUST BE deterministic
+        $query->sortClauses[] = new ContentId(Query::SORT_ASC);
 
         return $query;
     }
