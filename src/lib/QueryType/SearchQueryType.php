@@ -10,20 +10,28 @@ namespace Ibexa\Search\QueryType;
 
 use Ibexa\Bundle\Search\Form\Data\SearchData;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeTermAggregation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\SectionTermAggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentId;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\QueryType\OptionsResolverBasedQueryType;
+use Ibexa\Core\Repository\SearchService;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchQueryType extends OptionsResolverBasedQueryType
 {
+    private SearchService $searchService;
+
     private SortingDefinitionRegistryInterface $sortingDefinitionRegistry;
 
-    public function __construct(SortingDefinitionRegistryInterface $sortingDefinitionRegistry)
-    {
+    public function __construct(
+        SearchService $searchService,
+        SortingDefinitionRegistryInterface $sortingDefinitionRegistry
+    ) {
         $this->sortingDefinitionRegistry = $sortingDefinitionRegistry;
+        $this->searchService = $searchService;
     }
 
     protected function doGetQuery(array $parameters): Query
@@ -49,6 +57,11 @@ class SearchQueryType extends OptionsResolverBasedQueryType
         // Search results order MUST BE deterministic
         $query->sortClauses[] = new ContentId(Query::SORT_ASC);
 
+        if ($this->searchService->supports(SearchService::CAPABILITY_AGGREGATIONS)) {
+            $query->aggregations[] = $this->buildContentTypeTermAggregation($parameters);
+            $query->aggregations[] = $this->buildSectionTermAggregation($parameters);
+        }
+
         return $query;
     }
 
@@ -56,6 +69,7 @@ class SearchQueryType extends OptionsResolverBasedQueryType
     {
         $optionsResolver->setDefaults([
             'search_data' => new SearchData(),
+            'facets_limit' => 128,
         ]);
 
         $optionsResolver->setAllowedTypes('search_data', SearchData::class);
@@ -133,6 +147,28 @@ class SearchQueryType extends OptionsResolverBasedQueryType
         }
 
         return $criteria;
+    }
+
+    /**
+     * @param array<string, mixed> $parameters
+     */
+    private function buildContentTypeTermAggregation(array $parameters): ContentTypeTermAggregation
+    {
+        $aggregation = new ContentTypeTermAggregation('content_types');
+        $aggregation->setLimit($parameters['facets_limit']);
+
+        return $aggregation;
+    }
+
+    /**
+     * @param array<string, mixed> $parameters
+     */
+    private function buildSectionTermAggregation(array $parameters): SectionTermAggregation
+    {
+        $aggregation = new SectionTermAggregation('sections');
+        $aggregation->setLimit($parameters['facets_limit']);
+
+        return $aggregation;
     }
 }
 

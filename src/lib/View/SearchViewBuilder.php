@@ -68,19 +68,20 @@ class SearchViewBuilder implements ViewBuilder
                 : null;
             $languageFilter = $this->getSearchLanguageFilter($searchLanguageCode);
 
-            $pagerfanta = new Pagerfanta(
-                new ContentSearchHitAdapter(
-                    $this->searchQueryType->getQuery(['search_data' => $data]),
-                    $this->searchService,
-                    $languageFilter
-                )
+            $adapter = new ContentSearchHitAdapter(
+                $this->searchQueryType->getQuery(['search_data' => $data]),
+                $this->searchService,
+                $languageFilter
             );
+
+            $pagerfanta = new Pagerfanta($adapter);
             $pagerfanta->setMaxPerPage($data->getLimit());
             $pagerfanta->setCurrentPage(min($data->getPage(), $pagerfanta->getNbPages()));
 
             $view->addParameters([
                 'results' => $this->pagerSearchContentToDataMapper->map($pagerfanta),
                 'pager' => $pagerfanta,
+                'aggregations' => $adapter->getAggregations(),
             ]);
         }
 
