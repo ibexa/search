@@ -17,6 +17,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentId;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\QueryType\OptionsResolverBasedQueryType;
+use Ibexa\Core\Repository\SearchService;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchQueryType extends OptionsResolverBasedQueryType
@@ -25,9 +26,12 @@ class SearchQueryType extends OptionsResolverBasedQueryType
 
     private SortingDefinitionRegistryInterface $sortingDefinitionRegistry;
 
-    public function __construct(SortingDefinitionRegistryInterface $sortingDefinitionRegistry)
-    {
+    public function __construct(
+        SearchService $searchService,
+        SortingDefinitionRegistryInterface $sortingDefinitionRegistry
+    ) {
         $this->sortingDefinitionRegistry = $sortingDefinitionRegistry;
+        $this->searchService = $searchService;
     }
 
     protected function doGetQuery(array $parameters): Query
