@@ -1,0 +1,24 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
+
+    Ibexa\Search\SortingDefinition\Provider\NameSortingDefintionProvider:
+        tags:
+            -   name: ibexa.search.sorting_definition.provider
+
+    Ibexa\Search\SortingDefinition\Provider\RelevanceSortingDefinitionProvider:
+        tags:
+            -   name: ibexa.search.sorting_definition.provider
+
+    Ibexa\Search\SortingDefinition\Provider\DateSortingDefinitionProvider:
+        tags:
+            -   name: ibexa.search.sorting_definition.provider
+
+    Ibexa\Search\SortingDefinition\SortingDefinitionRegistry:
+        arguments:
+            $providers: !tagged_iterator { tag: 'ibexa.search.sorting_definition.provider' }
+
+    Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface:
+        alias: Ibexa\Search\SortingDefinition\SortingDefinitionRegistry

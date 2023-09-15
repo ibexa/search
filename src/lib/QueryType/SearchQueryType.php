@@ -9,22 +9,21 @@ declare(strict_types=1);
 namespace Ibexa\Search\QueryType;
 
 use Ibexa\Bundle\Search\Form\Data\SearchData;
-use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
-use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentId;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\QueryType\OptionsResolverBasedQueryType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchQueryType extends OptionsResolverBasedQueryType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\SearchService */
-    private $searchService;
+    private SortingDefinitionRegistryInterface $sortingDefinitionRegistry;
 
-    public function __construct(SearchService $searchService)
+    public function __construct(SortingDefinitionRegistryInterface $sortingDefinitionRegistry)
     {
-        $this->searchService = $searchService;
+        $this->sortingDefinitionRegistry = $sortingDefinitionRegistry;
     }
 
     protected function doGetQuery(array $parameters): Query
@@ -42,9 +41,13 @@ class SearchQueryType extends OptionsResolverBasedQueryType
             $query->filter = new Criterion\LogicalAnd($criteria);
         }
 
-        if (!$this->searchService->supports(SearchService::CAPABILITY_SCORING)) {
-            $query->sortClauses[] = new SortClause\DateModified(Query::SORT_ASC);
+        $sortingDefinition = $searchData->getSortingDefinition() ?? $this->sortingDefinitionRegistry->getDefaultSortingDefinition();
+        if ($sortingDefinition !== null) {
+            $query->sortClauses = $sortingDefinition->getSortClauses();
         }
+
+        // Search results order MUST BE deterministic
+        $query->sortClauses[] = new ContentId(Query::SORT_ASC);
 
         return $query;
     }

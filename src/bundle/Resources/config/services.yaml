@@ -1,5 +1,6 @@
 imports:
   - { resource: forms.yaml }
+  - { resource: sorting_definitions.yaml }
   - { resource: views.yaml }
 
 services:
@@ -20,6 +21,4 @@ services:
           $translationHelper: '@Ibexa\Core\Helper\TranslationHelper'
           $languageService: '@ibexa.api.service.language'
 
-  Ibexa\Search\QueryType\SearchQueryType:
-      arguments:
-          $searchService: '@ibexa.api.service.search'
+  Ibexa\Search\QueryType\SearchQueryType: ~

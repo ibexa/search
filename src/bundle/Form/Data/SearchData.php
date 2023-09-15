@@ -11,6 +11,7 @@ namespace Ibexa\Bundle\Search\Form\Data;
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class SearchData
@@ -54,6 +55,8 @@ class SearchData
     /** @var \Ibexa\Contracts\Core\Repository\Values\User\User[] */
     private $searchUsersData;
 
+    private ?SortingDefinitionInterface $sortingDefinition;
+
     public function __construct(
         int $limit = 10,
         int $page = 1,
@@ -65,7 +68,8 @@ class SearchData
         ?User $creator = null,
         ?string $subtree = null,
         ?Language $searchLanguage = null,
-        ?SearchUsersData $searchUsersData = null
+        ?SearchUsersData $searchUsersData = null,
+        ?SortingDefinitionInterface $sortingDefinition = null
     ) {
         $this->limit = $limit;
         $this->page = $page;
@@ -78,6 +82,7 @@ class SearchData
         $this->subtree = $subtree;
         $this->searchLanguage = $searchLanguage;
         $this->searchUsersData = $searchUsersData;
+        $this->sortingDefinition = $sortingDefinition;
     }
 
     public function setLimit(int $limit): self
@@ -196,6 +201,16 @@ class SearchData
     public function getSearchUsersData(): ?SearchUsersData
     {
         return $this->searchUsersData;
+    }
+
+    public function getSortingDefinition(): ?SortingDefinitionInterface
+    {
+        return $this->sortingDefinition;
+    }
+
+    public function setSortingDefinition(?SortingDefinitionInterface $sortingDefinition): void
+    {
+        $this->sortingDefinition = $sortingDefinition;
     }
 
     public function isFiltered(): bool
