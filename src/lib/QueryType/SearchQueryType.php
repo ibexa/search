@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Search\QueryType;
 
 use Ibexa\Bundle\Search\Form\Data\SearchData;
+use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentTypeTermAggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\SectionTermAggregation;
@@ -17,7 +18,6 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentId;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\QueryType\OptionsResolverBasedQueryType;
-use Ibexa\Core\Repository\SearchService;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchQueryType extends OptionsResolverBasedQueryType
