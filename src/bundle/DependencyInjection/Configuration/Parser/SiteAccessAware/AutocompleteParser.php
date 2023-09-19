@@ -29,7 +29,7 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
  *                  result_limit: 5
  * ```
  */
-class Autocomplete extends AbstractParser
+final class AutocompleteParser extends AbstractParser
 {
     /**
      * @param array<string, mixed> $scopeSettings
@@ -62,19 +62,18 @@ class Autocomplete extends AbstractParser
         string $currentScope,
         ContextualizerInterface $contextualizer
     ): void {
-        if (isset($settings['autocomplete']['min_search_test_length'])) {
-            $contextualizer->setContextualParameter(
-                'autocomplete.min_search_test_length',
-                $currentScope,
-                $settings['autocomplete']['min_search_test_length'],
-            );
-        }
-        if (isset($settings['catalogs']['result_limit'])) {
-            $contextualizer->setContextualParameter(
-                'autocomplete.result_limit',
-                $currentScope,
-                $settings['catalogs']['result_limit'],
-            );
+        $names = [
+            'min_search_test_length',
+            'result_limit',
+        ];
+        foreach ($names as $name) {
+            if (isset($settings['autocomplete'][$name])) {
+                $contextualizer->setContextualParameter(
+                    'search.autocomplete.' . $name,
+                    $currentScope,
+                    $settings['autocomplete'][$name]
+                );
+            }
         }
     }
 
