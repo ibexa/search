@@ -15,6 +15,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\ContentType
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation\SectionTermAggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentId;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Spellcheck;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\QueryType\OptionsResolverBasedQueryType;
@@ -42,6 +43,10 @@ class SearchQueryType extends OptionsResolverBasedQueryType
         $query = new Query();
         if (null !== $searchData->getQuery()) {
             $query->query = new Criterion\FullText($searchData->getQuery());
+
+            if ($this->searchService->supports(SearchService::CAPABILITY_SPELLCHECK)) {
+                $query->spellcheck = new Spellcheck($searchData->getQuery());
+            }
         }
 
         $criteria = $this->buildCriteria($searchData);

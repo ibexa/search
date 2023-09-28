@@ -82,6 +82,7 @@ class SearchViewBuilder implements ViewBuilder
                 'results' => $this->pagerSearchContentToDataMapper->map($pagerfanta),
                 'pager' => $pagerfanta,
                 'aggregations' => $adapter->getAggregations(),
+                'spellcheck' => $adapter->getSpellcheck(),
             ]);
         }
 
