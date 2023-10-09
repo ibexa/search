@@ -3,3 +3,9 @@ ibexa.search:
     methods: ['GET']
     defaults:
       _controller: 'Ibexa\Bundle\Search\Controller\SearchController::searchAction'
+
+ibexa.search_autocomplete:
+    path: /autocomplete
+    methods: ['GET']
+    defaults:
+      _controller: 'Ibexa\Bundle\Search\Controller\SearchAutoCompleteController::suggestAction'
