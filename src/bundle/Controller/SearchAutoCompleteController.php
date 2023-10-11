@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -17,6 +18,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 final class SearchAutoCompleteController extends AbstractController
 {
     private SearchAutoCompleteService $autoCompleteService;
+
     private SerializerInterface $serializer;
 
     public function __construct(

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -25,7 +26,7 @@ final class SearchResultToSuggestionCollectionMapper
     {
         $rootLocationId = $this->configResolver->getParameter('content.tree_root.location_id');
         $collection = [];
-        /** @var \Ibexa\Core\Repository\Values\Content\Content $result */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit $result */
         foreach ($searchResult as $result) {
             /** @var \Ibexa\Core\Repository\Values\Content\Content $content */
             $content = $result->valueObject;

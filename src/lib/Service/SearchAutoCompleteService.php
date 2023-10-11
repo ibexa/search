@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -18,7 +19,9 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 final class SearchAutoCompleteService
 {
     private SearchService $searchService;
+
     private EventDispatcherInterface $eventDispatcher;
+
     private SearchResultToSuggestionCollectionMapper $suggestionCollectionMapper;
 
     public function __construct(
@@ -32,19 +35,19 @@ final class SearchAutoCompleteService
     }
 
     /**
-     * @return array<object>
+     * @return \Ibexa\Search\Model\SuggestionCollection
      */
     public function suggest(string $value, int $limit, ?string $language = null): SuggestionCollection
     {
         $criterion = new Query\Criterion\FullText($value);
         $query = new Query(['filter' => $criterion, 'limit' => $limit]);
-        /** @var PreAutoCompleteSearch $preEvent */
+        /** @var \Ibexa\Search\EventDispatcher\Event\PreAutoCompleteSearch $preEvent */
         $preEvent = $this->eventDispatcher->dispatch(new PreAutoCompleteSearch($query));
         $searchResult = $this->searchService->findContent($preEvent->getQuery());
 
         $mappedResult = $this->suggestionCollectionMapper->transform($searchResult, $language);
 
-        /** @var PostAutoCompleteSearch $postEvent */
+        /** @var \Ibexa\Search\EventDispatcher\Event\PostAutoCompleteSearch $postEvent */
         $postEvent = $this->eventDispatcher->dispatch(new PostAutoCompleteSearch($mappedResult));
 
         return $postEvent->getSuggestionCollection();
