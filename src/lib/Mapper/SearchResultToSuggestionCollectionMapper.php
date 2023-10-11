@@ -26,7 +26,7 @@ class SearchResultToSuggestionCollectionMapper
                 $content->getFieldValue('title', $language)->text,
                 $result->valueObject->contentInfo->getContentType()->identifier,
                 $result->valueObject->contentInfo->mainLocation->pathString,
-                $result->valueObject->contentInfo->mainLocation->path
+                array_flip($result->valueObject->contentInfo->mainLocation->path)
             );
         }
 

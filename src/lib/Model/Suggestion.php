@@ -58,4 +58,9 @@ final class Suggestion extends ValueObject
     {
         return $this->parentsLocation;
     }
+
+    public function addPath(int $locationId, string $name)
+    {
+        $this->parentsLocation[$locationId] = $name;
+    }
 }
