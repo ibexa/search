@@ -9,6 +9,7 @@ namespace Ibexa\Bundle\Search\Controller;
 
 use Ibexa\Search\Service\SearchAutoCompleteService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -36,6 +37,6 @@ final class SearchAutoCompleteController extends AbstractController
 
         $serializedResults = $this->serializer->serialize($result, 'json');
 
-        return new Response($serializedResults, 200);
+        return (new JsonResponse(null, 200))->setJson($serializedResults);
     }
 }
