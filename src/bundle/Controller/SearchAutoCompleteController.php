@@ -12,7 +12,6 @@ use Ibexa\Search\Service\SearchAutoCompleteService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
 
 final class SearchAutoCompleteController extends AbstractController
@@ -29,7 +28,7 @@ final class SearchAutoCompleteController extends AbstractController
         $this->serializer = $serializer;
     }
 
-    public function suggestAction(Request $request): Response
+    public function suggestAction(Request $request): JsonResponse
     {
         $search = $request->get('search');
         $language = $request->get('language');
