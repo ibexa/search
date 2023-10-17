@@ -8,15 +8,19 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\EventDispatcher\Event;
 
-use Ibexa\Search\Model\SuggestionCollection;
+use Ibexa\Search\Model\Suggestion\SuggestionCollection;
+use Ibexa\Search\Model\SuggestionQuery;
 
-class PostAutoCompleteSearch
+abstract class AbstractSuggestion
 {
     private SuggestionCollection $suggestionCollection;
 
-    public function __construct(SuggestionCollection $suggestionCollection)
+    private SuggestionQuery $query;
+
+    public function __construct(SuggestionQuery $query)
     {
-        $this->suggestionCollection = $suggestionCollection;
+        $this->suggestionCollection = new SuggestionCollection();
+        $this->query = $query;
     }
 
     public function getSuggestionCollection(): SuggestionCollection

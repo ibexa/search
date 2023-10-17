@@ -9,10 +9,10 @@ declare(strict_types=1);
 namespace Ibexa\Search\EventDispatcher\EventListener;
 
 use Ibexa\Contracts\Core\Repository\LocationService;
-use Ibexa\Search\EventDispatcher\Event\PostAutoCompleteSearch;
+use Ibexa\Search\EventDispatcher\Event\AbstractSuggestion;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-final class BreadCrumbSubscriber implements EventSubscriberInterface
+final class PathSubscriber implements EventSubscriberInterface
 {
     private LocationService $locationService;
 
@@ -24,17 +24,20 @@ final class BreadCrumbSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            PostAutoCompleteSearch::class => 'onPostAutoCompleteSearch',
+            AbstractSuggestion::class => 'onSuggestion',
         ];
     }
 
-    public function onPostAutoCompleteSearch(PostAutoCompleteSearch $event): PostAutoCompleteSearch
+    public function onSuggestion(AbstractSuggestion $event): AbstractSuggestion
     {
-        /** @var \Ibexa\Search\Model\Suggestion $suggestion */
         foreach ($event->getSuggestionCollection() as $suggestion) {
-            foreach ($suggestion->getParentsLocation() as $locationId => $name) {
-                $location = $this->locationService->loadLocation($locationId);
-                $suggestion->addPath($locationId, $location->contentInfo->name);
+            foreach ($suggestion->get() as $locationId => $name) {
+                try {
+                    $location = $this->locationService->loadLocation($locationId);
+                    $suggestion->addPath($locationId, $location->contentInfo->name);
+                } catch (\Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException $e) {
+                } catch (\Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException $e) {
+                }
             }
         }
 

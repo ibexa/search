@@ -14,7 +14,7 @@ services:
         tags:
             - controller.service_arguments
 
-    Ibexa\Bundle\Search\Controller\SearchAutoCompleteController:
+    Ibexa\Bundle\Search\Controller\SuggestionController:
         tags:
             - controller.service_arguments
 
@@ -28,8 +28,10 @@ services:
 
     Ibexa\Search\QueryType\SearchQueryType: ~
 
-    Ibexa\Search\Service\SearchAutoCompleteService: ~
+    Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber: ~
 
-    Ibexa\Search\Mapper\SearchResultToSuggestionCollectionMapper: ~
+    Ibexa\Search\EventDispatcher\EventListener\PathSubscriber: ~
 
-    Ibexa\Search\EventDispatcher\EventListener\BreadCrumbSubscriber: ~
+    Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper: ~
+
+    Ibexa\Search\Service\SuggestionService: ~

@@ -8,33 +8,35 @@ declare(strict_types=1);
 
 namespace Ibexa\Bundle\Search\Controller;
 
-use Ibexa\Search\Service\SearchAutoCompleteService;
+use Ibexa\Search\Model\SuggestionQuery;
+use Ibexa\Search\Service\SuggestionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class SearchAutoCompleteController extends AbstractController
+final class SuggestionController extends AbstractController
 {
-    private SearchAutoCompleteService $autoCompleteService;
+    private SuggestionService $suggestionService;
 
     private SerializerInterface $serializer;
 
     public function __construct(
         SerializerInterface $serializer,
-        SearchAutoCompleteService $autocompleteService
+        SuggestionService $suggestionService
     ) {
-        $this->autoCompleteService = $autocompleteService;
+        $this->suggestionService = $suggestionService;
         $this->serializer = $serializer;
     }
 
     public function suggestAction(Request $request): JsonResponse
     {
-        $search = $request->get('search');
-        $language = $request->get('language');
+        $query = $request->get('query');
         $limit = (int) $request->get('limit');
+        $language = $request->get('language');
 
-        $result = $this->autoCompleteService->suggest($search, $limit, $language);
+        $suggestionQuery = new SuggestionQuery($query, $limit, $language);
+        $result = $this->suggestionService->suggest($suggestionQuery);
 
         $serializedResults = $this->serializer->serialize($result, 'json');
 

@@ -8,4 +8,4 @@ ibexa.search_autocomplete:
     path: /autocomplete
     methods: ['GET']
     defaults:
-      _controller: 'Ibexa\Bundle\Search\Controller\SearchAutoCompleteController::suggestAction'
+      _controller: 'Ibexa\Bundle\Search\Controller\SuggestionController::suggestAction'
