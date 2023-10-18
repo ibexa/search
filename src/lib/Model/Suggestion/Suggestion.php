@@ -34,6 +34,16 @@ abstract class Suggestion extends ValueObject
         parent::__construct();
     }
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getPathString(): string
+    {
+        return $this->pathString;
+    }
+
     /**
      * @return array<int, string>
      */

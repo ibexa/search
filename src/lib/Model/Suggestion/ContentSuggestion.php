@@ -14,6 +14,13 @@ final class ContentSuggestion extends Suggestion
 
     private string $contentTypeIdentifier;
 
+    /**
+     * @param int $contentId
+     * @param string $contentTypeIdentifier
+     * @param string $name
+     * @param string $pathString
+     * @param array<int,string> $parentLocation
+     */
     public function __construct(
         int $contentId,
         string $contentTypeIdentifier,

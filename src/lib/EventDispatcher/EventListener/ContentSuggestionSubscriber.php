@@ -43,25 +43,24 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
 
     public function onContentSuggestion(ContentSuggestion $event): ContentSuggestion
     {
-        $value = $event->getValue();
-        $limit = $event->getLimit();
-        $language = $event->getLanguage();
-
-        var_dump($value, $limit, $language);
+        $query = $event->getQuery();
+        $value = $query->getQuery();
+        $limit = $query->getLimit();
+        $language = $query->getLanguage();
 
         $criterion = new FullText($value);
         $query = new Query(['filter' => $criterion, 'limit' => $limit]);
 
         try {
-            $searchResult = $this->searchService->findContent($query);
-            var_dump($searchResult);
+            $languageFilter = $language ? ['languages' => [$language]] : [];
+            $searchResult = $this->searchService->findContent($query, $languageFilter);
             $collection = $event->getSuggestionCollection();
             foreach ($searchResult as $result) {
                 $mappedResult = $this->contentSuggestionMapper->map($result);
                 $collection->append($mappedResult);
             }
         } catch (InvalidArgumentException $e) {
-            $this->logger->error($e);
+            $this->logger ? $this->logger->error($e) : null;
         }
 
         return $event;

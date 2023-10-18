@@ -12,7 +12,7 @@ use Ibexa\Contracts\Core\Collection\MutableArrayList;
 
 /**
  * @template-extends \Ibexa\Contracts\Core\Collection\MutableArrayList<
- *     \Ibexa\Search\Model\ContentSuggestion
+ *     \Ibexa\Search\Model\Suggestion\ContentSuggestion
  * >
  */
 final class SuggestionCollection extends MutableArrayList

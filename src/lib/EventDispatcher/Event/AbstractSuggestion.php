@@ -27,4 +27,9 @@ abstract class AbstractSuggestion
     {
         return $this->suggestionCollection;
     }
+
+    public function getQuery(): SuggestionQuery
+    {
+        return $this->query;
+    }
 }
