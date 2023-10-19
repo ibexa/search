@@ -45,19 +45,19 @@ final class SuggestionParser extends AbstractParser
 
         $settings = $scopeSettings['search'];
 
-        $this->addAutocompleteParameters($settings, $currentScope, $contextualizer);
+        $this->addSuggestionParameters($settings, $currentScope, $contextualizer);
     }
 
     public function addSemanticConfig(NodeBuilder $nodeBuilder): void
     {
         $rootProductCatalogNode = $nodeBuilder->arrayNode('search');
-        $rootProductCatalogNode->append($this->addAutocompleteConfiguration());
+        $rootProductCatalogNode->append($this->addSuggestionConfiguration());
     }
 
     /**
      * @param array<string, mixed> $settings
      */
-    private function addAutocompleteParameters(
+    private function addSuggestionParameters(
         $settings,
         string $currentScope,
         ContextualizerInterface $contextualizer
@@ -77,7 +77,7 @@ final class SuggestionParser extends AbstractParser
         }
     }
 
-    private function addAutocompleteConfiguration(): ArrayNodeDefinition
+    private function addSuggestionConfiguration(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('suggestion');
         $node = $treeBuilder->getRootNode();

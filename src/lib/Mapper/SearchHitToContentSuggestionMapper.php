@@ -23,11 +23,12 @@ final class SearchHitToContentSuggestionMapper
 
     public function map(SearchHit $searchHit): ContentSuggestion
     {
-        $content = $searchHit->getValueObject();
+        /** @var \Ibexa\Contracts\Core\Repository\Values\ValueObject $content */
+        $content = $searchHit->valueObject;
 
         $rootLocationId = $this->configResolver->getParameter('content.tree_root.location_id');
 
-        $parentsLocation = $content->contentInfo->mainLocation->path;
+        $parentsLocation = $content->versionInfo->contentInfo->mainLocation->path;
         $position = array_search((string)$rootLocationId, $parentsLocation);
         if ($position !== false) {
             $parentsLocation = array_slice($parentsLocation, $position);

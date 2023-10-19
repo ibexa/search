@@ -11,6 +11,7 @@ namespace Ibexa\Search\Service\Event;
 use Ibexa\Contracts\Search\Event\AfterSuggestionEvent;
 use Ibexa\Contracts\Search\Event\BeforeSuggestionEvent;
 use Ibexa\Contracts\Search\Service\Decorator\SuggestionServiceDecorator;
+use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
 use Ibexa\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -20,7 +21,7 @@ final class SuggestionService extends SuggestionServiceDecorator
     private EventDispatcherInterface $eventDispatcher;
 
     public function __construct(
-        SuggestionServiceDecorator $innerService,
+        SuggestionServiceInterface $innerService,
         EventDispatcherInterface $eventDispatcher
     ) {
         parent::__construct($innerService);

@@ -10,7 +10,6 @@ namespace Ibexa\Search\EventDispatcher\EventListener;
 
 use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
-use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\FullText;
 use Ibexa\Core\Repository\SiteAccessAware\SearchService;
 use Ibexa\Search\EventDispatcher\Event\ContentSuggestion;
 use Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper;
@@ -49,7 +48,7 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
         $limit = $query->getLimit();
         $language = $query->getLanguage();
 
-        $criterion = new FullText($value);
+        $criterion = new Query\Criterion\FullText($value);
         $query = new Query(['filter' => $criterion, 'limit' => $limit]);
 
         try {

@@ -17,7 +17,7 @@ use Ibexa\Tests\Bundle\Core\DependencyInjection\Configuration\Parser\AbstractPar
 /**
  * @covers \Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\SiteAccessAware\SuggestionParser
  */
-final class AutocompleteParserTest extends AbstractParserTestCase
+final class SuggestionParserTest extends AbstractParserTestCase
 {
     protected function getContainerExtensions(): array
     {
