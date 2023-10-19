@@ -44,6 +44,7 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
     public function onContentSuggestion(ContentSuggestion $event): ContentSuggestion
     {
         $query = $event->getQuery();
+
         $value = $query->getQuery();
         $limit = $query->getLimit();
         $language = $query->getLanguage();

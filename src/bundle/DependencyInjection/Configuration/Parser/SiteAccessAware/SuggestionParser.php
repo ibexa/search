@@ -24,12 +24,12 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
  *   system:
  *      default: # configuration per siteaccess or siteaccess group
  *          search:
- *              autocomplete:
- *                  min_search_test_length: 3
+ *              suggestion:
+ *                  min_query_length: 3
  *                  result_limit: 5
  * ```
  */
-final class AutocompleteParser extends AbstractParser
+final class SuggestionParser extends AbstractParser
 {
     /**
      * @param array<string, mixed> $scopeSettings
@@ -63,15 +63,15 @@ final class AutocompleteParser extends AbstractParser
         ContextualizerInterface $contextualizer
     ): void {
         $names = [
-            'min_search_test_length',
+            'min_query_length',
             'result_limit',
         ];
         foreach ($names as $name) {
-            if (isset($settings['autocomplete'][$name])) {
+            if (isset($settings['suggestion'][$name])) {
                 $contextualizer->setContextualParameter(
-                    'search.autocomplete.' . $name,
+                    'search.suggestion.' . $name,
                     $currentScope,
-                    $settings['autocomplete'][$name]
+                    $settings['suggestion'][$name]
                 );
             }
         }
@@ -79,12 +79,13 @@ final class AutocompleteParser extends AbstractParser
 
     private function addAutocompleteConfiguration(): ArrayNodeDefinition
     {
-        $treeBuilder = new TreeBuilder('autocomplete');
+        $treeBuilder = new TreeBuilder('suggestion');
         $node = $treeBuilder->getRootNode();
 
         $node
+            ->addDefaultsIfNotSet()
             ->children()
-                ->integerNode('min_search_test_length')
+                ->integerNode('min_query_length')
                     ->isRequired()
                     ->defaultValue(3)
                     ->min(3)

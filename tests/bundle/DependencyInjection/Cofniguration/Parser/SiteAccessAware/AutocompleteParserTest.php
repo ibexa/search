@@ -10,12 +10,12 @@ namespace Ibexa\Tests\Bundle\Search\DependencyInjection\Cofniguration\Parser\Sit
 
 use Exception;
 use Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension;
-use Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\SiteAccessAware\AutocompleteParser;
+use Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\SiteAccessAware\SuggestionParser;
 use Ibexa\Core\MVC\Exception\ParameterNotFoundException;
 use Ibexa\Tests\Bundle\Core\DependencyInjection\Configuration\Parser\AbstractParserTestCase;
 
 /**
- * @covers \Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\SiteAccessAware\AutocompleteParser
+ * @covers \Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\SiteAccessAware\SuggestionParser
  */
 final class AutocompleteParserTest extends AbstractParserTestCase
 {
@@ -23,7 +23,7 @@ final class AutocompleteParserTest extends AbstractParserTestCase
     {
         return [
             new IbexaCoreExtension([
-                new AutocompleteParser(),
+                new SuggestionParser(),
             ]),
         ];
     }
@@ -68,23 +68,23 @@ final class AutocompleteParserTest extends AbstractParserTestCase
             [],
             [],
             [
-                'search.autocomplete.min_search_test_length',
-                'search.autocomplete.result_limit',
+                'search.suggestion.min_query_length',
+                'search.suggestion.result_limit',
             ],
         ];
 
-        yield 'autocomplete' => [
+        yield 'suggestion' => [
             [
                 'search' => [
-                    'autocomplete' => [
-                        'min_search_test_length' => 10,
+                    'suggestion' => [
+                        'min_query_length' => 10,
                         'result_limit' => 10,
                     ],
                 ],
             ],
             [
-                'search.autocomplete.min_search_test_length' => 10,
-                'search.autocomplete.result_limit' => 10,
+                'search.suggestion.min_query_length' => 10,
+                'search.suggestion.result_limit' => 10,
             ],
         ];
     }
