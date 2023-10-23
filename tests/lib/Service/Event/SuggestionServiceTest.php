@@ -79,6 +79,9 @@ final class SuggestionServiceTest extends TestCase
         self::assertInstanceOf(SuggestionCollection::class, $result);
     }
 
+    /**
+     * @return \PHPUnit\Framework\MockObject\MockObject|\Ibexa\Contracts\Search\Service\SuggestionServiceInterface
+     */
     private function getSuggestionServiceMock(): SuggestionServiceInterface
     {
         $suggestionServiceMock = $this->getMockBuilder(SuggestionServiceInterface::class)
@@ -88,6 +91,9 @@ final class SuggestionServiceTest extends TestCase
         return $suggestionServiceMock;
     }
 
+    /**
+     * @return \PHPUnit\Framework\MockObject\MockObject|\Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+     */
     private function getEventDispatcherMock(): EventDispatcherInterface
     {
         $eventDispatcherMock = $this->getMockBuilder(EventDispatcherInterface::class)

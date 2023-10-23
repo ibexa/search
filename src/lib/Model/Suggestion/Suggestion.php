@@ -12,26 +12,35 @@ use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 
 abstract class Suggestion extends ValueObject
 {
+    private float $score;
+
     private string $name;
 
     private string $pathString;
 
-    /** @var array<int, string> */
+    /** @var array<int|string, int|string> */
     private array $parentsLocation;
 
     /**
-     * @param array<int,string> $parentsLocation
+     * @param array<int|string, int|string> $parentsLocation
      */
     public function __construct(
+        float $score,
         string $name,
         string $pathString = '',
         array $parentsLocation = []
     ) {
+        $this->score = $score;
         $this->name = $name;
         $this->pathString = $pathString;
         $this->parentsLocation = $parentsLocation;
 
         parent::__construct();
+    }
+
+    public function getScore(): float
+    {
+        return $this->score;
     }
 
     public function getName(): string
@@ -45,7 +54,7 @@ abstract class Suggestion extends ValueObject
     }
 
     /**
-     * @return array<int, string>
+     * @return array<int|string, int|string>
      */
     public function getParentsLocation(): array
     {

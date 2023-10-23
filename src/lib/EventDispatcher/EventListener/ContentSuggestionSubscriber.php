@@ -9,10 +9,13 @@ declare(strict_types=1);
 namespace Ibexa\Search\EventDispatcher\EventListener;
 
 use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
+use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapper;
 use Ibexa\Core\Repository\SiteAccessAware\SearchService;
 use Ibexa\Search\EventDispatcher\Event\ContentSuggestion;
-use Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -25,12 +28,16 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
 
     private SearchHitToContentSuggestionMapper $contentSuggestionMapper;
 
+    private LocationService $locationService;
+
     public function __construct(
         SearchService $searchService,
+        LocationService $locationService,
         SearchHitToContentSuggestionMapper $contentSuggestionMapper
     ) {
         $this->searchService = $searchService;
         $this->contentSuggestionMapper = $contentSuggestionMapper;
+        $this->locationService = $locationService;
     }
 
     public static function getSubscribedEvents(): array
@@ -48,8 +55,12 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
         $limit = $query->getLimit();
         $language = $query->getLanguage();
 
-        $criterion = new Query\Criterion\FullText($value);
-        $query = new Query(['filter' => $criterion, 'limit' => $limit]);
+        $query = new Query(
+            [
+                'query' => new Query\Criterion\FullText($value),
+                'limit' => $limit,
+            ]
+        );
 
         try {
             $languageFilter = $language ? ['languages' => [$language]] : [];
@@ -57,6 +68,18 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
             $collection = $event->getSuggestionCollection();
             foreach ($searchResult as $result) {
                 $mappedResult = $this->contentSuggestionMapper->map($result);
+                if ($mappedResult === null) {
+                    continue;
+                }
+
+                foreach ($mappedResult->getParentsLocation() as $locationId => $name) {
+                    try {
+                        $location = $this->locationService->loadLocation($locationId);
+                        $mappedResult->addPath($locationId, (string) $location->getContent()->getName());
+                    } catch (NotFoundException $e) {
+                    } catch (UnauthorizedException $e) {
+                    }
+                }
                 $collection->append($mappedResult);
             }
         } catch (InvalidArgumentException $e) {

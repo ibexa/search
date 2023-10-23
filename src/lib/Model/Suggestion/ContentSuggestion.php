@@ -15,20 +15,17 @@ final class ContentSuggestion extends Suggestion
     private string $contentTypeIdentifier;
 
     /**
-     * @param int $contentId
-     * @param string $contentTypeIdentifier
-     * @param string $name
-     * @param string $pathString
-     * @param array<int,string> $parentLocation
+     * @param array<int|string, int|string> $parentLocation
      */
     public function __construct(
-        int $contentId,
+        float $score,
         string $contentTypeIdentifier,
         string $name,
+        int $contentId,
         string $pathString = '',
         array $parentLocation = []
     ) {
-        parent::__construct($name, $pathString, $parentLocation);
+        parent::__construct($score, $name, $pathString, $parentLocation);
         $this->contentId = $contentId;
         $this->contentTypeIdentifier = $contentTypeIdentifier;
     }

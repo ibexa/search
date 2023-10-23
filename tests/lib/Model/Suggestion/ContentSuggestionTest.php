@@ -20,6 +20,7 @@ final class ContentSuggestionTest extends TestCase
             1,
             'content_type_identifier',
             'name',
+            1,
             'text',
             [0 => 'text']
         );

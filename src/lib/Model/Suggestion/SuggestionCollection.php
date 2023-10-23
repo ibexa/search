@@ -11,15 +11,12 @@ namespace Ibexa\Search\Model\Suggestion;
 use Ibexa\Contracts\Core\Collection\MutableArrayList;
 
 /**
- * @template-extends \Ibexa\Contracts\Core\Collection\MutableArrayList<
- *     \Ibexa\Search\Model\Suggestion\Suggestion
- *     |\Ibexa\Search\Model\Suggestion\ContentSuggestion
- * >
+ * @template-extends \Ibexa\Contracts\Core\Collection\MutableArrayList<\Ibexa\Search\Model\Suggestion\Suggestion>
  */
 final class SuggestionCollection extends MutableArrayList
 {
     /**
-     * @param Suggestion $item
+     * @param mixed $item
      */
     public function append($item): void
     {
@@ -35,5 +32,17 @@ final class SuggestionCollection extends MutableArrayList
         }
 
         parent::append($item);
+    }
+
+    public function sortByScore(): void
+    {
+        usort($this->items, static function ($a, $b) {
+            return $b->getScore() <=> $a->getScore();
+        });
+    }
+
+    public function truncate(int $count): void
+    {
+        $this->items = array_slice($this->items, 0, $count);
     }
 }

@@ -32,6 +32,10 @@ final class SuggestionService implements SuggestionServiceInterface
             )
         );
 
-        return $event->getSuggestionCollection();
+        $collection = $event->getSuggestionCollection();
+        $collection->sortByScore();
+        $collection->truncate($query->getLimit());
+
+        return $collection;
     }
 }

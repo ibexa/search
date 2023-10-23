@@ -21,16 +21,24 @@ final class SuggestionCollectionTest extends TestCase
         $this->assertInstanceOf(MutableArrayList::class, $collection);
         $this->assertInstanceOf(SuggestionCollection::class, $collection);
 
-        $collection->append(new ContentSuggestion(1, 'article', 'test'));
-        $collection->append(new ContentSuggestion(2, 'article', 'test2'));
+        $collection->append(new ContentSuggestion(10, 'article', 'test', 1));
+        $collection->append(new ContentSuggestion(20, 'article', 'test2', 1));
+        $collection->append(new ContentSuggestion(30, 'article', 'test3', 1));
+        $collection->append(new ContentSuggestion(10, 'article', 'test4', 1));
+        $collection->append(new ContentSuggestion(50, 'article', 'test5', 1));
+        $collection->append(new ContentSuggestion(60, 'article', 'test6', 1));
+        $collection->append(new ContentSuggestion(70, 'article', 'test7', 1));
 
-        $this->assertCount(2, $collection);
+        $this->assertCount(7, $collection);
 
         foreach ($collection as $item) {
             $this->assertInstanceOf(ContentSuggestion::class, $item);
         }
 
-        $this->expectException(\TypeError::class);
-        $collection->append(new \stdClass());
+        $collection->sortByScore();
+        $this->assertSame(70.0, $collection->first()->getScore());
+
+        $collection->truncate(5);
+        $this->assertCount(5, $collection);
     }
 }

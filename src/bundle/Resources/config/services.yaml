@@ -30,8 +30,8 @@ services:
 
     Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber: ~
 
-    Ibexa\Search\EventDispatcher\EventListener\PathSubscriber: ~
-
     Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper: ~
+
+    Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapper: '@Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper'
 
     Ibexa\Search\Service\SuggestionService: ~

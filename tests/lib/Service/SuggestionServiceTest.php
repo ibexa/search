@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\Service;
 
+use Ibexa\Search\EventDispatcher\Event\AbstractSuggestion;
 use Ibexa\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 use Ibexa\Search\Service\SuggestionService;
@@ -22,7 +23,7 @@ final class SuggestionServiceTest extends TestCase
         $eventDispatcherMock
             ->method('dispatch')
             ->willReturnCallback(
-                static function ($event) {
+                static function (AbstractSuggestion $event): AbstractSuggestion {
                     return $event;
                 }
             );
@@ -33,6 +34,9 @@ final class SuggestionServiceTest extends TestCase
         self::assertInstanceOf(SuggestionCollection::class, $result);
     }
 
+    /**
+     * @return \PHPUnit\Framework\MockObject\MockObject|\Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+     */
     private function getEventDispatcherMock(): EventDispatcherInterface
     {
         $eventDispatcherMock = $this->getMockBuilder(EventDispatcherInterface::class)
