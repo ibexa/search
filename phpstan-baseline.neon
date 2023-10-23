@@ -251,6 +251,11 @@ parameters:
 			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
 
 		-
+			message: "#^Property Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit\\:\\:\\$score \\(float\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/lib/Mapper/SearchHitToContentSuggestionMapper.php
+
+		-
 			message: "#^Method Ibexa\\\\Search\\\\QueryType\\\\SearchQueryType\\:\\:doGetQuery\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/lib/QueryType/SearchQueryType.php
