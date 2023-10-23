@@ -59,7 +59,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
         $this->assertInstanceOf(ContentSuggestion::class, $result);
 
         $this->assertSame($result->getContentId(), 1);
-        $this->assertSame($result->getParentsLocation(), [6 => 'x', 7 => 'y']);
+        $this->assertSame($result->getParentsLocation(), [6 => '', 7 => '']);
         $this->assertSame($result->getPathString(), '6/7');
         $this->assertSame($result->getName(), 'name_eng');
         $this->assertSame($result->getScore(), 50.0);

@@ -15,7 +15,7 @@ final class ContentSuggestion extends Suggestion
     private string $contentTypeIdentifier;
 
     /**
-     * @param array<int|string, int|string> $parentLocation
+     * @param array<int, ?string> $parentLocation
      */
     public function __construct(
         float $score,

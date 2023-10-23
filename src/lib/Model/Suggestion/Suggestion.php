@@ -18,11 +18,11 @@ abstract class Suggestion extends ValueObject
 
     private string $pathString;
 
-    /** @var array<int|string, int|string> */
+    /** @var array<int, ?string> */
     private array $parentsLocation;
 
     /**
-     * @param array<int|string, int|string> $parentsLocation
+     * @param array<int, ?string> $parentsLocation
      */
     public function __construct(
         float $score,
@@ -54,7 +54,7 @@ abstract class Suggestion extends ValueObject
     }
 
     /**
-     * @return array<int|string, int|string>
+     * @return array<int, ?string>
      */
     public function getParentsLocation(): array
     {

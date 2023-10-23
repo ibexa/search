@@ -15,7 +15,7 @@ final class SuggestionTest extends TestCase
 {
     public function testSuggestionCreate(): void
     {
-        $implementation = new class(50, 'name', 'text', [0]) extends SuggestionAlias {
+        $implementation = new class(50, 'name', 'text', [0 => null]) extends SuggestionAlias {
             public function getType(): string
             {
                 return 'test_implementation';
@@ -25,9 +25,10 @@ final class SuggestionTest extends TestCase
         $this->assertInstanceOf(SuggestionAlias::class, $implementation);
         $this->assertSame('name', $implementation->getName());
         $this->assertSame('text', $implementation->getPathString());
-        $this->assertSame([0], $implementation->getParentsLocation());
+        $this->assertSame([0 => null], $implementation->getParentsLocation());
         $this->assertSame('test_implementation', $implementation->getType());
 
+        $implementation->addPath(0, 'text');
         $implementation->addPath(1, 'text2');
         $this->assertSame([0 => 'text', 1 => 'text2'], $implementation->getParentsLocation());
     }
