@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\Service;
 
+use Ibexa\Contracts\Search\Event\SuggestionEvent;
 use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
-use Ibexa\Search\EventDispatcher\Event\ContentSuggestion;
 use Ibexa\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -25,9 +25,9 @@ final class SuggestionService implements SuggestionServiceInterface
 
     public function suggest(SuggestionQuery $query): SuggestionCollection
     {
-        /** @var \Ibexa\Search\EventDispatcher\Event\ContentSuggestion $event */
+        /** @var \Ibexa\Contracts\Search\Event\SuggestionEvent $event */
         $event = $this->eventDispatcher->dispatch(
-            new ContentSuggestion(
+            new SuggestionEvent(
                 $query
             )
         );

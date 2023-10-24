@@ -41,3 +41,7 @@ services:
             $defaultLimit: '%ibexa.site_access.config.default.search.suggestion.min_query_length%'
         tags:
             - { name: 'request.param_converter', priority: 0 }
+
+    Ibexa\Search\Provider\ParentLocationProvider: ~
+
+    Ibexa\Contracts\Search\Provider\ParentLocationProvider: '@Ibexa\Search\Provider\ParentLocationProvider'

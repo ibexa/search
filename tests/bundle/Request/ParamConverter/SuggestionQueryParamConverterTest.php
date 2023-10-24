@@ -36,6 +36,9 @@ final class SuggestionQueryParamConverterTest extends TestCase
         $this->assertSame($expectedResult, $this->converter->supports($configuration));
     }
 
+    /**
+     * @return array<string, array{string, bool}>
+     */
     public function provideSupportsTestData(): array
     {
         return [
@@ -46,6 +49,8 @@ final class SuggestionQueryParamConverterTest extends TestCase
 
     /**
      * @dataProvider provideApplyTestData
+     *
+     * @param array{query: string, limit?: int, language?: string|null} $requestData
      */
     public function testApply(array $requestData, SuggestionQuery $expectedSuggestionQuery): void
     {
@@ -53,7 +58,7 @@ final class SuggestionQueryParamConverterTest extends TestCase
         $configuration->setName('suggestion');
         $configuration->setClass(SuggestionQuery::class);
 
-        $request = new Request([], [], [], [], [], [], []);
+        $request = new Request([], [], [], [], [], []);
         $request->query->add($requestData);
 
         $this->converter->apply($request, $configuration);
@@ -65,6 +70,9 @@ final class SuggestionQueryParamConverterTest extends TestCase
         $this->assertEquals($expectedSuggestionQuery, $suggestionQuery);
     }
 
+    /**
+     * @return array<string, array{array{query: string, limit?: int, language?: string|null}, SuggestionQuery}>
+     */
     public function provideApplyTestData(): array
     {
         return [

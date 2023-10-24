@@ -13,16 +13,16 @@ use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;
 
 /**
- * @template-extends \Ibexa\Contracts\Core\Collection\MutableArrayList<\Ibexa\Contracts\Search\Model\Suggestion\Suggestion>
+ * @template-extends \Ibexa\Contracts\Core\Collection\MutableArrayList<\Ibexa\Search\Model\Suggestion\ParentLocation>
  */
-final class SuggestionCollection extends MutableArrayList
+final class ParentLocationCollection extends MutableArrayList
 {
     /**
      * @param mixed $item
      */
     public function append($item): void
     {
-        if (!$item instanceof Suggestion) {
+        if (!$item instanceof ParentLocation) {
             throw new InvalidArgumentException(
                 '$item',
                 sprintf(
@@ -35,17 +35,5 @@ final class SuggestionCollection extends MutableArrayList
         }
 
         parent::append($item);
-    }
-
-    public function sortByScore(): void
-    {
-        usort($this->items, static function ($a, $b) {
-            return $b->getScore() <=> $a->getScore();
-        });
-    }
-
-    public function truncate(int $count): void
-    {
-        $this->items = array_slice($this->items, 0, $count);
     }
 }

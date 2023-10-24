@@ -18,8 +18,8 @@ final class SuggestionCollectionTest extends TestCase
     public function testCollection(): void
     {
         $collection = new SuggestionCollection();
-        $this->assertInstanceOf(MutableArrayList::class, $collection);
-        $this->assertInstanceOf(SuggestionCollection::class, $collection);
+        self::assertInstanceOf(MutableArrayList::class, $collection);
+        self::assertInstanceOf(SuggestionCollection::class, $collection);
 
         $collection->append(new ContentSuggestion(10, 'article', 'test', 1));
         $collection->append(new ContentSuggestion(20, 'article', 'test2', 1));
@@ -29,16 +29,16 @@ final class SuggestionCollectionTest extends TestCase
         $collection->append(new ContentSuggestion(60, 'article', 'test6', 1));
         $collection->append(new ContentSuggestion(70, 'article', 'test7', 1));
 
-        $this->assertCount(7, $collection);
+        self::assertCount(7, $collection);
 
         foreach ($collection as $item) {
-            $this->assertInstanceOf(ContentSuggestion::class, $item);
+            self::assertInstanceOf(ContentSuggestion::class, $item);
         }
 
         $collection->sortByScore();
-        $this->assertSame(70.0, $collection->first()->getScore());
+        self::assertSame(70.0, $collection->first()->getScore());
 
         $collection->truncate(5);
-        $this->assertCount(5, $collection);
+        self::assertCount(5, $collection);
     }
 }

@@ -6,9 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Search\Model\Suggestion;
+namespace Ibexa\Contracts\Search\Model\Suggestion;
 
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
+use Ibexa\Search\Model\Suggestion\ParentLocationCollection;
 
 abstract class Suggestion extends ValueObject
 {
@@ -18,22 +19,21 @@ abstract class Suggestion extends ValueObject
 
     private string $pathString;
 
-    /** @var array<int, ?string> */
-    private array $parentsLocation;
+    private ParentLocationCollection $parentsLocation;
 
     /**
-     * @param array<int, ?string> $parentsLocation
+     * @param array<\Ibexa\Search\Model\Suggestion\ParentLocation> $parentLocations
      */
     public function __construct(
         float $score,
         string $name,
         string $pathString = '',
-        array $parentsLocation = []
+        array $parentLocations = []
     ) {
         $this->score = $score;
         $this->name = $name;
         $this->pathString = $pathString;
-        $this->parentsLocation = $parentsLocation;
+        $this->parentsLocation = new ParentLocationCollection($parentLocations);
 
         parent::__construct();
     }
@@ -53,17 +53,9 @@ abstract class Suggestion extends ValueObject
         return $this->pathString;
     }
 
-    /**
-     * @return array<int, ?string>
-     */
-    public function getParentsLocation(): array
+    public function getParentLocations(): ParentLocationCollection
     {
         return $this->parentsLocation;
-    }
-
-    public function addPath(int $locationId, string $name): void
-    {
-        $this->parentsLocation[$locationId] = $name;
     }
 
     abstract public function getType(): string;

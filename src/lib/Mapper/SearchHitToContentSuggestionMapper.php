@@ -11,6 +11,7 @@ namespace Ibexa\Search\Mapper;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapper as SearchHitToContentSuggestionMapperInterface;
+use Ibexa\Contracts\Search\Provider\ParentLocationProvider as ParentLocationProviderInterface;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Search\Model\Suggestion\ContentSuggestion;
 
@@ -18,9 +19,14 @@ final class SearchHitToContentSuggestionMapper implements SearchHitToContentSugg
 {
     private ConfigResolverInterface $configResolver;
 
-    public function __construct(ConfigResolverInterface $configResolver)
-    {
+    private ParentLocationProviderInterface $parentLocationProvider;
+
+    public function __construct(
+        ParentLocationProviderInterface $parentLocationProvider,
+        ConfigResolverInterface $configResolver
+    ) {
         $this->configResolver = $configResolver;
+        $this->parentLocationProvider = $parentLocationProvider;
     }
 
     public function map(SearchHit $searchHit): ?ContentSuggestion
@@ -42,16 +48,20 @@ final class SearchHitToContentSuggestionMapper implements SearchHitToContentSugg
         $parentsLocation = $mainLocation->path;
         $position = array_search((string)$rootLocationId, $parentsLocation);
         if ($position !== false) {
-            $parentsLocation = array_slice($parentsLocation, (int)$position + 1);
+            $parentsLocation = array_slice($parentsLocation, (int)$position);
         }
 
-        return new ContentSuggestion(
+        $parentCollection = $this->parentLocationProvider->provide($parentsLocation);
+
+        $suggestion = new ContentSuggestion(
             $searchHit->score ?? 50,
             $content->getContentType()->identifier,
             $content->getName() ?? '',
             $content->getVersionInfo()->getContentInfo()->getId(),
             implode('/', $parentsLocation),
-            array_fill_keys($parentsLocation, '')
+            $parentCollection
         );
+
+        return $suggestion;
     }
 }

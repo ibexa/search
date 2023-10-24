@@ -8,28 +8,44 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\Model\Suggestion;
 
-use Ibexa\Search\Model\Suggestion\Suggestion as SuggestionAlias;
+use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;
+use Ibexa\Search\Model\Suggestion\ParentLocation;
 use PHPUnit\Framework\TestCase;
 
 final class SuggestionTest extends TestCase
 {
     public function testSuggestionCreate(): void
     {
-        $implementation = new class(50, 'name', 'text', [0 => null]) extends SuggestionAlias {
+        $implementation = self::createSuggestion(
+            0,
+            'name',
+            '2/4/5',
+            [
+                new ParentLocation(10, 1, 'text_1'),
+            ]
+        );
+
+        self::assertInstanceOf(Suggestion::class, $implementation);
+        self::assertSame('name', $implementation->getName());
+        self::assertSame('2/4/5', $implementation->getPathString());
+        self::assertSame('test_implementation', $implementation->getType());
+        self::assertCount(1, $implementation->getParentLocations());
+    }
+
+    /**
+     * @param array<\Ibexa\Search\Model\Suggestion\ParentLocation> $parentLocations
+     */
+    private function createSuggestion(
+        int $score,
+        string $name,
+        string $pathString = '',
+        array $parentLocations = []
+    ): Suggestion {
+        return new class($score, $name, $pathString, $parentLocations) extends Suggestion {
             public function getType(): string
             {
                 return 'test_implementation';
             }
         };
-
-        $this->assertInstanceOf(SuggestionAlias::class, $implementation);
-        $this->assertSame('name', $implementation->getName());
-        $this->assertSame('text', $implementation->getPathString());
-        $this->assertSame([0 => null], $implementation->getParentsLocation());
-        $this->assertSame('test_implementation', $implementation->getType());
-
-        $implementation->addPath(0, 'text');
-        $implementation->addPath(1, 'text2');
-        $this->assertSame([0 => 'text', 1 => 'text2'], $implementation->getParentsLocation());
     }
 }

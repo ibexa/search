@@ -22,7 +22,7 @@ final class SuggestionQueryParamConverter implements ParamConverterInterface
         $this->defaultLimit = $defaultLimit;
     }
 
-    public function apply(Request $request, ParamConverter $configuration)
+    public function apply(Request $request, ParamConverter $configuration): bool
     {
         $query = $request->get('query');
         $limit = $request->query->getInt('limit', $this->defaultLimit);
@@ -31,9 +31,11 @@ final class SuggestionQueryParamConverter implements ParamConverterInterface
         $suggestionQuery = new SuggestionQuery($query, $limit, $language);
 
         $request->attributes->set($configuration->getName(), $suggestionQuery);
+
+        return true;
     }
 
-    public function supports(ParamConverter $configuration)
+    public function supports(ParamConverter $configuration): bool
     {
         return SuggestionQuery::class === $configuration->getClass();
     }

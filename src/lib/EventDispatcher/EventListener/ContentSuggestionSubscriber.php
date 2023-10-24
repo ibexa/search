@@ -9,13 +9,10 @@ declare(strict_types=1);
 namespace Ibexa\Search\EventDispatcher\EventListener;
 
 use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
-use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
-use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
-use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Search\Event\SuggestionEvent;
 use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapper;
 use Ibexa\Core\Repository\SiteAccessAware\SearchService;
-use Ibexa\Search\EventDispatcher\Event\ContentSuggestion;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -28,26 +25,22 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
 
     private SearchHitToContentSuggestionMapper $contentSuggestionMapper;
 
-    private LocationService $locationService;
-
     public function __construct(
         SearchService $searchService,
-        LocationService $locationService,
         SearchHitToContentSuggestionMapper $contentSuggestionMapper
     ) {
         $this->searchService = $searchService;
         $this->contentSuggestionMapper = $contentSuggestionMapper;
-        $this->locationService = $locationService;
     }
 
     public static function getSubscribedEvents(): array
     {
         return [
-            ContentSuggestion::class => 'onContentSuggestion',
+            SuggestionEvent::class => 'onContentSuggestion',
         ];
     }
 
-    public function onContentSuggestion(ContentSuggestion $event): ContentSuggestion
+    public function onContentSuggestion(SuggestionEvent $event): SuggestionEvent
     {
         $query = $event->getQuery();
 
@@ -65,21 +58,13 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
         try {
             $languageFilter = $language ? ['languages' => [$language]] : [];
             $searchResult = $this->searchService->findContent($query, $languageFilter);
-            $collection = $event->getSuggestionCollection();
+            $suggestionCollection = $event->getSuggestionCollection();
             foreach ($searchResult as $result) {
-                $mappedResult = $this->contentSuggestionMapper->map($result);
-                if ($mappedResult === null) {
+                $contentSuggestion = $this->contentSuggestionMapper->map($result);
+                if ($contentSuggestion === null) {
                     continue;
                 }
-
-                foreach ($mappedResult->getParentsLocation() as $locationId => $name) {
-                    try {
-                        $location = $this->locationService->loadLocation($locationId);
-                        $mappedResult->addPath($locationId, $location->getContent()->getName() ?? '');
-                    } catch (NotFoundException|UnauthorizedException $e) {
-                    }
-                }
-                $collection->append($mappedResult);
+                $suggestionCollection->append($contentSuggestion);
             }
         } catch (InvalidArgumentException $e) {
             $this->logger ? $this->logger->error($e) : null;

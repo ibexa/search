@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Search\EventDispatcher\Event;
+namespace Ibexa\Contracts\Search\Event;
 
 use Ibexa\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 
-abstract class AbstractSuggestion
+final class SuggestionEvent
 {
     private SuggestionCollection $suggestionCollection;
 

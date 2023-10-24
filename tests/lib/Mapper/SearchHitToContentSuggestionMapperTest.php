@@ -11,12 +11,15 @@ namespace Ibexa\Tests\Search\Mapper;
 use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
+use Ibexa\Contracts\Search\Provider\ParentLocationProvider as ParentLocationProviderInterface;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper;
 use Ibexa\Search\Model\Suggestion\ContentSuggestion;
+use Ibexa\Search\Model\Suggestion\ParentLocation;
+use Ibexa\Search\Model\Suggestion\ParentLocationCollection;
 use PHPUnit\Framework\TestCase;
 
 final class SearchHitToContentSuggestionMapperTest extends TestCase
@@ -24,6 +27,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
     public function testMap(): void
     {
         $mapper = new SearchHitToContentSuggestionMapper(
+            $this->getParentLocationProviderMock(),
             $this->getConfigResolverMock()
         );
 
@@ -56,19 +60,41 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
             ])
         );
 
-        $this->assertInstanceOf(ContentSuggestion::class, $result);
-
-        $this->assertSame($result->getContentId(), 1);
-        $this->assertSame($result->getParentsLocation(), [6 => '', 7 => '']);
-        $this->assertSame($result->getPathString(), '6/7');
-        $this->assertSame($result->getName(), 'name_eng');
-        $this->assertSame($result->getScore(), 50.0);
+        self::assertInstanceOf(ContentSuggestion::class, $result);
+        self::assertSame($result->getContentId(), 1);
+        self::assertSame($result->getPathString(), '5/6/7');
+        self::assertInstanceOf(ParentLocationCollection::class, $result->getParentLocations());
+        self::assertCount(3, $result->getParentLocations());
+        self::assertSame($result->getName(), 'name_eng');
+        self::assertSame($result->getScore(), 50.0);
     }
 
+    /**
+     * @return \PHPUnit\Framework\MockObject\MockObject|\Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
+     */
     private function getConfigResolverMock(): ConfigResolverInterface
     {
         $configResolverMock = $this->createMock(ConfigResolverInterface::class);
         $configResolverMock->method('getParameter')->willReturn(5);
+
+        return $configResolverMock;
+    }
+
+    /**
+     * @return \PHPUnit\Framework\MockObject\MockObject|\Ibexa\Contracts\Search\Provider\ParentLocationProvider
+     */
+    private function getParentLocationProviderMock(): ParentLocationProviderInterface
+    {
+        $configResolverMock = $this->createMock(ParentLocationProviderInterface::class);
+        $configResolverMock->method('provide')->willReturnCallback(static function (array $locationIds): array {
+            $locations = [];
+
+            foreach ($locationIds as $locationId) {
+                $locations[] = new ParentLocation(10 + $locationId, $locationId, 'parent_' . $locationId);
+            }
+
+            return $locations;
+        });
 
         return $configResolverMock;
     }

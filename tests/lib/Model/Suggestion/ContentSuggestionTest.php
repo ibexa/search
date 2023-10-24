@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\Model\Suggestion;
 
+use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;
 use Ibexa\Search\Model\Suggestion\ContentSuggestion;
-use Ibexa\Search\Model\Suggestion\Suggestion;
+use Ibexa\Search\Model\Suggestion\ParentLocation;
+use Ibexa\Search\Model\Suggestion\ParentLocationCollection;
 use Ibexa\Tests\Core\Search\TestCase;
 
 final class ContentSuggestionTest extends TestCase
@@ -22,16 +24,14 @@ final class ContentSuggestionTest extends TestCase
             'name',
             1,
             'text',
-            [0 => 'text']
+            [0 => new ParentLocation(0, 1, 'text')]
         );
 
-        $this->assertInstanceOf(Suggestion::class, $implementation);
-        $this->assertSame(1, $implementation->getContentId());
-        $this->assertSame('content_type_identifier', $implementation->getContentTypeIdentifier());
-        $this->assertSame('content', $implementation->getType());
-        $this->assertSame([0 => 'text'], $implementation->getParentsLocation());
-
-        $implementation->addPath(1, 'text2');
-        $this->assertSame([0 => 'text', 1 => 'text2'], $implementation->getParentsLocation());
+        self::assertInstanceOf(Suggestion::class, $implementation);
+        self::assertSame(1, $implementation->getContentId());
+        self::assertSame('content_type_identifier', $implementation->getContentTypeIdentifier());
+        self::assertSame('content', $implementation->getType());
+        self::assertInstanceOf(ParentLocationCollection::class, $implementation->getParentLocations());
+        self::assertCount(1, $implementation->getParentLocations());
     }
 }

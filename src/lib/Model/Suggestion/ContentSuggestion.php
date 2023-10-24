@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\Model\Suggestion;
 
+use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;
+
 final class ContentSuggestion extends Suggestion
 {
     private int $contentId;
@@ -15,7 +17,7 @@ final class ContentSuggestion extends Suggestion
     private string $contentTypeIdentifier;
 
     /**
-     * @param array<int, ?string> $parentLocation
+     * @param array<\Ibexa\Search\Model\Suggestion\ParentLocation> $parentLocations
      */
     public function __construct(
         float $score,
@@ -23,9 +25,9 @@ final class ContentSuggestion extends Suggestion
         string $name,
         int $contentId,
         string $pathString = '',
-        array $parentLocation = []
+        array $parentLocations = []
     ) {
-        parent::__construct($score, $name, $pathString, $parentLocation);
+        parent::__construct($score, $name, $pathString, $parentLocations);
         $this->contentId = $contentId;
         $this->contentTypeIdentifier = $contentTypeIdentifier;
     }
