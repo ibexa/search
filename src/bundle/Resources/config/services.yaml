@@ -45,3 +45,5 @@ services:
     Ibexa\Search\Provider\ParentLocationProvider: ~
 
     Ibexa\Contracts\Search\Provider\ParentLocationProvider: '@Ibexa\Search\Provider\ParentLocationProvider'
+
+    Ibexa\Search\Serializer\SuggestionSerializer: ~

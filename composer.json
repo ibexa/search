@@ -17,8 +17,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Ibexa\\Tests\\Search\\": "tests/lib/",
             "Ibexa\\Tests\\Bundle\\Search\\": "tests/bundle/",
+            "Ibexa\\Tests\\Contracts\\Search\\": "tests/contracts/",
+            "Ibexa\\Tests\\Search\\": "tests/lib/",
+            "Ibexa\\Platform\\Tests\\Contracts\\Search\\": "tests/contracts/",
             "Ibexa\\Platform\\Tests\\Bundle\\Search\\": "tests/bundle/",
             "Ibexa\\Platform\\Tests\\Search\\": "tests/lib/"
         }
