@@ -7,5 +7,4 @@ ibexa.search:
 ibexa.search.suggestion:
     path: /suggestion
     methods: ['GET']
-    defaults:
-      _controller: 'Ibexa\Bundle\Search\Controller\SuggestionController::suggestAction'
+    controller: 'Ibexa\Bundle\Search\Controller\SuggestionController::suggestAction'

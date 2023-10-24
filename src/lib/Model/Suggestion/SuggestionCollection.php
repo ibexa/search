@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Search\Model\Suggestion;
 
 use Ibexa\Contracts\Core\Collection\MutableArrayList;
+use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 
 /**
  * @template-extends \Ibexa\Contracts\Core\Collection\MutableArrayList<\Ibexa\Search\Model\Suggestion\Suggestion>
@@ -21,8 +22,9 @@ final class SuggestionCollection extends MutableArrayList
     public function append($item): void
     {
         if (!$item instanceof Suggestion) {
-            throw new \TypeError(
-                \sprintf(
+            throw new InvalidArgumentException(
+                '$item',
+                sprintf(
                     'Argument 1 passed to %s::append() must be an instance of %s, %s given',
                     __CLASS__,
                     Suggestion::class,

@@ -32,11 +32,7 @@ final class SuggestionServiceTest extends TestCase
                     $this->isInstanceOf(AfterSuggestionEvent::class),
                 ]
             )
-            ->willReturnCallback(
-                static function ($event) {
-                    return $event;
-                }
-            );
+            ->willReturnArgument(0);
 
         $innerServiceMock = $this->getSuggestionServiceMock();
         $innerServiceMock
@@ -55,11 +51,7 @@ final class SuggestionServiceTest extends TestCase
         $eventDispatcherMock
             ->expects(self::once())
             ->method('dispatch')
-            ->withConsecutive(
-                [
-                    $this->isInstanceOf(BeforeSuggestionEvent::class),
-                ]
-            )
+            ->with(self::isInstanceOf(BeforeSuggestionEvent::class))
             ->willReturnCallback(
                 static function (BeforeSuggestionEvent $event) {
                     $event->stopPropagation();

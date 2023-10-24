@@ -35,3 +35,9 @@ services:
     Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapper: '@Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper'
 
     Ibexa\Search\Service\SuggestionService: ~
+
+    Ibexa\Bundle\Search\Request\ParamConverter\SuggestionQueryParamConverter:
+        arguments:
+            $defaultLimit: '%ibexa.site_access.config.default.search.suggestion.min_query_length%'
+        tags:
+            - { name: 'request.param_converter', priority: 0 }

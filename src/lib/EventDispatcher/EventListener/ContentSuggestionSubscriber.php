@@ -76,8 +76,7 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
                     try {
                         $location = $this->locationService->loadLocation($locationId);
                         $mappedResult->addPath($locationId, $location->getContent()->getName() ?? '');
-                    } catch (NotFoundException $e) {
-                    } catch (UnauthorizedException $e) {
+                    } catch (NotFoundException|UnauthorizedException $e) {
                     }
                 }
                 $collection->append($mappedResult);

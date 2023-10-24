@@ -12,7 +12,6 @@ use Ibexa\Search\Model\SuggestionQuery;
 use Ibexa\Search\Service\SuggestionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 
 final class SuggestionController extends AbstractController
@@ -29,13 +28,8 @@ final class SuggestionController extends AbstractController
         $this->serializer = $serializer;
     }
 
-    public function suggestAction(Request $request): JsonResponse
+    public function suggestAction(SuggestionQuery $suggestionQuery): JsonResponse
     {
-        $query = $request->get('query');
-        $limit = (int) $request->get('limit');
-        $language = $request->get('language');
-
-        $suggestionQuery = new SuggestionQuery($query, $limit, $language);
         $result = $this->suggestionService->suggest($suggestionQuery);
 
         $serializedResults = $this->serializer->serialize($result, 'json');

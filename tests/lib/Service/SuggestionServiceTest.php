@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\Service;
 
-use Ibexa\Search\EventDispatcher\Event\AbstractSuggestion;
 use Ibexa\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 use Ibexa\Search\Service\SuggestionService;
@@ -22,11 +21,7 @@ final class SuggestionServiceTest extends TestCase
         $eventDispatcherMock = $this->getEventDispatcherMock();
         $eventDispatcherMock
             ->method('dispatch')
-            ->willReturnCallback(
-                static function (AbstractSuggestion $event): AbstractSuggestion {
-                    return $event;
-                }
-            );
+            ->willReturnArgument(0);
 
         $service = new SuggestionService($eventDispatcherMock);
         $result = $service->suggest(new SuggestionQuery('query', 10, 'eng-GB'));
