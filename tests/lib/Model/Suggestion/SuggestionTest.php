@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\Model\Suggestion;
 
+use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
 use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;
-use Ibexa\Search\Model\Suggestion\ParentLocation;
 use PHPUnit\Framework\TestCase;
 
 final class SuggestionTest extends TestCase
@@ -33,7 +33,7 @@ final class SuggestionTest extends TestCase
     }
 
     /**
-     * @param array<\Ibexa\Search\Model\Suggestion\ParentLocation> $parentLocations
+     * @param array<\Ibexa\Contracts\Search\Model\Suggestion\ParentLocation> $parentLocations
      */
     private function createSuggestion(
         int $score,

@@ -39,7 +39,7 @@ final class SuggestionCollection extends MutableArrayList
 
     public function sortByScore(): void
     {
-        usort($this->items, static function ($a, $b) {
+        usort($this->items, static function ($a, $b): int {
             return $b->getScore() <=> $a->getScore();
         });
     }

@@ -8,12 +8,12 @@ declare(strict_types=1);
 
 namespace Ibexa\Contracts\Search\Provider;
 
-interface ParentLocationProvider
+interface ParentLocationProviderInterface
 {
     /**
      * @param array<int> $parentLocationIds
      *
-     * @return array<\Ibexa\Search\Model\Suggestion\ParentLocation>
+     * @return array<\Ibexa\Contracts\Search\Model\Suggestion\ParentLocation>
      */
     public function provide(array $parentLocationIds): array;
 }

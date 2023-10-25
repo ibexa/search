@@ -11,7 +11,7 @@ namespace Ibexa\Search\EventDispatcher\EventListener;
 use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Search\Event\SuggestionEvent;
-use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapper;
+use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface;
 use Ibexa\Core\Repository\SiteAccessAware\SearchService;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -23,11 +23,11 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
 
     private SearchService $searchService;
 
-    private SearchHitToContentSuggestionMapper $contentSuggestionMapper;
+    private SearchHitToContentSuggestionMapperInterface $contentSuggestionMapper;
 
     public function __construct(
         SearchService $searchService,
-        SearchHitToContentSuggestionMapper $contentSuggestionMapper
+        SearchHitToContentSuggestionMapperInterface $contentSuggestionMapper
     ) {
         $this->searchService = $searchService;
         $this->contentSuggestionMapper = $contentSuggestionMapper;

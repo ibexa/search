@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Search\Model\Suggestion;
+namespace Ibexa\Contracts\Search\Model\Suggestion;
 
 final class ParentLocation
 {

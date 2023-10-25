@@ -11,11 +11,11 @@ namespace Ibexa\Tests\Search\EventDispatcher\EventListener;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
 use Ibexa\Contracts\Search\Event\SuggestionEvent;
-use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapper;
+use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface;
+use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion as ContentSuggestionModel;
+use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
 use Ibexa\Core\Repository\SiteAccessAware\SearchService;
 use Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber;
-use Ibexa\Search\Model\Suggestion\ContentSuggestion as ContentSuggestionModel;
-use Ibexa\Search\Model\Suggestion\ParentLocation;
 use Ibexa\Search\Model\SuggestionQuery;
 use PHPUnit\Framework\TestCase;
 
@@ -65,17 +65,18 @@ final class ContentSuggestionSubscriberTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapper
+     * @return \PHPUnit\Framework\MockObject\MockObject|\Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface
      */
-    private function getSearchHitToContentSuggestionMapperMock(): SearchHitToContentSuggestionMapper
+    private function getSearchHitToContentSuggestionMapperMock(): SearchHitToContentSuggestionMapperInterface
     {
-        $searchHitToContentSuggestionMapperMock = $this->createMock(SearchHitToContentSuggestionMapper::class);
+        $searchHitToContentSuggestionMapperMock = $this->createMock(SearchHitToContentSuggestionMapperInterface::class);
         $searchHitToContentSuggestionMapperMock->method('map')->willReturn(
             new ContentSuggestionModel(
                 10.0,
                 'test',
                 'test',
                 1,
+                2,
                 'test',
                 [
                     new ParentLocation(1, 2, 'test'),

@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Ibexa\Contracts\Search\Mapper;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
-use Ibexa\Search\Model\Suggestion\ContentSuggestion;
+use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
 
-interface SearchHitToContentSuggestionMapper
+interface SearchHitToContentSuggestionMapperInterface
 {
     public function map(SearchHit $searchHit): ?ContentSuggestion;
 }

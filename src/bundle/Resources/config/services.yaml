@@ -32,18 +32,18 @@ services:
 
     Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper: ~
 
-    Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapper: '@Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper'
+    Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface: '@Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper'
 
     Ibexa\Search\Service\SuggestionService: ~
 
     Ibexa\Bundle\Search\Request\ParamConverter\SuggestionQueryParamConverter:
         arguments:
-            $defaultLimit: '%ibexa.site_access.config.default.search.suggestion.min_query_length%'
+            $defaultLimit: '%ibexa.site_access.config.default.search.suggestion.result_limit%'
         tags:
             - { name: 'request.param_converter', priority: 0 }
 
     Ibexa\Search\Provider\ParentLocationProvider: ~
 
-    Ibexa\Contracts\Search\Provider\ParentLocationProvider: '@Ibexa\Search\Provider\ParentLocationProvider'
+    Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface: '@Ibexa\Search\Provider\ParentLocationProvider'
 
     Ibexa\Search\Serializer\SuggestionSerializer: ~

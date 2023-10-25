@@ -11,14 +11,14 @@ namespace Ibexa\Tests\Search\Mapper;
 use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
-use Ibexa\Contracts\Search\Provider\ParentLocationProvider as ParentLocationProviderInterface;
+use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
+use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
+use Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface as ParentLocationProviderInterface;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper;
-use Ibexa\Search\Model\Suggestion\ContentSuggestion;
-use Ibexa\Search\Model\Suggestion\ParentLocation;
 use Ibexa\Search\Model\Suggestion\ParentLocationCollection;
 use PHPUnit\Framework\TestCase;
 
@@ -49,6 +49,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
                             'mainLanguageCode' => 'eng-GB',
                             'contentTypeId' => 1,
                             'mainLocation' => new Location([
+                                'id' => 8,
                                 'path' => [1, 2, 3, 4, 5, 6, 7],
                             ]),
                         ]),
@@ -81,7 +82,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\Ibexa\Contracts\Search\Provider\ParentLocationProvider
+     * @return \PHPUnit\Framework\MockObject\MockObject|\Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface
      */
     private function getParentLocationProviderMock(): ParentLocationProviderInterface
     {

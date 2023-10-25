@@ -6,5 +6,5 @@ ibexa.search:
 
 ibexa.search.suggestion:
     path: /suggestion
-    methods: ['GET']
+    methods: [GET]
     controller: 'Ibexa\Bundle\Search\Controller\SuggestionController::suggestAction'

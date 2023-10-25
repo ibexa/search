@@ -58,7 +58,7 @@ final class SuggestionParser extends AbstractParser
      * @param array<string, mixed> $settings
      */
     private function addSuggestionParameters(
-        $settings,
+        array $settings,
         string $currentScope,
         ContextualizerInterface $contextualizer
     ): void {

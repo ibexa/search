@@ -8,12 +8,12 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\Mapper;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
-use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapper as SearchHitToContentSuggestionMapperInterface;
-use Ibexa\Contracts\Search\Provider\ParentLocationProvider as ParentLocationProviderInterface;
-use Ibexa\Core\Repository\Values\Content\Content;
-use Ibexa\Search\Model\Suggestion\ContentSuggestion;
+use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface;
+use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
+use Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface;
 
 final class SearchHitToContentSuggestionMapper implements SearchHitToContentSuggestionMapperInterface
 {
@@ -58,6 +58,7 @@ final class SearchHitToContentSuggestionMapper implements SearchHitToContentSugg
             $content->getContentType()->identifier,
             $content->getName() ?? '',
             $content->getVersionInfo()->getContentInfo()->getId(),
+            $content->getVersionInfo()->getContentInfo()->getMainLocation()->id,
             implode('/', $parentsLocation),
             $parentCollection
         );

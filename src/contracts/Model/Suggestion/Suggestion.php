@@ -22,7 +22,7 @@ abstract class Suggestion extends ValueObject
     private ParentLocationCollection $parentsLocation;
 
     /**
-     * @param array<\Ibexa\Search\Model\Suggestion\ParentLocation> $parentLocations
+     * @param array<\Ibexa\Contracts\Search\Model\Suggestion\ParentLocation> $parentLocations
      */
     public function __construct(
         float $score,

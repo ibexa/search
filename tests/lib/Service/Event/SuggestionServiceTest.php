@@ -53,7 +53,7 @@ final class SuggestionServiceTest extends TestCase
             ->method('dispatch')
             ->with(self::isInstanceOf(BeforeSuggestionEvent::class))
             ->willReturnCallback(
-                static function (BeforeSuggestionEvent $event) {
+                static function (BeforeSuggestionEvent $event): BeforeSuggestionEvent {
                     $event->stopPropagation();
 
                     return $event;

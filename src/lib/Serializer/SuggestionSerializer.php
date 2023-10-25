@@ -23,7 +23,7 @@ final class SuggestionSerializer implements SerializerInterface
         $encoders = [new JsonEncoder()];
 
         $defaultContext = [
-            AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => static function ($object) {
+            AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => static function ($object): int {
                 return $object->getId();
             },
         ];

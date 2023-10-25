@@ -9,10 +9,10 @@ declare(strict_types=1);
 namespace Ibexa\Search\Provider;
 
 use Ibexa\Contracts\Core\Repository\LocationService;
-use Ibexa\Contracts\Search\Provider\ParentLocationProvider as ParentLocationMapperInterface;
-use Ibexa\Search\Model\Suggestion\ParentLocation;
+use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
+use Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface;
 
-final class ParentLocationProvider implements ParentLocationMapperInterface
+final class ParentLocationProvider implements ParentLocationProviderInterface
 {
     private LocationService $locationService;
 
@@ -24,7 +24,7 @@ final class ParentLocationProvider implements ParentLocationMapperInterface
     /**
      * @param array<int> $parentLocationIds
      *
-     * @return array<\Ibexa\Search\Model\Suggestion\ParentLocation>
+     * @return array<\Ibexa\Contracts\Search\Model\Suggestion\ParentLocation>
      */
     public function provide(array $parentLocationIds): array
     {
