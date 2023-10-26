@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\Serializer\Normalizer\Suggestion;
 
-use Ibexa\Search\Model\Suggestion\ParentLocationCollection;
+use Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 final class ParentLocationCollectionNormalizer implements NormalizerInterface
@@ -21,7 +21,7 @@ final class ParentLocationCollectionNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param \Ibexa\Search\Model\Suggestion\ParentLocationCollection $object
+     * @param \Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection $object
      *
      * @return array<int<0, max>, array<string, mixed>>
      */

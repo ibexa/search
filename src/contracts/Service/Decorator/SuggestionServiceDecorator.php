@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Contracts\Search\Service\Decorator;
 
+use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
-use Ibexa\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 
 abstract class SuggestionServiceDecorator implements SuggestionServiceInterface

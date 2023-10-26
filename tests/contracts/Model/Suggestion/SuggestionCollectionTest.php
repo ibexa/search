@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\Search\Model\Suggestion;
+namespace Ibexa\Tests\Contracts\Search\Model\Suggestion;
 
 use Ibexa\Contracts\Core\Collection\MutableArrayList;
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
-use Ibexa\Search\Model\Suggestion\SuggestionCollection;
+use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use PHPUnit\Framework\TestCase;
 
 final class SuggestionCollectionTest extends TestCase

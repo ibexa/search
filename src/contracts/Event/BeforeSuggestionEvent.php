@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Contracts\Search\Event;
 
 use Ibexa\Contracts\Core\Repository\Event\BeforeEvent;
-use Ibexa\Search\Model\Suggestion\SuggestionCollection;
+use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 
 final class BeforeSuggestionEvent extends BeforeEvent

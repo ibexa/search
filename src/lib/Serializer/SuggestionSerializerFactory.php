@@ -13,7 +13,9 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 final class SuggestionSerializerFactory
 {
     /**
-     * @param array<\Symfony\Component\Serializer\Normalizer\DenormalizerInterface|\Symfony\Component\Serializer\Normalizer\NormalizerInterface> $normalizers
+     * @param array<
+     *     \Symfony\Component\Serializer\Normalizer\DenormalizerInterface|\Symfony\Component\Serializer\Normalizer\NormalizerInterface
+     * > $normalizers
      */
     public function __invoke(array $normalizers): SuggestionSerializer
     {

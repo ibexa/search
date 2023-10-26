@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\Search\Model\Suggestion;
+namespace Ibexa\Tests\Contracts\Search\Model\Suggestion;
 
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
+use Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection;
 use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;
-use Ibexa\Search\Model\Suggestion\ParentLocationCollection;
 use Ibexa\Tests\Core\Search\TestCase;
 
 final class ContentSuggestionTest extends TestCase

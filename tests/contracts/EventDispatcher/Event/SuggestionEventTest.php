@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Tests\Contracts\Search\Event;
 
 use Ibexa\Contracts\Search\Event\SuggestionEvent;
-use Ibexa\Search\Model\Suggestion\SuggestionCollection;
+use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 use PHPUnit\Framework\TestCase;
 

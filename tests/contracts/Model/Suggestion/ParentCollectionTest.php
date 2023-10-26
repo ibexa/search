@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\Search\Model\Suggestion;
+namespace Ibexa\Tests\Contracts\Search\Model\Suggestion;
 
 use Ibexa\Contracts\Core\Collection\MutableArrayList;
 use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
-use Ibexa\Search\Model\Suggestion\ParentLocationCollection;
+use Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection;
 use PHPUnit\Framework\TestCase;
 
 final class ParentCollectionTest extends TestCase

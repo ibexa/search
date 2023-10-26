@@ -10,9 +10,9 @@ namespace Ibexa\Search\Service\Event;
 
 use Ibexa\Contracts\Search\Event\AfterSuggestionEvent;
 use Ibexa\Contracts\Search\Event\BeforeSuggestionEvent;
+use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Contracts\Search\Service\Decorator\SuggestionServiceDecorator;
 use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
-use Ibexa\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 

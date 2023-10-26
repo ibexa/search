@@ -6,15 +6,15 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Search\Model\Suggestion;
+namespace Ibexa\Contracts\Search\Model\Suggestion;
 
 use Ibexa\Contracts\Core\Collection\MutableArrayList;
 use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
-use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
-use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;
 
 /**
- * @template-extends \Ibexa\Contracts\Core\Collection\MutableArrayList<\Ibexa\Contracts\Search\Model\Suggestion\ParentLocation>
+ * @template-extends \Ibexa\Contracts\Core\Collection\MutableArrayList<
+ *     \Ibexa\Contracts\Search\Model\Suggestion\ParentLocation
+ * >
  */
 final class ParentLocationCollection extends MutableArrayList
 {

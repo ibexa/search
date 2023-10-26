@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\Service;
 
-use Ibexa\Search\Model\Suggestion\SuggestionCollection;
+use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 use Ibexa\Search\Service\SuggestionService;
 use PHPUnit\Framework\TestCase;

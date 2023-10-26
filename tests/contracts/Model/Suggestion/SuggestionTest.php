@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\Search\Model\Suggestion;
+namespace Ibexa\Tests\Contracts\Search\Model\Suggestion;
 
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
 use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;

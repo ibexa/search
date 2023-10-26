@@ -9,8 +9,8 @@ declare(strict_types=1);
 namespace Ibexa\Search\Service;
 
 use Ibexa\Contracts\Search\Event\SuggestionEvent;
+use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
-use Ibexa\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 

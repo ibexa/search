@@ -53,7 +53,7 @@ final class SearchHitToContentSuggestionMapper implements SearchHitToContentSugg
 
         $parentCollection = $this->parentLocationProvider->provide($parentsLocation);
 
-        $suggestion = new ContentSuggestion(
+        return new ContentSuggestion(
             $searchHit->score ?? 50,
             $content->getContentType()->identifier,
             $content->getName() ?? '',
@@ -62,7 +62,5 @@ final class SearchHitToContentSuggestionMapper implements SearchHitToContentSugg
             implode('/', $parentsLocation),
             $parentCollection
         );
-
-        return $suggestion;
     }
 }
