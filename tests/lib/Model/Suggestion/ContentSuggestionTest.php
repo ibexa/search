@@ -31,7 +31,6 @@ final class ContentSuggestionTest extends TestCase
         self::assertInstanceOf(Suggestion::class, $implementation);
         self::assertSame(1, $implementation->getContentId());
         self::assertSame('content_type_identifier', $implementation->getContentTypeIdentifier());
-        self::assertSame('content', $implementation->getType());
         self::assertInstanceOf(ParentLocationCollection::class, $implementation->getParentLocations());
         self::assertCount(1, $implementation->getParentLocations());
     }

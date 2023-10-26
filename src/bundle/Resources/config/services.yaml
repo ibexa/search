@@ -3,20 +3,15 @@ imports:
     - { resource: twig.yaml }
     - { resource: sorting_definitions.yaml }
     - { resource: views.yaml }
+    - { resource: services/controllers.yaml }
+    - { resource: services/suggestions.yaml }
+    - { resource: services/normalizers.yaml }
 
 services:
     _defaults:
         autoconfigure: true
         autowire: true
         public: false
-
-    Ibexa\Bundle\Search\Controller\SearchController:
-        tags:
-            - controller.service_arguments
-
-    Ibexa\Bundle\Search\Controller\SuggestionController:
-        tags:
-            - controller.service_arguments
 
     Ibexa\Search\Mapper\PagerSearchContentToDataMapper:
         arguments:
@@ -27,23 +22,3 @@ services:
             $languageService: '@ibexa.api.service.language'
 
     Ibexa\Search\QueryType\SearchQueryType: ~
-
-    Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber: ~
-
-    Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper: ~
-
-    Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface: '@Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper'
-
-    Ibexa\Search\Service\SuggestionService: ~
-
-    Ibexa\Bundle\Search\Request\ParamConverter\SuggestionQueryParamConverter:
-        arguments:
-            $defaultLimit: '%ibexa.site_access.config.default.search.suggestion.result_limit%'
-        tags:
-            - { name: 'request.param_converter', priority: 0 }
-
-    Ibexa\Search\Provider\ParentLocationProvider: ~
-
-    Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface: '@Ibexa\Search\Provider\ParentLocationProvider'
-
-    Ibexa\Search\Serializer\SuggestionSerializer: ~

@@ -1,0 +1,24 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Ibexa\Search\Serializer\Normalizer\Suggestion\ContentSuggestionNormalizer:
+        tags:
+            - { name: 'ibexa.search.serializer.normalizer' }
+
+    Ibexa\Search\Serializer\Normalizer\Suggestion\ParentLocationCollectionNormalizer:
+        tags:
+              - { name: 'ibexa.search.serializer.normalizer' }
+
+    Ibexa\Search\Serializer\Normalizer\Suggestion\ParentLocationNormalizer:
+        tags:
+              - { name: 'ibexa.search.serializer.normalizer' }
+
+    Ibexa\Search\Serializer\SuggestionSerializerFactory: ~
+
+    Ibexa\Search\Serializer\SuggestionSerializer:
+        factory: '@Ibexa\Search\Serializer\SuggestionSerializerFactory'
+        arguments:
+            $normalizers: !tagged { tag: 'ibexa.search.serializer.normalizer' }

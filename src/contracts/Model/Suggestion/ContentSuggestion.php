@@ -48,9 +48,4 @@ final class ContentSuggestion extends Suggestion
     {
         return $this->contentTypeIdentifier;
     }
-
-    public function getType(): string
-    {
-        return 'content';
-    }
 }

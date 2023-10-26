@@ -1,0 +1,37 @@
+parameters:
+    ibexa.site_access.config.default.search.suggestion.result_limit: 5
+
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
+
+    Ibexa\Bundle\Search\Request\ParamConverter\SuggestionQueryParamConverter:
+        arguments:
+            $defaultLimit: '%ibexa.site_access.config.default.search.suggestion.result_limit%'
+        tags:
+            - { name: 'request.param_converter', priority: 0 }
+
+    Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber: ~
+
+    Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper: ~
+
+    Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface: '@Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper'
+
+    Ibexa\Search\Service\SuggestionService: ~
+
+    Ibexa\Contracts\Search\Service\SuggestionServiceInterface: '@Ibexa\Search\Service\SuggestionService'
+
+    Ibexa\Search\Service\Event\SuggestionService:
+        decorates: Ibexa\Contracts\Search\Service\SuggestionServiceInterface
+
+
+#    Ibexa\Taxonomy\Service\Decorator\SearchEngineIndexerTaxonomyEntryAssignmentServiceDecorator:
+#        decorates: Ibexa\Taxonomy\Service\TaxonomyEntryAssignmentService
+#        arguments:
+#            $innerService: '@.inner'
+
+    Ibexa\Search\Provider\ParentLocationProvider: ~
+
+    Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface: '@Ibexa\Search\Provider\ParentLocationProvider'

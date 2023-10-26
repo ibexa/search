@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
+
+    Ibexa\Bundle\Search\Controller\SearchController:
+        tags:
+            - controller.service_arguments
+
+    Ibexa\Bundle\Search\Controller\SuggestionController:
+        tags:
+            - controller.service_arguments

@@ -58,7 +58,7 @@ final class SearchHitToContentSuggestionMapper implements SearchHitToContentSugg
             $content->getContentType()->identifier,
             $content->getName() ?? '',
             $content->getVersionInfo()->getContentInfo()->getId(),
-            $content->getVersionInfo()->getContentInfo()->getMainLocation()->id,
+            $content->getVersionInfo()->getContentInfo()->getMainLocation()->id ?? 0,
             implode('/', $parentsLocation),
             $parentCollection
         );

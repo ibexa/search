@@ -57,6 +57,4 @@ abstract class Suggestion extends ValueObject
     {
         return $this->parentsLocation;
     }
-
-    abstract public function getType(): string;
 }

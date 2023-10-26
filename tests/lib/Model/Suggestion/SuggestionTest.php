@@ -28,7 +28,6 @@ final class SuggestionTest extends TestCase
         self::assertInstanceOf(Suggestion::class, $implementation);
         self::assertSame('name', $implementation->getName());
         self::assertSame('2/4/5', $implementation->getPathString());
-        self::assertSame('test_implementation', $implementation->getType());
         self::assertCount(1, $implementation->getParentLocations());
     }
 
