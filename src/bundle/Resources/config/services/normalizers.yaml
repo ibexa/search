@@ -21,4 +21,4 @@ services:
     Ibexa\Search\Serializer\SuggestionSerializer:
         factory: '@Ibexa\Search\Serializer\SuggestionSerializerFactory'
         arguments:
-            $normalizers: !tagged { tag: 'ibexa.search.serializer.normalizer' }
+            $normalizers: !tagged_iterator { tag: 'ibexa.search.serializer.normalizer' }

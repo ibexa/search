@@ -28,13 +28,13 @@ final class ContentSuggestionNormalizer implements NormalizerInterface
     public function normalize($object, string $format = null, array $context = []): array
     {
         return [
-            'contentTypeIdentifier' => $object->getContentTypeIdentifier(),
-            'name' => $object->getName(),
             'contentId' => $object->getContentId(),
             'locationId' => $object->getLocationId(),
+            'contentTypeIdentifier' => $object->getContentTypeIdentifier(),
+            'name' => $object->getName(),
             'pathString' => $object->getPathString(),
-            'parentLocations' => $this->parentLocationCollectionNormalizer->normalize($object->getParentLocations()),
             'type' => 'content',
+            'parentLocations' => $this->parentLocationCollectionNormalizer->normalize($object->getParentLocations()),
         ];
     }
 

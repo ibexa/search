@@ -13,14 +13,15 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 final class SuggestionSerializerFactory
 {
     /**
-     * @param array<
-     *     \Symfony\Component\Serializer\Normalizer\DenormalizerInterface|\Symfony\Component\Serializer\Normalizer\NormalizerInterface
-     * > $normalizers
+     * @template T of \Symfony\Component\Serializer\Normalizer\DenormalizerInterface
+     * |\Symfony\Component\Serializer\Normalizer\NormalizerInterface
+     * @param iterable<T> $normalizers
      */
-    public function __invoke(array $normalizers): SuggestionSerializer
+    public function __invoke(iterable $normalizers): SuggestionSerializer
     {
         $encoders = [new JsonEncoder()];
+        $normalizersArray = is_array($normalizers) ? $normalizers : iterator_to_array($normalizers);
 
-        return new SuggestionSerializer($normalizers, $encoders);
+        return new SuggestionSerializer($normalizersArray, $encoders);
     }
 }
