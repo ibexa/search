@@ -1,10 +1,11 @@
 ibexa.search:
     path: /search
-    methods: ['GET']
-    defaults:
-      _controller: 'Ibexa\Bundle\Search\Controller\SearchController::searchAction'
+    methods: [GET]
+    controller: 'Ibexa\Bundle\Search\Controller\SearchController::searchAction'
 
 ibexa.search.suggestion:
     path: /suggestion
     methods: [GET]
     controller: 'Ibexa\Bundle\Search\Controller\SuggestionController::suggestAction'
+    options:
+        expose: true
