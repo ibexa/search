@@ -34,10 +34,8 @@ final class SuggestionServiceTest extends TestCase
      */
     private function getEventDispatcherMock(): EventDispatcherInterface
     {
-        $eventDispatcherMock = $this->getMockBuilder(EventDispatcherInterface::class)
+        return $this->getMockBuilder(EventDispatcherInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
-
-        return $eventDispatcherMock;
     }
 }
