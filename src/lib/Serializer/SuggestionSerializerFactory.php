@@ -15,6 +15,7 @@ final class SuggestionSerializerFactory
     /**
      * @template T of \Symfony\Component\Serializer\Normalizer\DenormalizerInterface
      * |\Symfony\Component\Serializer\Normalizer\NormalizerInterface
+     *
      * @param iterable<T> $normalizers
      */
     public function __invoke(iterable $normalizers): SuggestionSerializer
