@@ -12,7 +12,7 @@ services:
         autowire: true
         public: false
 
-    Ibexa\Bundle\PackageName\Controller\:
+    Ibexa\Bundle\Search\Controller\:
         resource: './../../Controller'
         tags:
             - controller.service_arguments

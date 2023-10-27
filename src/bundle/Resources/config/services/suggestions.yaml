@@ -8,11 +8,11 @@ services:
         autowire: true
         public: false
 
-    Ibexa\Bundle\Search\Request\ParamConverter\SuggestionQueryParamConverter:
+    Ibexa\Bundle\Search\ArgumentResolver\SuggestionQueryArgumentResolver:
         arguments:
             $defaultLimit: '%ibexa.site_access.config.default.search.suggestion.result_limit%'
         tags:
-            - { name: 'request.param_converter', priority: 0 }
+            - { name: 'controller.argument_value_resolver', priority: 50 }
 
     Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber: ~
 
