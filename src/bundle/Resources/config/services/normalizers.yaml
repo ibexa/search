@@ -4,6 +4,15 @@ services:
         autoconfigure: true
         public: false
 
+    ibexa.search.suggestion.serializer:
+        class: Symfony\Component\Serializer\Serializer
+        arguments:
+            $normalizers:
+                - '@Ibexa\Search\Serializer\Normalizer\Suggestion\ContentSuggestionNormalizer'
+                - '@Ibexa\Search\Serializer\Normalizer\Suggestion\ParentLocationNormalizer'
+            $encoders:
+                - '@serializer.encoder.json'
+
     Ibexa\Search\Serializer\Normalizer\Suggestion\ContentSuggestionNormalizer:
         autoconfigure: false
         tags:
@@ -18,10 +27,3 @@ services:
         autoconfigure: false
         tags:
               - { name: 'ibexa.search.serializer.normalizer' }
-
-    Ibexa\Search\Serializer\SuggestionSerializerFactory: ~
-
-    Ibexa\Search\Serializer\SuggestionSerializer:
-        factory: '@Ibexa\Search\Serializer\SuggestionSerializerFactory'
-        arguments:
-            $normalizers: !tagged_iterator { tag: 'ibexa.search.serializer.normalizer' }

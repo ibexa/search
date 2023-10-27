@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Ibexa\Bundle\Search\Controller;
 
 use Ibexa\Search\Model\SuggestionQuery;
-use Ibexa\Search\Serializer\SuggestionSerializer;
 use Ibexa\Search\Service\SuggestionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,13 +21,6 @@ final class SuggestionController extends AbstractController
         SuggestionService $suggestionService
     ) {
         $this->suggestionService = $suggestionService;
-    }
-
-    public static function getSubscribedServices(): array
-    {
-        return array_merge(parent::getSubscribedServices(), [
-            'serializer' => SuggestionSerializer::class,
-        ]);
     }
 
     public function suggestAction(SuggestionQuery $suggestionQuery): JsonResponse

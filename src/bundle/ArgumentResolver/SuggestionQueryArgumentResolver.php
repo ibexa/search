@@ -27,6 +27,9 @@ final class SuggestionQueryArgumentResolver implements ArgumentValueResolverInte
         return SuggestionQuery::class === $argument->getType();
     }
 
+    /**
+     * @return iterable<\Ibexa\Search\Model\SuggestionQuery>
+     */
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
         $query = $request->get('query');
