@@ -46,7 +46,7 @@ final class SearchHitToContentSuggestionMapper implements SearchHitToContentSugg
         }
 
         $parentsLocation = $mainLocation->path;
-        $position = array_search((string)$rootLocationId, $parentsLocation);
+        $position = array_search($rootLocationId, $parentsLocation, true);
         if ($position !== false) {
             $parentsLocation = array_slice($parentsLocation, (int)$position);
         }
@@ -54,7 +54,7 @@ final class SearchHitToContentSuggestionMapper implements SearchHitToContentSugg
         $parentCollection = $this->parentLocationProvider->provide($parentsLocation);
 
         return new ContentSuggestion(
-            $searchHit->score ?? 50,
+            $searchHit->score ?? 50.0,
             $content->getContentType()->identifier,
             $content->getName() ?? '',
             $content->getVersionInfo()->getContentInfo()->getId(),

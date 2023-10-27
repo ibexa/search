@@ -3,7 +3,6 @@ imports:
     - { resource: twig.yaml }
     - { resource: sorting_definitions.yaml }
     - { resource: views.yaml }
-    - { resource: services/controllers.yaml }
     - { resource: services/suggestions.yaml }
     - { resource: services/normalizers.yaml }
 
@@ -12,6 +11,11 @@ services:
         autoconfigure: true
         autowire: true
         public: false
+
+    Ibexa\Bundle\PackageName\Controller\:
+        resource: './../../Controller'
+        tags:
+            - controller.service_arguments
 
     Ibexa\Search\Mapper\PagerSearchContentToDataMapper:
         arguments:

@@ -13,8 +13,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
-use Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection;
-use Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface as ParentLocationProviderInterface;
+use Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
@@ -64,7 +63,6 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
         self::assertInstanceOf(ContentSuggestion::class, $result);
         self::assertSame(1, $result->getContentId());
         self::assertSame('5/6/7', $result->getPathString());
-        self::assertInstanceOf(ParentLocationCollection::class, $result->getParentLocations());
         self::assertCount(3, $result->getParentLocations());
         self::assertSame('name_eng', $result->getName());
         self::assertSame(50.0, $result->getScore());

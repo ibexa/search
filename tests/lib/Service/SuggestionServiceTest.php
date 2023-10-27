@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\Service;
 
-use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 use Ibexa\Search\Service\SuggestionService;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +25,7 @@ final class SuggestionServiceTest extends TestCase
         $service = new SuggestionService($eventDispatcherMock);
         $result = $service->suggest(new SuggestionQuery('query', 10, 'eng-GB'));
 
-        self::assertInstanceOf(SuggestionCollection::class, $result);
+        self::assertCount(0, $result);
     }
 
     /**

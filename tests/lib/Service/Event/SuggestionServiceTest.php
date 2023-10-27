@@ -42,7 +42,7 @@ final class SuggestionServiceTest extends TestCase
         $service = new SuggestionService($innerServiceMock, $eventDispatcherMock);
 
         $result = $service->suggest(new SuggestionQuery('query', 10, 'eng-GB'));
-        self::assertInstanceOf(SuggestionCollection::class, $result);
+        self::assertCount(0, $result);
     }
 
     public function testSuggestionStopPropagation(): void
@@ -68,7 +68,7 @@ final class SuggestionServiceTest extends TestCase
         $service = new SuggestionService($innerServiceMock, $eventDispatcherMock);
 
         $result = $service->suggest(new SuggestionQuery('query', 10, 'eng-GB'));
-        self::assertInstanceOf(SuggestionCollection::class, $result);
+        self::assertCount(0, $result);
     }
 
     /**
