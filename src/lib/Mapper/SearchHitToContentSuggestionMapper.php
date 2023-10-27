@@ -45,7 +45,7 @@ final class SearchHitToContentSuggestionMapper implements SearchHitToContentSugg
             return null;
         }
 
-        $parentsLocation = $mainLocation->path;
+        $parentsLocation = array_map('intval', $mainLocation->path);
         $position = array_search($rootLocationId, $parentsLocation, true);
         if ($position !== false) {
             $parentsLocation = array_slice($parentsLocation, (int)$position);

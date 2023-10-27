@@ -49,7 +49,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
                             'contentTypeId' => 1,
                             'mainLocation' => new Location([
                                 'id' => 8,
-                                'path' => [1, 2, 3, 4, 5, 6, 7],
+                                'path' => ['1', '2', '3', '4', '5', '6', '7'],
                             ]),
                         ]),
                     ]),
