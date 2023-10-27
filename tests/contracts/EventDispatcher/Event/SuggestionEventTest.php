@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\Contracts\Search\Event;
+namespace Ibexa\Tests\Contracts\Search\EventDispatcher\Event;
 
 use Ibexa\Contracts\Search\Event\SuggestionEvent;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
