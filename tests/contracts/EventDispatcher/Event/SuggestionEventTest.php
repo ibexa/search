@@ -17,7 +17,7 @@ final class SuggestionEventTest extends TestCase
 {
     public function testConstruct(): void
     {
-        $suggestionQuery = new SuggestionEvent(new SuggestionQuery('test', 3));
+        $suggestionEvent = new SuggestionEvent(new SuggestionQuery('test', 3));
 
         self::assertInstanceOf(SuggestionCollection::class, $suggestionQuery->getSuggestionCollection());
         self::assertInstanceOf(SuggestionQuery::class, $suggestionQuery->getQuery());
