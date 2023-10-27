@@ -5,14 +5,17 @@ services:
         public: false
 
     Ibexa\Search\Serializer\Normalizer\Suggestion\ContentSuggestionNormalizer:
+        autoconfigure: false
         tags:
             - { name: 'ibexa.search.serializer.normalizer' }
 
     Ibexa\Search\Serializer\Normalizer\Suggestion\ParentLocationCollectionNormalizer:
+        autoconfigure: false
         tags:
               - { name: 'ibexa.search.serializer.normalizer' }
 
     Ibexa\Search\Serializer\Normalizer\Suggestion\ParentLocationNormalizer:
+        autoconfigure: false
         tags:
               - { name: 'ibexa.search.serializer.normalizer' }
 
