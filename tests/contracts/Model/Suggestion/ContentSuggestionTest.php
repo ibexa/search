@@ -10,8 +10,6 @@ namespace Ibexa\Tests\Contracts\Search\Model\Suggestion;
 
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
-use Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection;
-use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;
 use Ibexa\Tests\Core\Search\TestCase;
 
 final class ContentSuggestionTest extends TestCase
@@ -28,10 +26,8 @@ final class ContentSuggestionTest extends TestCase
             [0 => new ParentLocation(0, 1, 'text')]
         );
 
-        self::assertInstanceOf(Suggestion::class, $implementation);
         self::assertSame(1, $implementation->getContentId());
         self::assertSame('content_type_identifier', $implementation->getContentTypeIdentifier());
-        self::assertInstanceOf(ParentLocationCollection::class, $implementation->getParentLocations());
         self::assertCount(1, $implementation->getParentLocations());
     }
 }

@@ -36,7 +36,8 @@ final class ParentCollectionTest extends TestCase
             self::assertInstanceOf(ParentLocation::class, $item);
         }
 
-        self::expectException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Argument 1 passed to Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection::append() must be an instance of Ibexa\Contracts\Search\Model\Suggestion\Suggestion, stdClass given');
         $collection->append(new \stdClass());
     }
 }
