@@ -15,79 +15,75 @@ use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
 use Ibexa\Search\Model\SuggestionQuery;
 use Ibexa\Search\Service\Event\SuggestionService;
 use PHPUnit\Framework\TestCase;
+use Symfony\Contracts\EventDispatcher\Event;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 final class SuggestionServiceTest extends TestCase
 {
-    public function testSuggestion(): void
+    /** @var \Ibexa\Contracts\Search\Service\SuggestionServiceInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $innerServiceMock;
+
+    /** @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $eventDispatcherMock;
+
+    protected function setUp(): void
     {
-        $eventDispatcherMock = $this->getEventDispatcherMock();
-        $eventDispatcherMock
-            ->method('dispatch')
-            ->withConsecutive(
-                [
-                    $this->isInstanceOf(BeforeSuggestionEvent::class),
-                ],
-                [
-                    $this->isInstanceOf(AfterSuggestionEvent::class),
-                ]
-            )
-            ->willReturnArgument(0);
-
-        $innerServiceMock = $this->getSuggestionServiceMock();
-        $innerServiceMock
-            ->method('suggest')
-            ->willReturn(new SuggestionCollection());
-
-        $service = new SuggestionService($innerServiceMock, $eventDispatcherMock);
-
-        $result = $service->suggest(new SuggestionQuery('query', 10, 'eng-GB'));
-        self::assertCount(0, $result);
+        $this->innerServiceMock = $this->createMock(SuggestionServiceInterface::class);
+        $this->eventDispatcherMock = $this->createMock(EventDispatcherInterface::class);
     }
 
-    public function testSuggestionStopPropagation(): void
+    public function testSuggestWithoutPropagationStop(): void
     {
-        $eventDispatcherMock = $this->getEventDispatcherMock();
-        $eventDispatcherMock
-            ->expects(self::once())
+        $query = new SuggestionQuery('test', 10, 'eng-GB');
+        $suggestionCollection = new SuggestionCollection();
+        $callCount = 0;
+        $this->eventDispatcherMock
+            ->expects(self::exactly(2))
             ->method('dispatch')
-            ->with(self::isInstanceOf(BeforeSuggestionEvent::class))
-            ->willReturnCallback(
-                static function (BeforeSuggestionEvent $event): BeforeSuggestionEvent {
-                    $event->stopPropagation();
+            ->willReturnCallback(static function (Event $event) use (&$callCount, $query, $suggestionCollection): Event {
+                ++$callCount;
+                if ($callCount === 1) {
+                    self::assertInstanceOf(BeforeSuggestionEvent::class, $event);
 
-                    return $event;
+                    return new BeforeSuggestionEvent($query, $suggestionCollection);
                 }
-            );
 
-        $innerServiceMock = $this->getSuggestionServiceMock();
-        $innerServiceMock
+                self::assertInstanceOf(AfterSuggestionEvent::class, $event);
+
+                return new AfterSuggestionEvent($query, $suggestionCollection);
+            });
+
+        $this->innerServiceMock
+            ->expects($this->once())
             ->method('suggest')
-            ->willReturn(new SuggestionCollection());
+            ->with($query)
+            ->willReturn($suggestionCollection);
 
-        $service = new SuggestionService($innerServiceMock, $eventDispatcherMock);
+        $service = new SuggestionService($this->innerServiceMock, $this->eventDispatcherMock);
+        $result = $service->suggest($query);
 
-        $result = $service->suggest(new SuggestionQuery('query', 10, 'eng-GB'));
-        self::assertCount(0, $result);
+        self::assertEquals($suggestionCollection, $result);
     }
 
-    /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\Ibexa\Contracts\Search\Service\SuggestionServiceInterface
-     */
-    private function getSuggestionServiceMock(): SuggestionServiceInterface
+    public function testSuggestWithPropagationStop(): void
     {
-        return $this->getMockBuilder(SuggestionServiceInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-    }
+        $query = new SuggestionQuery('test', 10, 'eng-GB');
+        $suggestionCollection = new SuggestionCollection();
+        $beforeEvent = new BeforeSuggestionEvent($query, $suggestionCollection);
+        $beforeEvent->stopPropagation();
 
-    /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\Symfony\Contracts\EventDispatcher\EventDispatcherInterface
-     */
-    private function getEventDispatcherMock(): EventDispatcherInterface
-    {
-        return $this->getMockBuilder(EventDispatcherInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->eventDispatcherMock
+            ->expects($this->once())
+            ->method('dispatch')
+            ->willReturn($beforeEvent);
+
+        $this->innerServiceMock
+            ->expects($this->never())
+            ->method('suggest');
+
+        $service = new SuggestionService($this->innerServiceMock, $this->eventDispatcherMock);
+        $result = $service->suggest($query);
+
+        self::assertEquals($suggestionCollection, $result);
     }
 }
