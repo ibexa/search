@@ -24,11 +24,6 @@ final class AfterSuggestionEvent extends AfterEvent
         $this->suggestionCollection = $suggestionCollection;
     }
 
-    public function setQuery(SuggestionQuery $query): void
-    {
-        $this->query = $query;
-    }
-
     public function getQuery(): SuggestionQuery
     {
         return $this->query;

@@ -14,6 +14,7 @@ use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
 use Ibexa\Search\Model\SuggestionQuery;
 use Ibexa\Search\Service\Event\SuggestionService;
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\EventDispatcher\Event;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -45,7 +46,7 @@ final class SuggestionServiceTest extends TestCase
                 if ($callCount === 1) {
                     self::assertInstanceOf(BeforeSuggestionEvent::class, $event);
 
-                    return new BeforeSuggestionEvent($query, $suggestionCollection);
+                    return new BeforeSuggestionEvent($query);
                 }
 
                 self::assertInstanceOf(AfterSuggestionEvent::class, $event);
@@ -68,8 +69,7 @@ final class SuggestionServiceTest extends TestCase
     public function testSuggestWithPropagationStop(): void
     {
         $query = new SuggestionQuery('test', 10, 'eng-GB');
-        $suggestionCollection = new SuggestionCollection();
-        $beforeEvent = new BeforeSuggestionEvent($query, $suggestionCollection);
+        $beforeEvent = new BeforeSuggestionEvent($query);
         $beforeEvent->stopPropagation();
 
         $this->eventDispatcherMock
@@ -82,8 +82,9 @@ final class SuggestionServiceTest extends TestCase
             ->method('suggest');
 
         $service = new SuggestionService($this->innerServiceMock, $this->eventDispatcherMock);
-        $result = $service->suggest($query);
 
-        self::assertEquals($suggestionCollection, $result);
+        self::expectException(LogicException::class);
+        self::expectExceptionMessage('The suggestion collection must be set when the propagation is stopped.');
+        $service->suggest($query);
     }
 }

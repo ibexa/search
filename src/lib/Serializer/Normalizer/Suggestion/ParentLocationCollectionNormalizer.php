@@ -8,36 +8,44 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\Serializer\Normalizer\Suggestion;
 
+use ArrayObject;
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection;
+use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-final class ParentLocationCollectionNormalizer implements NormalizerInterface
+final class ParentLocationCollectionNormalizer implements
+    NormalizerInterface,
+    NormalizerAwareInterface,
+    CacheableSupportsMethodInterface
 {
-    private ParentLocationNormalizer $parentLocationNormalizer;
-
-    public function __construct(ParentLocationNormalizer $parentLocationNormalizer)
-    {
-        $this->parentLocationNormalizer = $parentLocationNormalizer;
-    }
+    use NormalizerAwareTrait;
 
     /**
      * @param \Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection $object
+     * @param array<string, mixed> $context
      *
-     * @return array<int<0, max>, array<string, mixed>>
+     * @return ArrayObject<int,mixed>.
      */
-    public function normalize($object, string $format = null, array $context = []): array
+    public function normalize($object, string $format = null, array $context = []): ArrayObject
     {
         $normalizedData = [];
 
         foreach ($object as $parentLocation) {
-            $normalizedData[] = $this->parentLocationNormalizer->normalize($parentLocation);
+            $normalizedData[] = $this->normalizer->normalize($parentLocation);
         }
 
-        return $normalizedData;
+        return new ArrayObject($normalizedData);
     }
 
     public function supportsNormalization($data, string $format = null): bool
     {
         return $data instanceof ParentLocationCollection;
+    }
+
+    public function hasCacheableSupportsMethod(): bool
+    {
+        return __CLASS__ === static::class;
     }
 }

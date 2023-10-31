@@ -14,6 +14,7 @@ use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Contracts\Search\Service\Decorator\SuggestionServiceDecorator;
 use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
 use Ibexa\Search\Model\SuggestionQuery;
+use LogicException;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 final class SuggestionService extends SuggestionServiceDecorator
@@ -32,18 +33,21 @@ final class SuggestionService extends SuggestionServiceDecorator
     public function suggest(SuggestionQuery $query): SuggestionCollection
     {
         $beforeEvent = $this->eventDispatcher->dispatch(
-            new BeforeSuggestionEvent(
-                $query,
-                new SuggestionCollection()
-            )
+            new BeforeSuggestionEvent($query)
         );
 
         if ($beforeEvent->isPropagationStopped()) {
-            return $beforeEvent->getSuggestionCollection();
+            $suggestionCollection = $beforeEvent->getSuggestionCollection();
+            if ($suggestionCollection === null) {
+                throw new LogicException(
+                    'The suggestion collection must be set when the propagation is stopped.'
+                );
+            }
+
+            return $suggestionCollection;
         }
 
         $result = $this->innerService->suggest($beforeEvent->getQuery());
-
         $afterEvent = $this->eventDispatcher->dispatch(
             new AfterSuggestionEvent(
                 $query,

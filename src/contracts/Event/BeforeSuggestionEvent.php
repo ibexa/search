@@ -16,12 +16,11 @@ final class BeforeSuggestionEvent extends BeforeEvent
 {
     private SuggestionQuery $query;
 
-    private SuggestionCollection $suggestionCollection;
+    private ?SuggestionCollection $suggestionCollection = null;
 
-    public function __construct(SuggestionQuery $query, SuggestionCollection $suggestionCollection)
+    public function __construct(SuggestionQuery $query)
     {
         $this->query = $query;
-        $this->suggestionCollection = $suggestionCollection;
     }
 
     public function setQuery(SuggestionQuery $query): void
@@ -34,7 +33,7 @@ final class BeforeSuggestionEvent extends BeforeEvent
         return $this->query;
     }
 
-    public function getSuggestionCollection(): SuggestionCollection
+    public function getSuggestionCollection(): ?SuggestionCollection
     {
         return $this->suggestionCollection;
     }

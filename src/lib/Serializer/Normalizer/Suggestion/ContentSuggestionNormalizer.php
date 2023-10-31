@@ -9,16 +9,17 @@ declare(strict_types=1);
 namespace Ibexa\Search\Serializer\Normalizer\Suggestion;
 
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
+use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-final class ContentSuggestionNormalizer implements NormalizerInterface
+final class ContentSuggestionNormalizer implements
+    NormalizerInterface,
+    NormalizerAwareInterface,
+    CacheableSupportsMethodInterface
 {
-    private ParentLocationCollectionNormalizer $parentLocationCollectionNormalizer;
-
-    public function __construct(ParentLocationCollectionNormalizer $parentLocationCollectionNormalizer)
-    {
-        $this->parentLocationCollectionNormalizer = $parentLocationCollectionNormalizer;
-    }
+    use NormalizerAwareTrait;
 
     /**
      * @param \Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion $object
@@ -34,12 +35,17 @@ final class ContentSuggestionNormalizer implements NormalizerInterface
             'name' => $object->getName(),
             'pathString' => $object->getPathString(),
             'type' => 'content',
-            'parentLocations' => $this->parentLocationCollectionNormalizer->normalize($object->getParentLocations()),
+            'parentLocations' => $this->normalizer->normalize($object->getParentLocations()),
         ];
     }
 
     public function supportsNormalization($data, string $format = null): bool
     {
         return $data instanceof ContentSuggestion;
+    }
+
+    public function hasCacheableSupportsMethod(): bool
+    {
+        return __CLASS__ === static::class;
     }
 }

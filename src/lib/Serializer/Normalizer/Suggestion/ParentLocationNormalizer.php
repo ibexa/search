@@ -31,4 +31,9 @@ class ParentLocationNormalizer implements NormalizerInterface
     {
         return $data instanceof ParentLocation;
     }
+
+    public function hasCacheableSupportsMethod(): bool
+    {
+        return __CLASS__ === static::class;
+    }
 }
