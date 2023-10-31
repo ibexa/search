@@ -1,6 +1,9 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Cannot call method (log|debug|info|notice|warning|error|critical|alert|emergency)\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+
+		-
 			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\DependencyInjection\\\\Configuration\\\\Parser\\\\Search\\:\\:addSemanticConfig\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/bundle/DependencyInjection/Configuration/Parser/Search.php

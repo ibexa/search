@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Bundle\Search\ArgumentResolver;
 
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Search\Model\SuggestionQuery;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
@@ -17,9 +18,9 @@ final class SuggestionQueryArgumentResolver implements ArgumentValueResolverInte
 {
     private int $defaultLimit;
 
-    public function __construct(int $defaultLimit)
+    public function __construct(ConfigResolverInterface $configResolver)
     {
-        $this->defaultLimit = $defaultLimit;
+        $this->defaultLimit = $configResolver->getParameter('search.suggestion.result_limit');
     }
 
     public function supports(Request $request, ArgumentMetadata $argument): bool

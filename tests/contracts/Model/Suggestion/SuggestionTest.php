@@ -16,7 +16,7 @@ final class SuggestionTest extends TestCase
 {
     public function testSuggestionCreate(): void
     {
-        $implementation = self::createSuggestion(
+        $implementation = $this->createSuggestion(
             0,
             'name',
             '2/4/5',

@@ -13,10 +13,8 @@ services:
             - { name: 'container.service_subscriber', key: 'serializer', id: 'ibexa.search.suggestion.serializer' }
 
     Ibexa\Bundle\Search\ArgumentResolver\SuggestionQueryArgumentResolver:
-        arguments:
-            $defaultLimit: '%ibexa.site_access.config.default.search.suggestion.result_limit%'
         tags:
-            - { name: 'controller.argument_value_resolver', priority: 50 }
+            - { name: 'controller.argument_value_resolver' }
 
     Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber: ~
 
