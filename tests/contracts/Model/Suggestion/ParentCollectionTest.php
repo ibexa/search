@@ -13,6 +13,7 @@ use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 final class ParentCollectionTest extends TestCase
 {
@@ -38,6 +39,6 @@ final class ParentCollectionTest extends TestCase
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Argument 1 passed to Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection::append() must be an instance of Ibexa\Contracts\Search\Model\Suggestion\Suggestion, stdClass given');
-        $collection->append(new \stdClass());
+        $collection->append(new stdClass());
     }
 }

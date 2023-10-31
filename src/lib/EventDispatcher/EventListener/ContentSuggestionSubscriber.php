@@ -46,7 +46,7 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
 
         $value = $query->getQuery();
         $limit = $query->getLimit();
-        $language = $query->getLanguage();
+        $language = $query->getLanguageCode();
 
         $query = new Query(
             [

@@ -32,7 +32,7 @@ final class ParentLocationProvider implements ParentLocationProviderInterface
         $parentLocationMap = [];
         foreach ($parentLocations as $parentLocation) {
             $parentLocationMap[] = new ParentLocation(
-                $parentLocation->getContentInfo()->id,
+                $parentLocation->getContentInfo()->getId(),
                 $parentLocation->id,
                 $parentLocation->getContentInfo()->name
             );

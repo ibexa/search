@@ -30,7 +30,7 @@ final class SuggestionCollection extends MutableArrayList
                     'Argument 1 passed to %s::append() must be an instance of %s, %s given',
                     __CLASS__,
                     Suggestion::class,
-                    \is_object($item) ? \get_class($item) : \gettype($item)
+                    is_object($item) ? get_class($item) : gettype($item)
                 )
             );
         }

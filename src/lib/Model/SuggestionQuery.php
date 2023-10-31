@@ -14,13 +14,13 @@ final class SuggestionQuery
 
     private int $limit;
 
-    private ?string $language;
+    private ?string $languageCode;
 
-    public function __construct(string $query, int $limit, ?string $language = null)
+    public function __construct(string $query, int $limit, ?string $languageCode = null)
     {
         $this->query = $query;
         $this->limit = $limit;
-        $this->language = $language;
+        $this->languageCode = $languageCode;
     }
 
     public function getQuery(): string
@@ -33,8 +33,8 @@ final class SuggestionQuery
         return $this->limit;
     }
 
-    public function getLanguage(): ?string
+    public function getLanguageCode(): ?string
     {
-        return $this->language;
+        return $this->languageCode;
     }
 }
