@@ -12,7 +12,7 @@ final class ContentSuggestion extends Suggestion
 {
     private int $contentId;
 
-    private int $locationId;
+    private ?int $locationId;
 
     private string $contentTypeIdentifier;
 
@@ -24,7 +24,7 @@ final class ContentSuggestion extends Suggestion
         string $contentTypeIdentifier,
         string $name,
         int $contentId,
-        int $locationId,
+        ?int $locationId = null,
         string $pathString = '',
         array $parentLocations = []
     ) {
@@ -39,7 +39,7 @@ final class ContentSuggestion extends Suggestion
         return $this->contentId;
     }
 
-    public function getLocationId(): int
+    public function getLocationId(): ?int
     {
         return $this->locationId;
     }

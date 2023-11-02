@@ -13,6 +13,7 @@ use Ibexa\Search\Model\SuggestionQuery;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 final class SuggestionQueryArgumentResolver implements ArgumentValueResolverInterface
 {
@@ -30,12 +31,18 @@ final class SuggestionQueryArgumentResolver implements ArgumentValueResolverInte
 
     /**
      * @return iterable<\Ibexa\Search\Model\SuggestionQuery>
+     *
+     * @throw \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
      */
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
         $query = $request->query->get('query');
         $limit = $request->query->getInt('limit', $this->defaultLimit);
         $language = $request->query->get('language');
+
+        if ($query === null) {
+            throw new BadRequestHttpException('Missing query parameter');
+        }
 
         yield new SuggestionQuery($query, $limit, $language);
     }
