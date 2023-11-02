@@ -33,9 +33,9 @@ final class SuggestionQueryArgumentResolver implements ArgumentValueResolverInte
      */
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
-        $query = $request->get('query');
+        $query = $request->query->get('query');
         $limit = $request->query->getInt('limit', $this->defaultLimit);
-        $language = $request->get('language');
+        $language = $request->query->get('language');
 
         yield new SuggestionQuery($query, $limit, $language);
     }

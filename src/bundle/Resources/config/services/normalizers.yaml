@@ -6,6 +6,7 @@ services:
 
     ibexa.search.suggestion.serializer:
         class: Symfony\Component\Serializer\Serializer
+        autoconfigure: false
         arguments:
             $normalizers:
                 - '@Ibexa\Search\Serializer\Normalizer\Suggestion\ContentSuggestionNormalizer'
