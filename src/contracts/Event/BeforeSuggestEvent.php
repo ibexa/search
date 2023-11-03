@@ -12,7 +12,7 @@ use Ibexa\Contracts\Core\Repository\Event\BeforeEvent;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 
-final class BeforeSuggestionEvent extends BeforeEvent
+final class BeforeSuggestEvent extends BeforeEvent
 {
     private SuggestionQuery $query;
 

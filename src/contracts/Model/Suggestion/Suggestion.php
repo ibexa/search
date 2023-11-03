@@ -16,23 +16,12 @@ abstract class Suggestion extends ValueObject
 
     private string $name;
 
-    private string $pathString;
-
-    private ParentLocationCollection $parentsLocation;
-
-    /**
-     * @param array<\Ibexa\Contracts\Search\Model\Suggestion\ParentLocation> $parentLocations
-     */
     public function __construct(
         float $score,
-        string $name,
-        string $pathString = '',
-        array $parentLocations = []
+        string $name
     ) {
         $this->score = $score;
         $this->name = $name;
-        $this->pathString = $pathString;
-        $this->parentsLocation = new ParentLocationCollection($parentLocations);
 
         parent::__construct();
     }
@@ -45,15 +34,5 @@ abstract class Suggestion extends ValueObject
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function getPathString(): string
-    {
-        return $this->pathString;
-    }
-
-    public function getParentLocations(): ParentLocationCollection
-    {
-        return $this->parentsLocation;
     }
 }

@@ -10,7 +10,7 @@ namespace Ibexa\Search\EventDispatcher\EventListener;
 
 use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
-use Ibexa\Contracts\Search\Event\SuggestionEvent;
+use Ibexa\Contracts\Search\Event\BuildSuggestionCollectionEvent;
 use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface;
 use Ibexa\Core\Repository\SiteAccessAware\SearchService;
 use Psr\Log\LoggerAwareInterface;
@@ -36,11 +36,11 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
     public static function getSubscribedEvents(): array
     {
         return [
-            SuggestionEvent::class => 'onContentSuggestion',
+            BuildSuggestionCollectionEvent::class => 'onBuildSuggestionCollectionEvent',
         ];
     }
 
-    public function onContentSuggestion(SuggestionEvent $event): SuggestionEvent
+    public function onBuildSuggestionCollectionEvent(BuildSuggestionCollectionEvent $event): BuildSuggestionCollectionEvent
     {
         $query = $event->getQuery();
 

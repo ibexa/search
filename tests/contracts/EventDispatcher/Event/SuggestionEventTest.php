@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Contracts\Search\EventDispatcher\Event;
 
-use Ibexa\Contracts\Search\Event\SuggestionEvent;
+use Ibexa\Contracts\Search\Event\BuildSuggestionCollectionEvent;
 use Ibexa\Search\Model\SuggestionQuery;
 use PHPUnit\Framework\TestCase;
 
@@ -17,7 +17,7 @@ final class SuggestionEventTest extends TestCase
     public function testConstruct(): void
     {
         $suggestionQuery = new SuggestionQuery('test', 3);
-        $suggestionEvent = new SuggestionEvent($suggestionQuery);
+        $suggestionEvent = new BuildSuggestionCollectionEvent($suggestionQuery);
 
         self::assertCount(0, $suggestionEvent->getSuggestionCollection());
         self::assertSame($suggestionQuery, $suggestionEvent->getQuery());

@@ -21,7 +21,7 @@ final class ParentLocationNormalizer implements NormalizerInterface
     public function normalize($object, string $format = null, array $context = []): array
     {
         return [
-            'contentId' => $object->getContentId(),
+            'contentId' => $object->getId(),
             'locationId' => $object->getLocationId(),
             'name' => $object->getName(),
         ];

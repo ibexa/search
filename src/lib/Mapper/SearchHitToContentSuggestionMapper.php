@@ -55,10 +55,10 @@ final class SearchHitToContentSuggestionMapper implements SearchHitToContentSugg
 
         return new ContentSuggestion(
             $searchHit->score ?? 50.0,
-            $content->getContentType()->identifier,
+            $content->getContentType(),
             $content->getName() ?? '',
             $content->getVersionInfo()->getContentInfo()->getId(),
-            $content->getVersionInfo()->getContentInfo()->getMainLocation()->id ?? 0,
+            $content->getVersionInfo()->getContentInfo()->getMainLocation()->id ?? null,
             implode('/', $parentsLocation),
             $parentCollection
         );

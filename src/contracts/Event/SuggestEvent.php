@@ -12,7 +12,7 @@ use Ibexa\Contracts\Core\Repository\Event\AfterEvent;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 
-final class AfterSuggestionEvent extends AfterEvent
+final class SuggestEvent extends AfterEvent
 {
     private SuggestionQuery $query;
 
@@ -27,11 +27,6 @@ final class AfterSuggestionEvent extends AfterEvent
     public function getQuery(): SuggestionQuery
     {
         return $this->query;
-    }
-
-    public function setSuggestionCollection(SuggestionCollection $suggestionCollection): void
-    {
-        $this->suggestionCollection = $suggestionCollection;
     }
 
     public function getSuggestionCollection(): SuggestionCollection

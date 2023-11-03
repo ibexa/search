@@ -31,7 +31,7 @@ final class ContentSuggestionNormalizer implements
         return [
             'contentId' => $object->getContentId(),
             'locationId' => $object->getLocationId(),
-            'contentTypeIdentifier' => $object->getContentTypeIdentifier(),
+            'contentTypeIdentifier' => $object->getContentType(),
             'name' => $object->getName(),
             'pathString' => $object->getPathString(),
             'type' => 'content',

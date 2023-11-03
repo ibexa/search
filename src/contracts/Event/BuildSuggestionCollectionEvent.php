@@ -11,7 +11,7 @@ namespace Ibexa\Contracts\Search\Event;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
 
-final class SuggestionEvent
+final class BuildSuggestionCollectionEvent
 {
     private SuggestionCollection $suggestionCollection;
 

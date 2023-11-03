@@ -10,22 +10,22 @@ namespace Ibexa\Contracts\Search\Model\Suggestion;
 
 final class ParentLocation
 {
-    private int $contentId;
+    private int $id;
 
     private int $locationId;
 
     private string $name;
 
-    public function __construct(int $contentId, int $locationId, string $name)
+    public function __construct(int $id, int $locationId, string $name)
     {
-        $this->contentId = $contentId;
+        $this->id = $id;
         $this->locationId = $locationId;
         $this->name = $name;
     }
 
-    public function getContentId(): int
+    public function getId(): int
     {
-        return $this->contentId;
+        return $this->id;
     }
 
     public function getLocationId(): int

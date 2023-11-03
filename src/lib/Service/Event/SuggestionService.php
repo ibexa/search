@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\Service\Event;
 
-use Ibexa\Contracts\Search\Event\AfterSuggestionEvent;
-use Ibexa\Contracts\Search\Event\BeforeSuggestionEvent;
+use Ibexa\Contracts\Search\Event\BeforeSuggestEvent;
+use Ibexa\Contracts\Search\Event\SuggestEvent;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Contracts\Search\Service\Decorator\SuggestionServiceDecorator;
 use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
@@ -33,7 +33,7 @@ final class SuggestionService extends SuggestionServiceDecorator
     public function suggest(SuggestionQuery $query): SuggestionCollection
     {
         $beforeEvent = $this->eventDispatcher->dispatch(
-            new BeforeSuggestionEvent($query)
+            new BeforeSuggestEvent($query)
         );
 
         if ($beforeEvent->isPropagationStopped()) {
@@ -49,7 +49,7 @@ final class SuggestionService extends SuggestionServiceDecorator
 
         $result = $this->innerService->suggest($beforeEvent->getQuery());
         $afterEvent = $this->eventDispatcher->dispatch(
-            new AfterSuggestionEvent(
+            new SuggestEvent(
                 $query,
                 $result
             )

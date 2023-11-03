@@ -11,6 +11,7 @@ namespace Ibexa\Tests\Contracts\Search\Model\Suggestion;
 use Ibexa\Contracts\Core\Collection\MutableArrayList;
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
+use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use PHPUnit\Framework\TestCase;
 
 final class SuggestionCollectionTest extends TestCase
@@ -21,13 +22,15 @@ final class SuggestionCollectionTest extends TestCase
         self::assertInstanceOf(MutableArrayList::class, $collection);
         self::assertInstanceOf(SuggestionCollection::class, $collection);
 
-        $collection->append(new ContentSuggestion(10, 'article', 'test', 1, 2));
-        $collection->append(new ContentSuggestion(20, 'article', 'test2', 1, 2));
-        $collection->append(new ContentSuggestion(30, 'article', 'test3', 1, 2));
-        $collection->append(new ContentSuggestion(10, 'article', 'test4', 1, 2));
-        $collection->append(new ContentSuggestion(50, 'article', 'test5', 1, 2));
-        $collection->append(new ContentSuggestion(60, 'article', 'test6', 1, 2));
-        $collection->append(new ContentSuggestion(70, 'article', 'test7', 1, 2));
+        $contentTypeMock = $this->createMock(ContentType::class);
+
+        $collection->append(new ContentSuggestion(10, $contentTypeMock, 'test', 1, 2));
+        $collection->append(new ContentSuggestion(20, $contentTypeMock, 'test2', 1, 2));
+        $collection->append(new ContentSuggestion(30, $contentTypeMock, 'test3', 1, 2));
+        $collection->append(new ContentSuggestion(10, $contentTypeMock, 'test4', 1, 2));
+        $collection->append(new ContentSuggestion(50, $contentTypeMock, 'test5', 1, 2));
+        $collection->append(new ContentSuggestion(60, $contentTypeMock, 'test6', 1, 2));
+        $collection->append(new ContentSuggestion(70, $contentTypeMock, 'test7', 1, 2));
 
         self::assertCount(7, $collection);
 

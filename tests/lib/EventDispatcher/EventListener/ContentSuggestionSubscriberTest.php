@@ -10,7 +10,8 @@ namespace Ibexa\Tests\Search\EventDispatcher\EventListener;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
-use Ibexa\Contracts\Search\Event\SuggestionEvent;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Search\Event\BuildSuggestionCollectionEvent;
 use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface;
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion as ContentSuggestionModel;
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
@@ -24,7 +25,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
     public function testSubscribedEvents(): void
     {
         $this->assertSame(
-            [SuggestionEvent::class => 'onContentSuggestion'],
+            [BuildSuggestionCollectionEvent::class => 'onBuildSuggestionCollectionEvent'],
             ContentSuggestionSubscriber::getSubscribedEvents()
         );
     }
@@ -37,8 +38,8 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
         $subscriber = new ContentSuggestionSubscriber($searchService, $mapper);
 
-        $event = new SuggestionEvent($query);
-        $subscriber->onContentSuggestion($event);
+        $event = new BuildSuggestionCollectionEvent($query);
+        $subscriber->onBuildSuggestionCollectionEvent($event);
 
         $collection = $event->getSuggestionCollection();
 
@@ -73,7 +74,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
         $searchHitToContentSuggestionMapperMock->method('map')->willReturn(
             new ContentSuggestionModel(
                 10.0,
-                'test',
+                $this->createMock(ContentType::class),
                 'test',
                 1,
                 2,

@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\Service\Event;
 
-use Ibexa\Contracts\Search\Event\AfterSuggestionEvent;
-use Ibexa\Contracts\Search\Event\BeforeSuggestionEvent;
+use Ibexa\Contracts\Search\Event\BeforeSuggestEvent;
+use Ibexa\Contracts\Search\Event\SuggestEvent;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
 use Ibexa\Search\Model\SuggestionQuery;
@@ -44,14 +44,14 @@ final class SuggestionServiceTest extends TestCase
             ->willReturnCallback(static function (Event $event) use (&$callCount, $query, $suggestionCollection): Event {
                 ++$callCount;
                 if ($callCount === 1) {
-                    self::assertInstanceOf(BeforeSuggestionEvent::class, $event);
+                    self::assertInstanceOf(BeforeSuggestEvent::class, $event);
 
-                    return new BeforeSuggestionEvent($query);
+                    return new BeforeSuggestEvent($query);
                 }
 
-                self::assertInstanceOf(AfterSuggestionEvent::class, $event);
+                self::assertInstanceOf(SuggestEvent::class, $event);
 
-                return new AfterSuggestionEvent($query, $suggestionCollection);
+                return new SuggestEvent($query, $suggestionCollection);
             });
 
         $this->innerServiceMock
@@ -69,7 +69,7 @@ final class SuggestionServiceTest extends TestCase
     public function testSuggestWithPropagationStop(): void
     {
         $query = new SuggestionQuery('test', 10, 'eng-GB');
-        $beforeEvent = new BeforeSuggestionEvent($query);
+        $beforeEvent = new BeforeSuggestEvent($query);
         $beforeEvent->stopPropagation();
 
         $this->eventDispatcherMock
