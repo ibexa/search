@@ -46,6 +46,6 @@ final class ContentSuggestionNormalizer implements
 
     public function hasCacheableSupportsMethod(): bool
     {
-        return __CLASS__ === static::class;
+        return true;
     }
 }

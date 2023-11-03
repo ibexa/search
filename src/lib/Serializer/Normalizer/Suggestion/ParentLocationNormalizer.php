@@ -11,7 +11,7 @@ namespace Ibexa\Search\Serializer\Normalizer\Suggestion;
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class ParentLocationNormalizer implements NormalizerInterface
+final class ParentLocationNormalizer implements NormalizerInterface
 {
     /**
      * @param \Ibexa\Contracts\Search\Model\Suggestion\ParentLocation $object
@@ -34,6 +34,6 @@ class ParentLocationNormalizer implements NormalizerInterface
 
     public function hasCacheableSupportsMethod(): bool
     {
-        return __CLASS__ === static::class;
+        return true;
     }
 }
