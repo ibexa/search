@@ -27,8 +27,8 @@ final class SuggestionCollection extends MutableArrayList
             throw new InvalidArgumentException(
                 '$item',
                 sprintf(
-                    'Argument 1 passed to %s::append() must be an instance of %s, %s given',
-                    __CLASS__,
+                    'Argument 1 passed to %s() must be an instance of %s, %s given',
+                    __METHOD__,
                     Suggestion::class,
                     get_debug_type($item),
                 )
