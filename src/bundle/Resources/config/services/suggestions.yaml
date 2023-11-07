@@ -8,6 +8,10 @@ services:
         autowire: true
         public: false
 
+    Ibexa\Bundle\Search\ArgumentResolver\SuggestionQueryArgumentResolver:
+        tags:
+            - { name: 'controller.argument_value_resolver' }
+
     Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber: ~
 
     Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper: ~
