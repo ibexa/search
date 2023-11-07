@@ -30,7 +30,7 @@ final class ParentLocationCollection extends MutableArrayList
                     'Argument 1 passed to %s() must be an instance of %s, %s given',
                     __METHOD__,
                     Suggestion::class,
-                    is_object($item) ? get_class($item) : gettype($item)
+                    get_debug_type($item),
                 )
             );
         }
