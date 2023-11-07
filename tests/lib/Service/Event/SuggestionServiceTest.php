@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\Service\Event;
 
-use Ibexa\Contracts\Search\Event\BeforeSuggestEvent;
-use Ibexa\Contracts\Search\Event\SuggestEvent;
+use Ibexa\Contracts\Search\Event\Service\BeforeSuggestEvent;
+use Ibexa\Contracts\Search\Event\Service\SuggestEvent;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
 use Ibexa\Search\Model\SuggestionQuery;

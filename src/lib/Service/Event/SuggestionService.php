@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\Service\Event;
 
-use Ibexa\Contracts\Search\Event\BeforeSuggestEvent;
-use Ibexa\Contracts\Search\Event\SuggestEvent;
+use Ibexa\Contracts\Search\Event\Service\BeforeSuggestEvent;
+use Ibexa\Contracts\Search\Event\Service\SuggestEvent;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Contracts\Search\Service\Decorator\SuggestionServiceDecorator;
 use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;

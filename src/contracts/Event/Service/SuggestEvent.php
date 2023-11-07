@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Contracts\Search\Event;
+namespace Ibexa\Contracts\Search\Event\Service;
 
 use Ibexa\Contracts\Core\Repository\Event\AfterEvent;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
