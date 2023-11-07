@@ -8,14 +8,15 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\EventDispatcher\EventListener;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Search\Event\BuildSuggestionCollectionEvent;
 use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface;
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion as ContentSuggestionModel;
-use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
 use Ibexa\Core\Repository\SiteAccessAware\SearchService;
+use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber;
 use Ibexa\Search\Model\SuggestionQuery;
 use PHPUnit\Framework\TestCase;
@@ -74,13 +75,11 @@ final class ContentSuggestionSubscriberTest extends TestCase
         $searchHitToContentSuggestionMapperMock->method('map')->willReturn(
             new ContentSuggestionModel(
                 10.0,
+                $this->createMock(Content::class),
                 $this->createMock(ContentType::class),
-                'test',
-                1,
-                2,
-                'test',
+                '1/2/3',
                 [
-                    new ParentLocation(1, 2, 'test'),
+                    new Location(['id' => 1, 'path' => [1, 2, 3]]),
                 ]
             )
         );

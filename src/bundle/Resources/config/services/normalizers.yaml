@@ -10,21 +10,15 @@ services:
         arguments:
             $normalizers:
                 - '@Ibexa\Search\Serializer\Normalizer\Suggestion\ContentSuggestionNormalizer'
-                - '@Ibexa\Search\Serializer\Normalizer\Suggestion\ParentLocationNormalizer'
+                - '@Ibexa\Search\Serializer\Normalizer\Suggestion\LocationNormalizer'
             $encoders:
                 - '@serializer.encoder.json'
 
     Ibexa\Search\Serializer\Normalizer\Suggestion\ContentSuggestionNormalizer:
         autoconfigure: false
-        tags:
-            - { name: 'ibexa.search.serializer.normalizer' }
 
     Ibexa\Search\Serializer\Normalizer\Suggestion\ParentLocationCollectionNormalizer:
         autoconfigure: false
-        tags:
-              - { name: 'ibexa.search.serializer.normalizer' }
 
-    Ibexa\Search\Serializer\Normalizer\Suggestion\ParentLocationNormalizer:
+    Ibexa\Search\Serializer\Normalizer\Suggestion\LocationNormalizer:
         autoconfigure: false
-        tags:
-              - { name: 'ibexa.search.serializer.normalizer' }

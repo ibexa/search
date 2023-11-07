@@ -14,11 +14,11 @@ abstract class Suggestion extends ValueObject
 {
     private float $score;
 
-    private string $name;
+    private ?string $name;
 
     public function __construct(
         float $score,
-        string $name
+        string $name = null
     ) {
         $this->score = $score;
         $this->name = $name;
@@ -31,7 +31,7 @@ abstract class Suggestion extends ValueObject
         return $this->score;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }

@@ -10,10 +10,11 @@ namespace Ibexa\Contracts\Search\Model\Suggestion;
 
 use Ibexa\Contracts\Core\Collection\MutableArrayList;
 use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 
 /**
  * @template-extends \Ibexa\Contracts\Core\Collection\MutableArrayList<
- *     \Ibexa\Contracts\Search\Model\Suggestion\ParentLocation
+ *     \Ibexa\Contracts\Core\Repository\Values\Content\Location
  * >
  */
 final class ParentLocationCollection extends MutableArrayList
@@ -23,13 +24,13 @@ final class ParentLocationCollection extends MutableArrayList
      */
     public function append($item): void
     {
-        if (!$item instanceof ParentLocation) {
+        if (!$item instanceof Location) {
             throw new InvalidArgumentException(
                 '$item',
                 sprintf(
                     'Argument 1 passed to %s() must be an instance of %s, %s given',
                     __METHOD__,
-                    Suggestion::class,
+                    Location::class,
                     get_debug_type($item),
                 )
             );

@@ -8,28 +8,28 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\Serializer\Normalizer\Suggestion;
 
-use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-final class ParentLocationNormalizer implements NormalizerInterface
+final class LocationNormalizer implements NormalizerInterface
 {
     /**
-     * @param \Ibexa\Contracts\Search\Model\Suggestion\ParentLocation $object
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $object
      *
      * @return array<string, mixed>
      */
     public function normalize($object, string $format = null, array $context = []): array
     {
         return [
-            'id' => $object->getId(),
-            'locationId' => $object->getLocationId(),
-            'name' => $object->getName(),
+            'id' => $object->getContentInfo()->getId(),
+            'locationId' => $object->id,
+            'name' => $object->getContent()->getName(),
         ];
     }
 
     public function supportsNormalization($data, string $format = null): bool
     {
-        return $data instanceof ParentLocation;
+        return $data instanceof Location;
     }
 
     public function hasCacheableSupportsMethod(): bool

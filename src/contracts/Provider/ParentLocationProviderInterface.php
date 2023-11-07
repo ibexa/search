@@ -13,7 +13,7 @@ interface ParentLocationProviderInterface
     /**
      * @param array<int> $parentLocationIds
      *
-     * @return array<\Ibexa\Contracts\Search\Model\Suggestion\ParentLocation>
+     * @return array<\Ibexa\Contracts\Core\Repository\Values\Content\Location>
      */
     public function provide(array $parentLocationIds): array;
 }

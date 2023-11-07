@@ -8,13 +8,12 @@ declare(strict_types=1);
 
 namespace Ibexa\Contracts\Search\Model\Suggestion;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 
 final class ContentSuggestion extends Suggestion
 {
-    private int $contentId;
-
-    private ?int $locationId;
+    private Content $content;
 
     private ContentType $contentType;
 
@@ -23,33 +22,25 @@ final class ContentSuggestion extends Suggestion
     private ParentLocationCollection $parentsLocation;
 
     /**
-     * @param array<\Ibexa\Contracts\Search\Model\Suggestion\ParentLocation> $parentLocations
+     * @param array<\Ibexa\Contracts\Core\Repository\Values\Content\Location> $parentLocations
      */
     public function __construct(
         float $score,
+        Content $content,
         ContentType $contentType,
-        string $name,
-        int $contentId,
-        ?int $locationId = null,
         string $pathString = '',
         array $parentLocations = []
     ) {
-        parent::__construct($score, $name);
-        $this->contentId = $contentId;
+        parent::__construct($score, $content->getName());
+        $this->content = $content;
         $this->contentType = $contentType;
-        $this->locationId = $locationId;
         $this->pathString = $pathString;
         $this->parentsLocation = new ParentLocationCollection($parentLocations);
     }
 
-    public function getContentId(): int
+    public function getContent(): Content
     {
-        return $this->contentId;
-    }
-
-    public function getLocationId(): ?int
-    {
-        return $this->locationId;
+        return $this->content;
     }
 
     public function getContentType(): ContentType
@@ -62,7 +53,7 @@ final class ContentSuggestion extends Suggestion
         return $this->pathString;
     }
 
-    public function getParentLocations(): ParentLocationCollection
+    public function getParentsLocation(): ParentLocationCollection
     {
         return $this->parentsLocation;
     }

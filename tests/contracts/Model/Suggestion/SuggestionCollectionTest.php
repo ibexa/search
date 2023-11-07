@@ -11,6 +11,8 @@ namespace Ibexa\Tests\Contracts\Search\Model\Suggestion;
 use Ibexa\Contracts\Core\Collection\MutableArrayList;
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use PHPUnit\Framework\TestCase;
 
@@ -22,15 +24,16 @@ final class SuggestionCollectionTest extends TestCase
         self::assertInstanceOf(MutableArrayList::class, $collection);
         self::assertInstanceOf(SuggestionCollection::class, $collection);
 
+        $contentMock = $this->createMock(Content::class);
         $contentTypeMock = $this->createMock(ContentType::class);
 
-        $collection->append(new ContentSuggestion(10, $contentTypeMock, 'test', 1, 2));
-        $collection->append(new ContentSuggestion(20, $contentTypeMock, 'test2', 1, 2));
-        $collection->append(new ContentSuggestion(30, $contentTypeMock, 'test3', 1, 2));
-        $collection->append(new ContentSuggestion(10, $contentTypeMock, 'test4', 1, 2));
-        $collection->append(new ContentSuggestion(50, $contentTypeMock, 'test5', 1, 2));
-        $collection->append(new ContentSuggestion(60, $contentTypeMock, 'test6', 1, 2));
-        $collection->append(new ContentSuggestion(70, $contentTypeMock, 'test7', 1, 2));
+        $collection->append(new ContentSuggestion(10, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
+        $collection->append(new ContentSuggestion(20, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
+        $collection->append(new ContentSuggestion(30, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
+        $collection->append(new ContentSuggestion(10, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
+        $collection->append(new ContentSuggestion(50, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
+        $collection->append(new ContentSuggestion(60, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
+        $collection->append(new ContentSuggestion(70, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
 
         self::assertCount(7, $collection);
 

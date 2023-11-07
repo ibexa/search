@@ -8,11 +8,10 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\Mapper;
 
-use Ibexa\Contracts\Core\Persistence\Content\ContentInfo;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
-use Ibexa\Contracts\Search\Model\Suggestion\ParentLocation;
 use Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\Location;
@@ -30,9 +29,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
             $this->getConfigResolverMock()
         );
 
-        $result = $mapper->map(
-            new SearchHit([
-                'valueObject' => new Content([
+        $content = new Content([
                     'id' => 1,
                     'contentInfo' => new ContentInfo([
                         'name' => 'name',
@@ -43,7 +40,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
                     'versionInfo' => new VersionInfo([
                         'initialLanguageCode' => 'eng-GB',
                         'names' => ['eng-GB' => 'name_eng'],
-                        'contentInfo' => new \Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo([
+                        'contentInfo' => new ContentInfo([
                             'id' => 1,
                             'mainLanguageCode' => 'eng-GB',
                             'contentTypeId' => 1,
@@ -56,14 +53,18 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
                     'contentType' => new ContentType([
                         'identifier' => 'content_type_identifier',
                     ]),
-                ]),
+                ]);
+
+        $result = $mapper->map(
+            new SearchHit([
+                'valueObject' => $content,
             ])
         );
 
         self::assertInstanceOf(ContentSuggestion::class, $result);
-        self::assertSame(1, $result->getContentId());
+        self::assertSame($content, $result->getContent());
         self::assertSame('5/6/7', $result->getPathString());
-        self::assertCount(3, $result->getParentLocations());
+        self::assertCount(3, $result->getParentsLocation());
         self::assertSame('name_eng', $result->getName());
         self::assertSame(50.0, $result->getScore());
     }
@@ -89,7 +90,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
             $locations = [];
 
             foreach ($locationIds as $locationId) {
-                $locations[] = new ParentLocation(10 + $locationId, $locationId, 'parent_' . $locationId);
+                $locations[] = new Location(['id' => $locationId]);
             }
 
             return $locations;
