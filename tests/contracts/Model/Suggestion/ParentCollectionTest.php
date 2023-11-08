@@ -42,7 +42,7 @@ final class ParentCollectionTest extends TestCase
         $this->expectExceptionMessage(
             <<<'EOD'
 Argument 1 passed to Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection::append() 
-must be an instance of Ibexa\Contracts\Search\Model\Suggestion\Suggestion, stdClass given
+must be an instance of Ibexa\Contracts\Core\Repository\Values\Content\Location, stdClass given
 EOD
         );
         $collection->append(new stdClass());

@@ -14,7 +14,9 @@ use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 final class SuggestionCollectionTest extends TestCase
 {
@@ -43,5 +45,14 @@ final class SuggestionCollectionTest extends TestCase
 
         $collection->truncate(5);
         self::assertCount(5, $collection);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            <<<'EOD'
+Argument 1 passed to Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection::append() 
+must be an instance of Ibexa\Contracts\Search\Model\Suggestion\Suggestion, stdClass given
+EOD
+        );
+        $collection->append(new stdClass());
     }
 }
