@@ -36,10 +36,7 @@ final class SuggestionCollectionTest extends TestCase
         $collection->append(new ContentSuggestion(70, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
 
         self::assertCount(7, $collection);
-
-        foreach ($collection as $item) {
-            self::assertInstanceOf(ContentSuggestion::class, $item);
-        }
+        self::assertContainsOnlyInstancesOf(ContentSuggestion::class, $collection);
 
         $collection->sortByScore();
         self::assertSame(70.0, $collection->first()->getScore());
