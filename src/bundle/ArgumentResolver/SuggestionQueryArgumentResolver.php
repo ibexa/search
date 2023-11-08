@@ -17,11 +17,11 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 final class SuggestionQueryArgumentResolver implements ArgumentValueResolverInterface
 {
-    private int $defaultLimit;
+    private ConfigResolverInterface $configResolver;
 
     public function __construct(ConfigResolverInterface $configResolver)
     {
-        $this->defaultLimit = $configResolver->getParameter('search.suggestion.result_limit');
+        $this->configResolver = $configResolver;
     }
 
     public function supports(Request $request, ArgumentMetadata $argument): bool
@@ -36,8 +36,9 @@ final class SuggestionQueryArgumentResolver implements ArgumentValueResolverInte
      */
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
+        $defaultLimit = $this->configResolver->getParameter('search.suggestion.result_limit');
         $query = $request->query->get('query');
-        $limit = $request->query->getInt('limit', $this->defaultLimit);
+        $limit = $request->query->getInt('limit', $defaultLimit);
         $language = $request->query->get('language');
 
         if ($query === null) {
