@@ -71,7 +71,9 @@ final class ContentSuggestionSubscriberTest extends TestCase
      */
     private function getSearchHitToContentSuggestionMapperMock(): SearchHitToContentSuggestionMapperInterface
     {
-        $searchHitToContentSuggestionMapperMock = $this->createMock(SearchHitToContentSuggestionMapperInterface::class);
+        $searchHitToContentSuggestionMapperMock = $this->createMock(
+            SearchHitToContentSuggestionMapperInterface::class
+        );
         $searchHitToContentSuggestionMapperMock->method('map')->willReturn(
             new ContentSuggestionModel(
                 10.0,

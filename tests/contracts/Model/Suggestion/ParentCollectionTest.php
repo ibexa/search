@@ -39,7 +39,12 @@ final class ParentCollectionTest extends TestCase
         }
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Argument 1 passed to Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection::append() must be an instance of Ibexa\Contracts\Search\Model\Suggestion\Suggestion, stdClass given');
+        $this->expectExceptionMessage(
+            <<<'EOD'
+Argument 1 passed to Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection::append() 
+must be an instance of Ibexa\Contracts\Search\Model\Suggestion\Suggestion, stdClass given
+EOD
+        );
         $collection->append(new stdClass());
     }
 

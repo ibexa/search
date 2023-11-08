@@ -40,8 +40,9 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
         ];
     }
 
-    public function onBuildSuggestionCollectionEvent(BuildSuggestionCollectionEvent $event): BuildSuggestionCollectionEvent
-    {
+    public function onBuildSuggestionCollectionEvent(
+        BuildSuggestionCollectionEvent $event
+    ): BuildSuggestionCollectionEvent {
         $query = $event->getQuery();
 
         $value = $query->getQuery();

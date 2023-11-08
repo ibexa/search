@@ -41,18 +41,20 @@ final class SuggestionServiceTest extends TestCase
         $this->eventDispatcherMock
             ->expects(self::exactly(2))
             ->method('dispatch')
-            ->willReturnCallback(static function (Event $event) use (&$callCount, $query, $suggestionCollection): Event {
-                ++$callCount;
-                if ($callCount === 1) {
-                    self::assertInstanceOf(BeforeSuggestEvent::class, $event);
+            ->willReturnCallback(
+                static function (Event $event) use (&$callCount, $query, $suggestionCollection): Event {
+                    ++$callCount;
+                    if ($callCount === 1) {
+                        self::assertInstanceOf(BeforeSuggestEvent::class, $event);
 
-                    return new BeforeSuggestEvent($query);
+                        return new BeforeSuggestEvent($query);
+                    }
+
+                    self::assertInstanceOf(SuggestEvent::class, $event);
+
+                    return new SuggestEvent($query, $suggestionCollection);
                 }
-
-                self::assertInstanceOf(SuggestEvent::class, $event);
-
-                return new SuggestEvent($query, $suggestionCollection);
-            });
+            );
 
         $this->innerServiceMock
             ->expects($this->once())

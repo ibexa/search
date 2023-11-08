@@ -28,12 +28,12 @@ final class SuggestionCollectionTest extends TestCase
         $contentTypeMock = $this->createMock(ContentType::class);
 
         $collection->append(new ContentSuggestion(10, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
-        $collection->append(new ContentSuggestion(20, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
-        $collection->append(new ContentSuggestion(30, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
-        $collection->append(new ContentSuggestion(10, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
-        $collection->append(new ContentSuggestion(50, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
-        $collection->append(new ContentSuggestion(60, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
-        $collection->append(new ContentSuggestion(70, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
+        $collection->append(new ContentSuggestion(20, $contentMock, $contentTypeMock, '1/3/5', [new Location()]));
+        $collection->append(new ContentSuggestion(30, $contentMock, $contentTypeMock, '1/2/6', [new Location()]));
+        $collection->append(new ContentSuggestion(10, $contentMock, $contentTypeMock, '1/3/4', [new Location()]));
+        $collection->append(new ContentSuggestion(50, $contentMock, $contentTypeMock, '5/7/10', [new Location()]));
+        $collection->append(new ContentSuggestion(60, $contentMock, $contentTypeMock, '5/2/1', [new Location()]));
+        $collection->append(new ContentSuggestion(70, $contentMock, $contentTypeMock, '8/2/10', [new Location()]));
 
         self::assertCount(7, $collection);
         self::assertContainsOnlyInstancesOf(ContentSuggestion::class, $collection);
