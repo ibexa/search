@@ -49,7 +49,7 @@ final class SuggestionCollectionTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
             <<<'EOD'
-Argument 1 passed to Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection::append() 
+Argument 1 passed to Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection::append() 
 must be an instance of Ibexa\Contracts\Search\Model\Suggestion\Suggestion, stdClass given
 EOD
         );
