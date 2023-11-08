@@ -30,30 +30,30 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
         );
 
         $content = new Content([
+            'id' => 1,
+            'contentInfo' => new ContentInfo([
+                'name' => 'name',
+                'mainLanguageCode' => 'eng-GB',
+                'mainLocationId' => 1,
+                'contentTypeId' => 1,
+            ]),
+            'versionInfo' => new VersionInfo([
+                'initialLanguageCode' => 'eng-GB',
+                'names' => ['eng-GB' => 'name_eng'],
+                'contentInfo' => new ContentInfo([
                     'id' => 1,
-                    'contentInfo' => new ContentInfo([
-                        'name' => 'name',
-                        'mainLanguageCode' => 'eng-GB',
-                        'mainLocationId' => 1,
-                        'contentTypeId' => 1,
+                    'mainLanguageCode' => 'eng-GB',
+                    'contentTypeId' => 1,
+                    'mainLocation' => new Location([
+                        'id' => 8,
+                        'path' => ['1', '2', '3', '4', '5', '6', '7'],
                     ]),
-                    'versionInfo' => new VersionInfo([
-                        'initialLanguageCode' => 'eng-GB',
-                        'names' => ['eng-GB' => 'name_eng'],
-                        'contentInfo' => new ContentInfo([
-                            'id' => 1,
-                            'mainLanguageCode' => 'eng-GB',
-                            'contentTypeId' => 1,
-                            'mainLocation' => new Location([
-                                'id' => 8,
-                                'path' => ['1', '2', '3', '4', '5', '6', '7'],
-                            ]),
-                        ]),
-                    ]),
-                    'contentType' => new ContentType([
-                        'identifier' => 'content_type_identifier',
-                    ]),
-                ]);
+                ]),
+            ]),
+            'contentType' => new ContentType([
+                'identifier' => 'content_type_identifier',
+            ]),
+        ]);
 
         $result = $mapper->map(
             new SearchHit([
