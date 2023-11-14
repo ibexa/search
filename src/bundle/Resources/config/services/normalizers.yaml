@@ -11,6 +11,7 @@ services:
             $normalizers:
                 - '@Ibexa\Search\Serializer\Normalizer\Suggestion\ContentSuggestionNormalizer'
                 - '@Ibexa\Search\Serializer\Normalizer\Suggestion\LocationNormalizer'
+                - '@Ibexa\Search\Serializer\Normalizer\Suggestion\ParentLocationCollectionNormalizer'
             $encoders:
                 - '@serializer.encoder.json'
 
