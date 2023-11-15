@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\Serializer\Normalizer\Suggestion;
 
-use ArrayObject;
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection;
 use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
@@ -26,9 +25,9 @@ final class ParentLocationCollectionNormalizer implements
      * @param \Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection $object
      * @param array<string, mixed> $context
      *
-     * @return ArrayObject<int,mixed>.
+     * @return array<int,mixed>.
      */
-    public function normalize($object, string $format = null, array $context = []): ArrayObject
+    public function normalize($object, string $format = null, array $context = []): array
     {
         $normalizedData = [];
 
@@ -36,7 +35,7 @@ final class ParentLocationCollectionNormalizer implements
             $normalizedData[] = $this->normalizer->normalize($parentLocation);
         }
 
-        return new ArrayObject($normalizedData);
+        return $normalizedData;
     }
 
     public function supportsNormalization($data, string $format = null): bool
