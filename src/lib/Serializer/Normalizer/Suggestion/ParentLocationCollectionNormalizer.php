@@ -32,7 +32,7 @@ final class ParentLocationCollectionNormalizer implements
         $normalizedData = [];
 
         foreach ($object as $parentLocation) {
-            $normalizedData[] = $this->normalizer->normalize($parentLocation);
+            $normalizedData[] = $this->normalizer->normalize($parentLocation, $format, $context);
         }
 
         return $normalizedData;

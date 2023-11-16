@@ -12,7 +12,7 @@ use Ibexa\Contracts\Search\Event\BuildSuggestionCollectionEvent;
 use Ibexa\Search\Model\SuggestionQuery;
 use PHPUnit\Framework\TestCase;
 
-final class SuggestionEventTest extends TestCase
+final class BuildSuggestionCollectionEventTest extends TestCase
 {
     public function testConstruct(): void
     {
