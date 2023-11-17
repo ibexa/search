@@ -14,7 +14,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class SortingDefintionChoiceType extends AbstractType
+final class SortingDefinitionChoiceType extends AbstractType
 {
     private SortingDefinitionRegistryInterface $sortingDefinitionRegistry;
 

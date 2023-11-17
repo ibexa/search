@@ -14,12 +14,12 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentName;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentTranslatedName;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinition;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface;
-use Ibexa\Contracts\Search\SortingDefinition\SortingDefintionProviderInterface;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionProviderInterface;
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-final class NameSortingDefintionProvider implements SortingDefintionProviderInterface, TranslationContainerInterface
+final class NameSortingDefinitionProvider implements SortingDefinitionProviderInterface, TranslationContainerInterface
 {
     private RepositoryConfigurationProvider $configurationProvider;
 

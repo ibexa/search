@@ -4,7 +4,7 @@ services:
         autowire: true
         public: false
 
-    Ibexa\Search\SortingDefinition\Provider\NameSortingDefintionProvider:
+    Ibexa\Search\SortingDefinition\Provider\NameSortingDefinitionProvider:
         tags:
             -   name: ibexa.search.sorting_definition.provider
 

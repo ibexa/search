@@ -13,14 +13,14 @@ use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 
 final class SortingDefinitionRegistry implements SortingDefinitionRegistryInterface
 {
-    /** @var iterable<\Ibexa\Contracts\Search\SortingDefinition\SortingDefintionProviderInterface> */
+    /** @var iterable<\Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionProviderInterface> */
     private iterable $providers;
 
     /** @var \Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface[] */
     private ?array $definitions = null;
 
     /**
-     * @param iterable<\Ibexa\Contracts\Search\SortingDefinition\SortingDefintionProviderInterface> $providers
+     * @param iterable<\Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionProviderInterface> $providers
      */
     public function __construct(iterable $providers)
     {

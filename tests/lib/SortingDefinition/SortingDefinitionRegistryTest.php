@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Tests\Search\SortingDefinition;
 
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface;
-use Ibexa\Contracts\Search\SortingDefinition\SortingDefintionProviderInterface;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionProviderInterface;
 use Ibexa\Search\SortingDefinition\SortingDefinitionRegistry;
 use PHPUnit\Framework\TestCase;
 
@@ -55,9 +55,9 @@ final class SortingDefinitionRegistryTest extends TestCase
     /**
      * @param \Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface[] $definitions
      */
-    private function createProvider(array $definitions): SortingDefintionProviderInterface
+    private function createProvider(array $definitions): SortingDefinitionProviderInterface
     {
-        $provider = $this->createMock(SortingDefintionProviderInterface::class);
+        $provider = $this->createMock(SortingDefinitionProviderInterface::class);
         $provider->method('getSortingDefinitions')->willReturn($definitions);
 
         return $provider;
