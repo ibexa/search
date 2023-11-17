@@ -34,12 +34,12 @@ final class NameSortingDefinitionProvider implements SortingDefinitionProviderIn
     public function getSortingDefinitions(): array
     {
         return [
-            $this->createSortingDefintion(200, false),
-            $this->createSortingDefintion(300, true),
+            $this->createSortingDefinition(200, false),
+            $this->createSortingDefinition(300, true),
         ];
     }
 
-    private function createSortingDefintion(int $priority, bool $reverse): SortingDefinitionInterface
+    private function createSortingDefinition(int $priority, bool $reverse): SortingDefinitionInterface
     {
         $identifier = $this->getIdentifier($reverse);
 
