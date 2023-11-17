@@ -54,8 +54,10 @@ class SearchQueryType extends OptionsResolverBasedQueryType
             $query->sortClauses = $sortingDefinition->getSortClauses();
         }
 
-        // Search results order MUST BE deterministic
-        $query->sortClauses[] = new ContentId(Query::SORT_ASC);
+        if (empty($query->sortClauses)) {
+            // Search results order MUST BE deterministic
+            $query->sortClauses[] = new ContentId(Query::SORT_ASC);
+        }
 
         if ($this->searchService->supports(SearchService::CAPABILITY_AGGREGATIONS)) {
             $query->aggregations[] = $this->buildContentTypeTermAggregation($parameters);
