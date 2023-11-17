@@ -136,10 +136,10 @@
         <target state="new">Sort by name Z-A</target>
         <note>key: sort_definition.name_desc.label</note>
       </trans-unit>
-      <trans-unit id="48c4f8e4803da42f9c8cd166032d872a88f344c1" resname="sort_defintion.relevance.label">
+      <trans-unit id="48c4f8e4803da42f9c8cd166032d872a88f344c1" resname="sort_definition.relevance.label">
         <source>Sort by relevance</source>
         <target state="new">Sort by relevance</target>
-        <note>key: sort_defintion.relevance.label</note>
+        <note>key: sort_definition.relevance.label</note>
       </trans-unit>
     </body>
   </file>

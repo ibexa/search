@@ -44,7 +44,7 @@ final class RelevanceSortingDefinitionProvider implements SortingDefintionProvid
     {
         return $this->translator->trans(
             /** @Desc("Sort by relevance") */
-            'sort_defintion.relevance.label',
+            'sort_definition.relevance.label',
             [],
             'ibexa_search'
         );
