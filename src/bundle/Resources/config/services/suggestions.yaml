@@ -1,7 +1,3 @@
-parameters:
-    ibexa.site_access.config.default.search.suggestion.min_query_length: 3
-    ibexa.site_access.config.default.search.suggestion.result_limit: 5
-
 services:
     _defaults:
         autoconfigure: true

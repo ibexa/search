@@ -66,6 +66,7 @@ final class SuggestionParser extends AbstractParser
             'min_query_length',
             'result_limit',
         ];
+
         foreach ($names as $name) {
             if (isset($settings['suggestion'][$name])) {
                 $contextualizer->setContextualParameter(
@@ -83,7 +84,6 @@ final class SuggestionParser extends AbstractParser
         $node = $treeBuilder->getRootNode();
 
         $node
-            ->addDefaultsIfNotSet()
             ->children()
                 ->integerNode('min_query_length')
                     ->info('The minimum length of the query string needed to trigger suggestions. Minimum value is 3.')
