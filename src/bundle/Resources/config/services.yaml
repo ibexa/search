@@ -1,25 +1,32 @@
 imports:
-  - { resource: forms.yaml }
-  - { resource: twig.yaml }
-  - { resource: sorting_definitions.yaml }
-  - { resource: views.yaml }
+    - { resource: forms.yaml }
+    - { resource: twig.yaml }
+    - { resource: sorting_definitions.yaml }
+    - { resource: views.yaml }
+    - { resource: services/suggestions.yaml }
+    - { resource: services/normalizers.yaml }
 
 services:
-  _defaults:
-      autoconfigure: true
-      autowire: true
-      public: false
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
 
-  Ibexa\Bundle\Search\Controller\SearchController:
-      tags:
-          - controller.service_arguments
+    Ibexa\Bundle\Search\Controller\:
+        resource: './../../Controller'
+        tags:
+            - controller.service_arguments
 
-  Ibexa\Search\Mapper\PagerSearchContentToDataMapper:
-      arguments:
-          $contentTypeService: '@ibexa.api.service.content_type'
-          $userService: '@ibexa.api.service.user'
-          $userLanguagePreferenceProvider: '@Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProvider'
-          $translationHelper: '@Ibexa\Core\Helper\TranslationHelper'
-          $languageService: '@ibexa.api.service.language'
+    Ibexa\Bundle\Search\Controller\SuggestionController:
+        tags:
+            - { name: 'container.service_subscriber', key: 'serializer', id: 'ibexa.search.suggestion.serializer' }
 
-  Ibexa\Search\QueryType\SearchQueryType: ~
+    Ibexa\Search\Mapper\PagerSearchContentToDataMapper:
+        arguments:
+            $contentTypeService: '@ibexa.api.service.content_type'
+            $userService: '@ibexa.api.service.user'
+            $userLanguagePreferenceProvider: '@Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProvider'
+            $translationHelper: '@Ibexa\Core\Helper\TranslationHelper'
+            $languageService: '@ibexa.api.service.language'
+
+    Ibexa\Search\QueryType\SearchQueryType: ~

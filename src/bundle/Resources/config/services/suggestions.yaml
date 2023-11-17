@@ -1,0 +1,26 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
+
+    Ibexa\Bundle\Search\ArgumentResolver\SuggestionQueryArgumentResolver:
+        tags:
+            - { name: 'controller.argument_value_resolver' }
+
+    Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber: ~
+
+    Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper: ~
+
+    Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface: '@Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper'
+
+    Ibexa\Search\Service\SuggestionService: ~
+
+    Ibexa\Contracts\Search\Service\SuggestionServiceInterface: '@Ibexa\Search\Service\SuggestionService'
+
+    Ibexa\Search\Service\Event\SuggestionService:
+        decorates: Ibexa\Contracts\Search\Service\SuggestionServiceInterface
+
+    Ibexa\Search\Provider\ParentLocationProvider: ~
+
+    Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface: '@Ibexa\Search\Provider\ParentLocationProvider'

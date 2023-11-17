@@ -1,5 +1,7 @@
 parameters:
     ibexa.site_access.config.default.search.pagination.limit: 10
+    ibexa.site_access.config.default.search.suggestion.min_query_length: 3
+    ibexa.site_access.config.default.search.suggestion.result_limit: 5
 
     ibexa.site_access.config.site_group.search_view:
         full:
