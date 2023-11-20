@@ -41,11 +41,11 @@ services:
         tags:
             - { name: form.type, alias: Ibexa\Bundle\Search\Form\Type\SectionChoiceType }
 
-    Ibexa\Bundle\Search\Form\Type\SortingDefintionChoiceType:
+    Ibexa\Bundle\Search\Form\Type\SortingDefinitionChoiceType:
         arguments:
             $sortingDefinitionRegistry: '@Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface'
         tags:
-            - { name: form.type, alias: Ibexa\Bundle\Search\Form\Type\SortingDefintionChoiceType }
+            - { name: form.type, alias: Ibexa\Bundle\Search\Form\Type\SortingDefinitionChoiceType }
 
     Ibexa\Bundle\Search\Form\Type\SearchUsersType:
         arguments:

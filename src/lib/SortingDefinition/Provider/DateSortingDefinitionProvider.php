@@ -12,12 +12,12 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\DateModified;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\DatePublished;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinition;
-use Ibexa\Contracts\Search\SortingDefinition\SortingDefintionProviderInterface;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionProviderInterface;
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-final class DateSortingDefinitionProvider implements SortingDefintionProviderInterface, TranslationContainerInterface
+final class DateSortingDefinitionProvider implements SortingDefinitionProviderInterface, TranslationContainerInterface
 {
     private TranslatorInterface $translator;
 

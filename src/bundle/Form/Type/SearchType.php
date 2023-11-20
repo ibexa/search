@@ -83,7 +83,7 @@ final class SearchType extends AbstractType
 
         $builder->add(
             'sort',
-            SortingDefintionChoiceType::class,
+            SortingDefinitionChoiceType::class,
             [
                 'property_path' => 'sortingDefinition',
             ]

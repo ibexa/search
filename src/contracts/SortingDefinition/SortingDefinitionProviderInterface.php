@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Contracts\Search\SortingDefinition;
 
-interface SortingDefintionProviderInterface
+interface SortingDefinitionProviderInterface
 {
     /**
      * @return \Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface[]

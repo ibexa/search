@@ -51,7 +51,7 @@ final class RelevanceSortingDefinitionProviderTest extends TestCase
             [
                 new SortingDefinition(
                     'relevance',
-                    'sort_defintion.relevance.label',
+                    'sort_definition.relevance.label',
                     [
                         new Score(Query::SORT_DESC),
                     ],
@@ -73,7 +73,7 @@ final class RelevanceSortingDefinitionProviderTest extends TestCase
             [
                 new SortingDefinition(
                     'relevance',
-                    'sort_defintion.relevance.label',
+                    'sort_definition.relevance.label',
                     [
                         new DateModified(Query::SORT_DESC),
                     ],
