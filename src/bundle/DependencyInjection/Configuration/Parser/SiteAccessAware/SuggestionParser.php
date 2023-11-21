@@ -17,7 +17,7 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 /**
  * Configuration parser for search.
  *
- * @Example configuration:
+ * Example configuration:
  *
  * ```yaml
  * ibexa:
