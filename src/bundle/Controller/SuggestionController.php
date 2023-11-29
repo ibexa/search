@@ -31,7 +31,7 @@ final class SuggestionController extends AbstractController
     public function suggestAction(SuggestionQuery $suggestionQuery): JsonResponse
     {
         $minQueryLength = $this->configResolver->getParameter('search.suggestion.min_query_length');
-        if (strlen($suggestionQuery->getQuery()) < $minQueryLength) {
+        if (mb_strlen($suggestionQuery->getQuery()) < $minQueryLength) {
             return $this->json([]);
         }
 
