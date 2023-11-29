@@ -51,7 +51,7 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
 
         $query = new Query(
             [
-                'query' => new Query\Criterion\FullText($value . '*'),
+                'query' => new Query\Criterion\FullText('*' . $value . '*'),
                 'limit' => $limit,
             ]
         );
