@@ -78,8 +78,10 @@ class SearchViewBuilder implements ViewBuilder
             $pagerfanta->setMaxPerPage($data->getLimit());
             $pagerfanta->setCurrentPage(min($data->getPage(), $pagerfanta->getNbPages()));
 
+            $results = $this->pagerSearchContentToDataMapper->map($pagerfanta);
+
             $view->addParameters([
-                'results' => $this->pagerSearchContentToDataMapper->map($pagerfanta),
+                'results' => $results,
                 'pager' => $pagerfanta,
                 'aggregations' => $adapter->getAggregations(),
                 'spellcheck' => $adapter->getSpellcheck(),
