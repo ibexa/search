@@ -51,6 +51,7 @@ final class SearchQueryTypeTest extends TestCase
      * @dataProvider dataProviderForGetQuery
      *
      * @param array{searchData: \Ibexa\Bundle\Search\Form\Data\SearchData} $parameters
+     * @param array<int, array<int, mixed>> $returnMap
      */
     public function testGetQuery(
         array $parameters,
@@ -68,7 +69,7 @@ final class SearchQueryTypeTest extends TestCase
      * @return iterable<array{
      *     array{searchData?: \Ibexa\Bundle\Search\Form\Data\SearchData},
      *     \Ibexa\Contracts\Core\Repository\Values\Content\Query,
-     *     bool,
+     *     array<int, array<int, mixed>>
      * }>
      */
     public function dataProviderForGetQuery(): iterable
