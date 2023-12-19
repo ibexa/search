@@ -55,12 +55,11 @@ final class SearchQueryTypeTest extends TestCase
     public function testGetQuery(
         array $parameters,
         Query $expectedQuery,
-        bool $isScoringSupported
+        array $returnMap
     ): void {
         $this->searchService
             ->method('supports')
-            ->with(SearchService::CAPABILITY_AGGREGATIONS)
-            ->willReturn($isScoringSupported);
+            ->willReturnMap($returnMap);
 
         $this->assertEquals($expectedQuery, $this->queryType->getQuery($parameters));
     }
@@ -85,7 +84,9 @@ final class SearchQueryTypeTest extends TestCase
                     ],
                     'aggregations' => $aggregations,
                 ]),
-                true,
+                [
+                    [SearchService::CAPABILITY_AGGREGATIONS, true],
+                ],
             ],
             [
                 [
@@ -95,7 +96,10 @@ final class SearchQueryTypeTest extends TestCase
                     [new SortClause\ContentId()],
                     $aggregations
                 ),
-                true,
+                [
+                    [SearchService::CAPABILITY_SPELLCHECK, false],
+                    [SearchService::CAPABILITY_AGGREGATIONS, true],
+                ],
             ],
             [
                 [],
@@ -104,14 +108,19 @@ final class SearchQueryTypeTest extends TestCase
                         new SortClause\ContentId(),
                     ],
                 ]),
-                false,
+                [
+                    [SearchService::CAPABILITY_AGGREGATIONS, false],
+                ],
             ],
             [
                 [
                     'search_data' => $this->createSearchDataWithAllCriteria(),
                 ],
                 $this->createExpectedQueryForAllCriteria(),
-                false,
+                [
+                    [SearchService::CAPABILITY_SPELLCHECK, false],
+                    [SearchService::CAPABILITY_AGGREGATIONS, false],
+                ],
             ],
         ];
     }
