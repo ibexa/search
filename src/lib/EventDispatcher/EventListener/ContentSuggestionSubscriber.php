@@ -67,6 +67,8 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
                 }
                 $suggestionCollection->append($contentSuggestion);
             }
+
+            $suggestionCollection->increaseTotalCount($searchResult->totalCount ?? 0);
         } catch (InvalidArgumentException $e) {
             $this->logger->error($e);
         }

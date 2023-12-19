@@ -18,6 +18,15 @@ use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
  */
 final class SuggestionCollection extends MutableArrayList
 {
+    private int $totalCount;
+
+    public function __construct(array $items = [], int $totalCount = 0)
+    {
+        parent::__construct($items);
+        $this->items = $items;
+        $this->totalCount = $totalCount;
+    }
+
     /**
      * @param mixed $item
      */
@@ -46,5 +55,20 @@ final class SuggestionCollection extends MutableArrayList
     public function truncate(int $count): void
     {
         $this->items = array_slice($this->items, 0, $count);
+    }
+
+    public function increaseTotalCount(int $totalCount): void
+    {
+        $this->totalCount += $totalCount;
+    }
+
+    public function decreaseTotalCount(int $totalCount): void
+    {
+        $this->totalCount -= $totalCount;
+    }
+
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
     }
 }
