@@ -8,8 +8,13 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\EventDispatcher\EventListener;
 
+use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
 use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentName;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentTranslatedName;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\DateModified;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Score;
 use Ibexa\Contracts\Search\Event\BuildSuggestionCollectionEvent;
 use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface;
 use Ibexa\Core\Repository\SiteAccessAware\SearchService;
@@ -21,14 +26,18 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
 {
     use LoggerAwareTrait;
 
+    private RepositoryConfigurationProvider $configurationProvider;
+
     private SearchService $searchService;
 
     private SearchHitToContentSuggestionMapperInterface $contentSuggestionMapper;
 
     public function __construct(
+        RepositoryConfigurationProvider $configurationProvider,
         SearchService $searchService,
         SearchHitToContentSuggestionMapperInterface $contentSuggestionMapper
     ) {
+        $this->configurationProvider = $configurationProvider;
         $this->searchService = $searchService;
         $this->contentSuggestionMapper = $contentSuggestionMapper;
     }
@@ -49,12 +58,7 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
         $limit = $query->getLimit();
         $language = $query->getLanguageCode();
 
-        $query = new Query(
-            [
-                'query' => new Query\Criterion\FullText($value . '*'),
-                'limit' => $limit,
-            ]
-        );
+        $query = $this->getQuery($value, $limit);
 
         try {
             $languageFilter = $language ? ['languages' => [$language]] : [];
@@ -74,5 +78,50 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
         }
 
         return $event;
+    }
+
+    /**
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[]
+     */
+    private function getSortClauses(): array
+    {
+        $sortClauses = [];
+
+        if ($this->isLegacySearchEngine()) {
+            $sortClauses[] = new ContentName(Query::SORT_DESC);
+        } else {
+            $sortClauses[] = new ContentTranslatedName(Query::SORT_DESC);
+        }
+
+        if ($this->searchService->supports(SearchService::CAPABILITY_SCORING)) {
+            $sortClauses[] = new Score(Query::SORT_DESC);
+        } else {
+            $sortClauses[] = new DateModified(Query::SORT_DESC);
+        }
+
+        return $sortClauses;
+    }
+
+    private function isLegacySearchEngine(): bool
+    {
+        $config = $this->configurationProvider->getRepositoryConfig();
+
+        return $config['search']['engine'] === 'legacy';
+    }
+
+    /**
+     * @param string $value
+     * @param int $limit
+     *
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query
+     */
+    private function getQuery(string $value, int $limit): Query
+    {
+        $query = new Query();
+        $query->query = new Query\Criterion\FullText($value . '*');
+        $query->limit = $limit;
+        $query->sortClauses = $this->getSortClauses();
+
+        return $query;
     }
 }
