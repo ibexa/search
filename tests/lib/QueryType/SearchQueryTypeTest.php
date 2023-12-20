@@ -51,16 +51,16 @@ final class SearchQueryTypeTest extends TestCase
      * @dataProvider dataProviderForGetQuery
      *
      * @param array{searchData: \Ibexa\Bundle\Search\Form\Data\SearchData} $parameters
+     * @param array<int, array<int, mixed>> $returnMap
      */
     public function testGetQuery(
         array $parameters,
         Query $expectedQuery,
-        bool $isScoringSupported
+        array $returnMap
     ): void {
         $this->searchService
             ->method('supports')
-            ->with(SearchService::CAPABILITY_AGGREGATIONS)
-            ->willReturn($isScoringSupported);
+            ->willReturnMap($returnMap);
 
         $this->assertEquals($expectedQuery, $this->queryType->getQuery($parameters));
     }
@@ -69,7 +69,7 @@ final class SearchQueryTypeTest extends TestCase
      * @return iterable<array{
      *     array{searchData?: \Ibexa\Bundle\Search\Form\Data\SearchData},
      *     \Ibexa\Contracts\Core\Repository\Values\Content\Query,
-     *     bool,
+     *     array<int, array<int, mixed>>
      * }>
      */
     public function dataProviderForGetQuery(): iterable
@@ -85,7 +85,9 @@ final class SearchQueryTypeTest extends TestCase
                     ],
                     'aggregations' => $aggregations,
                 ]),
-                true,
+                [
+                    [SearchService::CAPABILITY_AGGREGATIONS, true],
+                ],
             ],
             [
                 [
@@ -95,7 +97,10 @@ final class SearchQueryTypeTest extends TestCase
                     [new SortClause\ContentId()],
                     $aggregations
                 ),
-                true,
+                [
+                    [SearchService::CAPABILITY_SPELLCHECK, false],
+                    [SearchService::CAPABILITY_AGGREGATIONS, true],
+                ],
             ],
             [
                 [],
@@ -104,14 +109,19 @@ final class SearchQueryTypeTest extends TestCase
                         new SortClause\ContentId(),
                     ],
                 ]),
-                false,
+                [
+                    [SearchService::CAPABILITY_AGGREGATIONS, false],
+                ],
             ],
             [
                 [
                     'search_data' => $this->createSearchDataWithAllCriteria(),
                 ],
                 $this->createExpectedQueryForAllCriteria(),
-                false,
+                [
+                    [SearchService::CAPABILITY_SPELLCHECK, false],
+                    [SearchService::CAPABILITY_AGGREGATIONS, false],
+                ],
             ],
         ];
     }

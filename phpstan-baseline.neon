@@ -271,51 +271,6 @@ parameters:
 			path: src/lib/View/SearchViewBuilder.php
 
 		-
-			message: "#^Offset 'content_types' on string\\|null in empty\\(\\) does not exist\\.$#"
-			count: 1
-			path: src/lib/View/SearchViewFilter.php
-
-		-
-			message: "#^Offset 'created' on string\\|null on left side of \\?\\? does not exist\\.$#"
-			count: 1
-			path: src/lib/View/SearchViewFilter.php
-
-		-
-			message: "#^Offset 'last_modified' on string\\|null on left side of \\?\\? does not exist\\.$#"
-			count: 1
-			path: src/lib/View/SearchViewFilter.php
-
-		-
-			message: "#^Offset 'limit' on string\\|null in isset\\(\\) does not exist\\.$#"
-			count: 1
-			path: src/lib/View/SearchViewFilter.php
-
-		-
-			message: "#^Offset 'page' on string\\|null in isset\\(\\) does not exist\\.$#"
-			count: 1
-			path: src/lib/View/SearchViewFilter.php
-
-		-
-			message: "#^Offset 'query' on string\\|null on left side of \\?\\? does not exist\\.$#"
-			count: 1
-			path: src/lib/View/SearchViewFilter.php
-
-		-
-			message: "#^Offset 'section' on string\\|null in empty\\(\\) does not exist\\.$#"
-			count: 1
-			path: src/lib/View/SearchViewFilter.php
-
-		-
-			message: "#^Offset 'subtree' on string\\|null on left side of \\?\\? does not exist\\.$#"
-			count: 1
-			path: src/lib/View/SearchViewFilter.php
-
-		-
-			message: "#^Result of && is always false\\.$#"
-			count: 1
-			path: src/lib/View/SearchViewFilter.php
-
-		-
 			message: "#^Method Ibexa\\\\Search\\\\View\\\\SearchViewProvider\\:\\:buildSearchListView\\(\\) has parameter \\$viewConfig with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/lib/View/SearchViewProvider.php
