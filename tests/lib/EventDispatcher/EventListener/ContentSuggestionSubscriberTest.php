@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Tests\Search\EventDispatcher\EventListener;
 
 use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\SearchService as SearchServiceInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
@@ -19,7 +20,6 @@ use Ibexa\Contracts\Search\Event\BuildSuggestionCollectionEvent;
 use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface;
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion as ContentSuggestionModel;
 use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;
-use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\Repository\SiteAccessAware\SearchService;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber;
@@ -29,16 +29,14 @@ use Psr\Log\LoggerInterface;
 
 final class ContentSuggestionSubscriberTest extends TestCase
 {
-    /** @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider|(RepositoryConfigurationProvider&object&\PHPUnit\Framework\MockObject\MockObject)|(RepositoryConfigurationProvider&\PHPUnit\Framework\MockObject\MockObject)|(object&\PHPUnit\Framework\MockObject\MockObject)|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider&\PHPUnit\Framework\MockObject\MockObject */
     private RepositoryConfigurationProvider $configProviderMock;
 
     private ?Query $capturedQuery;
 
     private bool $searchServiceSupportsScoring = false;
 
-    /**
-     * @var \Psr\Log\LoggerInterface|(object&\PHPUnit\Framework\MockObject\MockObject)|\PHPUnit\Framework\MockObject\MockObject|(LoggerInterface&object&\PHPUnit\Framework\MockObject\MockObject)|(LoggerInterface&\PHPUnit\Framework\MockObject\MockObject)
-     */
+    /** @var \Psr\Log\LoggerInterface&\PHPUnit\Framework\MockObject\MockObject */
     private LoggerInterface $loggerMock;
 
     protected function setUp(): void
@@ -61,7 +59,8 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
     public function testOnContentSuggestionWithLegacyEngineAndScoring(): void
     {
-        $this->configProviderMock->method('getRepositoryConfig')
+        $this->configProviderMock
+            ->method('getRepositoryConfig')
             ->willReturn(['search' => ['engine' => 'legacy']]);
         $this->searchServiceSupportsScoring = true;
         $this->performTestOnContentSuggestion();
@@ -69,7 +68,8 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
     public function testOnContentSuggestionWithNonLegacyEngineAndScoring(): void
     {
-        $this->configProviderMock->method('getRepositoryConfig')
+        $this->configProviderMock
+            ->method('getRepositoryConfig')
             ->willReturn(['search' => ['engine' => 'not_legacy']]);
         $this->searchServiceSupportsScoring = true;
         $this->performTestOnContentSuggestion();
@@ -77,7 +77,8 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
     public function testOnContentSuggestionWithLegacyEngineWithoutScoring(): void
     {
-        $this->configProviderMock->method('getRepositoryConfig')
+        $this->configProviderMock
+            ->method('getRepositoryConfig')
             ->willReturn(['search' => ['engine' => 'legacy']]);
         $this->searchServiceSupportsScoring = false;
         $this->performTestOnContentSuggestion();
@@ -85,7 +86,8 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
     public function testOnContentSuggestionWithNonLegacyEngineWithoutScoring(): void
     {
-        $this->configProviderMock->method('getRepositoryConfig')
+        $this->configProviderMock
+            ->method('getRepositoryConfig')
             ->willReturn(['search' => ['engine' => 'not_legacy']]);
         $this->searchServiceSupportsScoring = false;
         $this->performTestOnContentSuggestion();
@@ -93,11 +95,13 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
     public function testOnContentSuggestionWithException(): void
     {
-        $this->configProviderMock->method('getRepositoryConfig')
+        $this->configProviderMock
+            ->method('getRepositoryConfig')
             ->willReturn(['search' => ['engine' => 'legacy']]);
         $this->searchServiceSupportsScoring = true;
 
         $query = new SuggestionQuery('test', 10, 'eng-GB');
+
         $searchService = $this->getSearchServiceMockWithException();
         $mapper = $this->getSearchHitToContentSuggestionMapperMock();
 
@@ -106,7 +110,9 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
         $event = new BuildSuggestionCollectionEvent($query);
 
-        $this->loggerMock->expects($this->once())->method('error');
+        $this->loggerMock
+            ->expects($this->once())
+            ->method('error');
 
         $subscriber->onBuildSuggestionCollectionEvent($event);
     }
@@ -133,15 +139,17 @@ final class ContentSuggestionSubscriberTest extends TestCase
     private function getSearchServiceMock(): SearchService
     {
         $searchServiceMock = $this->createMock(SearchService::class);
-        $searchServiceMock->method('supports')
-            ->willReturnCallback(function ($capability) {
+        $searchServiceMock
+            ->method('supports')
+            ->willReturnCallback(function ($capability): bool {
                 return $capability === SearchServiceInterface::CAPABILITY_SCORING && $this->searchServiceSupportsScoring;
             });
-        $searchServiceMock->method('findContent')->willReturnCallback(function ($query) {
-            $this->capturedQuery = $query;
+        $searchServiceMock
+            ->method('findContent')->willReturnCallback(function (Query $query): SearchResult {
+                $this->capturedQuery = $query;
 
-            return new SearchResult(['searchHits' => [$this->createMock(SearchHit::class)]]);
-        });
+                return new SearchResult(['searchHits' => [$this->createMock(SearchHit::class)]]);
+            });
 
         return $searchServiceMock;
     }
@@ -149,7 +157,8 @@ final class ContentSuggestionSubscriberTest extends TestCase
     private function getSearchServiceMockWithException(): SearchService
     {
         $searchServiceMock = $this->createMock(SearchService::class);
-        $searchServiceMock->method('findContent')
+        $searchServiceMock
+            ->method('findContent')
             ->willThrowException(new InvalidArgumentException(
                 '$item',
                 sprintf(
@@ -168,17 +177,19 @@ final class ContentSuggestionSubscriberTest extends TestCase
         $searchHitToContentSuggestionMapperMock = $this->createMock(
             SearchHitToContentSuggestionMapperInterface::class
         );
-        $searchHitToContentSuggestionMapperMock->method('map')->willReturn(
-            new ContentSuggestionModel(
-                10.0,
-                $this->createMock(Content::class),
-                $this->createMock(ContentType::class),
-                '1/2/3',
-                [
-                    new Location(['id' => 1, 'path' => [1, 2, 3]]),
-                ]
-            )
-        );
+        $searchHitToContentSuggestionMapperMock
+            ->method('map')
+            ->willReturn(
+                new ContentSuggestionModel(
+                    10.0,
+                    $this->createMock(Content::class),
+                    $this->createMock(ContentType::class),
+                    '1/2/3',
+                    [
+                        new Location(['id' => 1, 'path' => [1, 2, 3]]),
+                    ]
+                )
+            );
 
         return $searchHitToContentSuggestionMapperMock;
     }

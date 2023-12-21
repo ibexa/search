@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Contracts\Search\Model\Suggestion;
 
 use Ibexa\Contracts\Core\Collection\MutableArrayList;
-use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 
 /**
  * @template-extends \Ibexa\Contracts\Core\Collection\MutableArrayList<

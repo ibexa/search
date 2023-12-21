@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Search\EventDispatcher\EventListener;
 
 use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
-use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
+use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentName;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentTranslatedName;
