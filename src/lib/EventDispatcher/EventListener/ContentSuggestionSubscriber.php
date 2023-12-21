@@ -109,12 +109,6 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
         return $config['search']['engine'] === 'legacy';
     }
 
-    /**
-     * @param string $value
-     * @param int $limit
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query
-     */
     private function getQuery(string $value, int $limit): Query
     {
         $query = new Query();

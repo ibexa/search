@@ -9,7 +9,9 @@ declare(strict_types=1);
 namespace Ibexa\Tests\Search\EventDispatcher\EventListener;
 
 use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Contracts\Core\Repository\SearchService as SearchServiceInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
@@ -27,13 +29,17 @@ use Psr\Log\LoggerInterface;
 
 final class ContentSuggestionSubscriberTest extends TestCase
 {
-    private $configProviderMock;
+    /** @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider|(RepositoryConfigurationProvider&object&\PHPUnit\Framework\MockObject\MockObject)|(RepositoryConfigurationProvider&\PHPUnit\Framework\MockObject\MockObject)|(object&\PHPUnit\Framework\MockObject\MockObject)|\PHPUnit\Framework\MockObject\MockObject */
+    private RepositoryConfigurationProvider $configProviderMock;
 
-    private $capturedQuery;
+    private ?Query $capturedQuery;
 
-    private $searchServiceSupportsScoring;
+    private bool $searchServiceSupportsScoring = false;
 
-    private $loggerMock;
+    /**
+     * @var \Psr\Log\LoggerInterface|(object&\PHPUnit\Framework\MockObject\MockObject)|\PHPUnit\Framework\MockObject\MockObject|(LoggerInterface&object&\PHPUnit\Framework\MockObject\MockObject)|(LoggerInterface&\PHPUnit\Framework\MockObject\MockObject)
+     */
+    private LoggerInterface $loggerMock;
 
     protected function setUp(): void
     {
@@ -46,7 +52,9 @@ final class ContentSuggestionSubscriberTest extends TestCase
     public function testSubscribedEvents(): void
     {
         self::assertSame(
-            [BuildSuggestionCollectionEvent::class => 'onBuildSuggestionCollectionEvent'],
+            [
+                BuildSuggestionCollectionEvent::class => 'onBuildSuggestionCollectionEvent',
+            ],
             ContentSuggestionSubscriber::getSubscribedEvents()
         );
     }
@@ -127,7 +135,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
         $searchServiceMock = $this->createMock(SearchService::class);
         $searchServiceMock->method('supports')
             ->willReturnCallback(function ($capability) {
-                return $capability === SearchService::CAPABILITY_SCORING && $this->searchServiceSupportsScoring;
+                return $capability === SearchServiceInterface::CAPABILITY_SCORING && $this->searchServiceSupportsScoring;
             });
         $searchServiceMock->method('findContent')->willReturnCallback(function ($query) {
             $this->capturedQuery = $query;
