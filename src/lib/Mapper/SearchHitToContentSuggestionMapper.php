@@ -17,6 +17,8 @@ use Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface;
 
 final class SearchHitToContentSuggestionMapper implements SearchHitToContentSuggestionMapperInterface
 {
+    private const ROOT_LOCATION_ID = 1;
+
     private ConfigResolverInterface $configResolver;
 
     private ParentLocationProviderInterface $parentLocationProvider;
@@ -49,6 +51,11 @@ final class SearchHitToContentSuggestionMapper implements SearchHitToContentSugg
         $position = array_search($rootLocationId, $parentsLocation, true);
         if ($position !== false) {
             $parentsLocation = array_slice($parentsLocation, (int)$position);
+        }
+
+        if (reset($parentsLocation) === self::ROOT_LOCATION_ID) {
+            // Remove "Top Level Nodes" from suggestion path
+            array_shift($parentsLocation);
         }
 
         $parentLocations = $this->parentLocationProvider->provide($parentsLocation);
