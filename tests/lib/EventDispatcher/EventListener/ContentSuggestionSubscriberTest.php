@@ -13,6 +13,8 @@ use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\SearchService as SearchServiceInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentName;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentTranslatedName;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
@@ -20,6 +22,8 @@ use Ibexa\Contracts\Search\Event\BuildSuggestionCollectionEvent;
 use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface;
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion as ContentSuggestionModel;
 use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\Repository\SiteAccessAware\SearchService;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber;
@@ -104,8 +108,9 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
         $searchService = $this->getSearchServiceMockWithException();
         $mapper = $this->getSearchHitToContentSuggestionMapperMock();
+        $sortingDefinitionRegistry = $this->getSortingDefinitionRegistryMock();
 
-        $subscriber = new ContentSuggestionSubscriber($this->configProviderMock, $searchService, $mapper);
+        $subscriber = new ContentSuggestionSubscriber($searchService, $mapper, $sortingDefinitionRegistry);
         $subscriber->setLogger($this->loggerMock);
 
         $event = new BuildSuggestionCollectionEvent($query);
@@ -123,7 +128,9 @@ final class ContentSuggestionSubscriberTest extends TestCase
         $searchService = $this->getSearchServiceMock();
         $mapper = $this->getSearchHitToContentSuggestionMapperMock();
 
-        $subscriber = new ContentSuggestionSubscriber($this->configProviderMock, $searchService, $mapper);
+        $sortingDefinitionRegistry = $this->getSortingDefinitionRegistryMock();
+
+        $subscriber = new ContentSuggestionSubscriber($searchService, $mapper, $sortingDefinitionRegistry);
 
         $event = new BuildSuggestionCollectionEvent($query);
         $subscriber->onBuildSuggestionCollectionEvent($event);
@@ -159,15 +166,17 @@ final class ContentSuggestionSubscriberTest extends TestCase
         $searchServiceMock = $this->createMock(SearchService::class);
         $searchServiceMock
             ->method('findContent')
-            ->willThrowException(new InvalidArgumentException(
-                '$item',
-                sprintf(
-                    'Argument 1 passed to %s() must be an instance of %s, %s given',
-                    'SuggestionCollection::append',
-                    Suggestion::class,
-                    get_debug_type('type'),
+            ->willThrowException(
+                new InvalidArgumentException(
+                    '$item',
+                    sprintf(
+                        'Argument 1 passed to %s() must be an instance of %s, %s given',
+                        'SuggestionCollection::append',
+                        Suggestion::class,
+                        get_debug_type('type'),
+                    )
                 )
-            ));
+            );
 
         return $searchServiceMock;
     }
@@ -192,5 +201,37 @@ final class ContentSuggestionSubscriberTest extends TestCase
             );
 
         return $searchHitToContentSuggestionMapperMock;
+    }
+
+    private function getSortingDefinitionRegistryMock(): SortingDefinitionRegistryInterface
+    {
+        $sortingDefinitionRegistryMock = $this->createMock(SortingDefinitionRegistryInterface::class);
+
+        $sortingDefinitionRegistryMock
+            ->method('getDefaultSortingDefinition')
+            ->willReturn($this->getSortingDefinitionMock());
+
+        return $sortingDefinitionRegistryMock;
+    }
+
+    private function getSortingDefinitionMock(): SortingDefinitionInterface
+    {
+        $sortingDefinitionMock = $this->createMock(SortingDefinitionInterface::class);
+        $sortingDefinitionMock
+            ->method('getSortClauses')
+            ->willReturn($this->getSortClauses());
+
+        return $sortingDefinitionMock;
+    }
+
+    /**
+     * @return array<\Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause>
+     */
+    private function getSortClauses(): array
+    {
+        return [
+            new ContentTranslatedName(Query::SORT_ASC),
+            new ContentName(Query::SORT_DESC),
+        ];
     }
 }
