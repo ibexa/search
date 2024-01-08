@@ -12,8 +12,8 @@
         <note>key: pagination.viewing</note>
       </trans-unit>
       <trans-unit id="2c0d71c1688c1f04ff156bb9dff167ca5ae663b6" resname="search.any.content.type">
-        <source>Any Content type</source>
-        <target state="new">Any Content type</target>
+        <source>Any content type</source>
+        <target state="new">Any content type</target>
         <note>key: search.any.content.type</note>
       </trans-unit>
       <trans-unit id="52574f2c1d5e0b3ffcd4f105b770e91ae1e519fa" resname="search.content.type">
