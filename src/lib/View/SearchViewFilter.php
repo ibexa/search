@@ -93,6 +93,7 @@ class SearchViewFilter implements EventSubscriberInterface
         if (!empty($search['section'])) {
             $section = $this->sectionService->loadSection($search['section']);
         }
+
         if (!empty($search['content_types']) && \is_array($search['content_types'])) {
             foreach ($search['content_types'] as $identifier) {
                 $contentTypes[] = $this->contentTypeService->loadContentTypeByIdentifier($identifier);
