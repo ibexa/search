@@ -12,6 +12,7 @@ services:
                 - '@Ibexa\Search\Serializer\Normalizer\Suggestion\ContentSuggestionNormalizer'
                 - '@Ibexa\Search\Serializer\Normalizer\Suggestion\LocationNormalizer'
                 - '@Ibexa\Search\Serializer\Normalizer\Suggestion\ParentLocationCollectionNormalizer'
+                - '@Ibexa\Search\Serializer\Normalizer\Suggestion\SuggestionCollectionNormalizer'
             $encoders:
                 - '@serializer.encoder.json'
 
@@ -22,4 +23,7 @@ services:
         autoconfigure: false
 
     Ibexa\Search\Serializer\Normalizer\Suggestion\LocationNormalizer:
+        autoconfigure: false
+
+    Ibexa\Search\Serializer\Normalizer\Suggestion\SuggestionCollectionNormalizer:
         autoconfigure: false
