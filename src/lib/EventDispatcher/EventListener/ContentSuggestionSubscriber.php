@@ -12,6 +12,7 @@ use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Search\Event\BuildSuggestionCollectionEvent;
 use Ibexa\Contracts\Search\Mapper\SearchHitToContentSuggestionMapperInterface;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\Repository\SiteAccessAware\SearchService;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -25,12 +26,16 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
 
     private SearchHitToContentSuggestionMapperInterface $contentSuggestionMapper;
 
+    private SortingDefinitionRegistryInterface $sortingDefinitionRegistry;
+
     public function __construct(
         SearchService $searchService,
-        SearchHitToContentSuggestionMapperInterface $contentSuggestionMapper
+        SearchHitToContentSuggestionMapperInterface $contentSuggestionMapper,
+        SortingDefinitionRegistryInterface $sortingDefinitionRegistry
     ) {
         $this->searchService = $searchService;
         $this->contentSuggestionMapper = $contentSuggestionMapper;
+        $this->sortingDefinitionRegistry = $sortingDefinitionRegistry;
     }
 
     public static function getSubscribedEvents(): array
@@ -49,12 +54,7 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
         $limit = $query->getLimit();
         $language = $query->getLanguageCode();
 
-        $query = new Query(
-            [
-                'query' => new Query\Criterion\FullText($value . '*'),
-                'limit' => $limit,
-            ]
-        );
+        $query = $this->getQuery($value, $limit);
 
         try {
             $languageFilter = $language ? ['languages' => [$language]] : [];
@@ -74,5 +74,18 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
         }
 
         return $event;
+    }
+
+    private function getQuery(string $value, int $limit): Query
+    {
+        $query = new Query();
+        $query->query = new Query\Criterion\FullText($value . '*');
+        $query->limit = $limit;
+        $defaultSortClauses = $this->sortingDefinitionRegistry->getDefaultSortingDefinition();
+        if ($defaultSortClauses !== null) {
+            $query->sortClauses = $defaultSortClauses->getSortClauses();
+        }
+
+        return $query;
     }
 }
