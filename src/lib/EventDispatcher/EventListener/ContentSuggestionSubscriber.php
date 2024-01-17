@@ -79,7 +79,7 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
     private function getQuery(string $value, int $limit): Query
     {
         $query = new Query();
-        $query->query = new Query\Criterion\FullText($value . '*');
+        $query->query = new Query\Criterion\FullText($value);
         $query->limit = $limit;
         $defaultSortClauses = $this->sortingDefinitionRegistry->getDefaultSortingDefinition();
         if ($defaultSortClauses !== null) {
