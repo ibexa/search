@@ -31,6 +31,11 @@
         <target>Search results (%total%)</target>
         <note>key: search.header</note>
       </trans-unit>
+      <trans-unit id="56906249002c19e57c1992ba0d25f86bbc7120c0" resname="search.language.any">
+        <source>Choose an option</source>
+        <target state="new">Choose an option</target>
+        <note>key: search.language.any</note>
+      </trans-unit>
       <trans-unit id="c2e9df867c114a94918c00f775d3a54d24358dfa" resname="search.last.modified">
         <source>Last modified</source>
         <target>Last modified</target>
