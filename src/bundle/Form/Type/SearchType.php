@@ -65,7 +65,7 @@ final class SearchType extends AbstractType
                     'required' => false,
                     'multiple' => false,
                     'expanded' => false,
-                    'placeholder' => false,
+                    'placeholder' => /** @Desc("Choose an option") */ 'search.language.any',
                 ]
             )
             ->add('subtree', HiddenType::class, [
