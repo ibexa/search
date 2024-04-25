@@ -29,7 +29,51 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
             $this->getConfigResolverMock()
         );
 
-        $content = new Content([
+        $content = $this->createContentWithLocationPath(['1', '2', '3', '4', '5', '6', '7']);
+
+        $result = $mapper->map(
+            new SearchHit([
+                'valueObject' => $content,
+            ])
+        );
+
+        self::assertInstanceOf(ContentSuggestion::class, $result);
+        self::assertSame($content, $result->getContent());
+        self::assertSame('5/6/7', $result->getPathString());
+        self::assertCount(3, $result->getParentsLocation());
+        self::assertSame('name_eng', $result->getName());
+        self::assertSame(50.0, $result->getScore());
+    }
+
+    public function testMapContentOutsideRootLocation(): void
+    {
+        $mapper = new SearchHitToContentSuggestionMapper(
+            $this->getParentLocationProviderMock(),
+            $this->getConfigResolverMock()
+        );
+
+        $content = $this->createContentWithLocationPath(['1', '2', '3', '4', '6', '7']);
+
+        $result = $mapper->map(
+            new SearchHit([
+                'valueObject' => $content,
+            ])
+        );
+
+        self::assertInstanceOf(ContentSuggestion::class, $result);
+        self::assertSame($content, $result->getContent());
+        self::assertSame('2/3/4/6/7', $result->getPathString());
+        self::assertCount(5, $result->getParentsLocation());
+        self::assertSame('name_eng', $result->getName());
+        self::assertSame(50.0, $result->getScore());
+    }
+
+    /**
+     * @param string[] $path
+     */
+    private function createContentWithLocationPath(array $path): Content
+    {
+        return new Content([
             'id' => 1,
             'contentInfo' => new ContentInfo([
                 'name' => 'name',
@@ -46,7 +90,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
                     'contentTypeId' => 1,
                     'mainLocation' => new Location([
                         'id' => 8,
-                        'path' => ['1', '2', '3', '4', '5', '6', '7'],
+                        'path' => $path,
                     ]),
                 ]),
             ]),
@@ -54,19 +98,6 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
                 'identifier' => 'content_type_identifier',
             ]),
         ]);
-
-        $result = $mapper->map(
-            new SearchHit([
-                'valueObject' => $content,
-            ])
-        );
-
-        self::assertInstanceOf(ContentSuggestion::class, $result);
-        self::assertSame($content, $result->getContent());
-        self::assertSame('5/6/7', $result->getPathString());
-        self::assertCount(3, $result->getParentsLocation());
-        self::assertSame('name_eng', $result->getName());
-        self::assertSame(50.0, $result->getScore());
     }
 
     /**
