@@ -46,5 +46,3 @@ class ContentTypeChoiceType extends AbstractType
             ]);
     }
 }
-
-class_alias(ContentTypeChoiceType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\ContentTypeChoiceType');

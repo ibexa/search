@@ -34,5 +34,3 @@ class UserType extends AbstractType
         return HiddenType::class;
     }
 }
-
-class_alias(UserType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\UserType');

@@ -18,5 +18,3 @@ class SearchController extends AbstractController
         return $view;
     }
 }
-
-class_alias(SearchController::class, 'Ibexa\Platform\Bundle\Search\Controller\SearchController');

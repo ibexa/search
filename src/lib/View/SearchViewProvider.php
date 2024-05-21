@@ -51,5 +51,3 @@ class SearchViewProvider implements ViewProvider
         return $view;
     }
 }
-
-class_alias(SearchViewProvider::class, 'Ibexa\Platform\Search\View\SearchViewProvider');

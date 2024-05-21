@@ -53,5 +53,3 @@ class IbexaSearchExtension extends Extension implements PrependExtensionInterfac
         ]);
     }
 }
-
-class_alias(IbexaSearchExtension::class, 'Ibexa\Platform\Bundle\Search\DependencyInjection\IbexaPlatformSearchExtension');

@@ -162,5 +162,3 @@ class PagerSearchContentToDataMapper
         }
     }
 }
-
-class_alias(PagerSearchContentToDataMapper::class, 'Ibexa\Platform\Search\Mapper\PagerSearchContentToDataMapper');

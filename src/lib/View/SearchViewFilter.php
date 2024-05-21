@@ -126,5 +126,3 @@ class SearchViewFilter implements EventSubscriberInterface
         ]);
     }
 }
-
-class_alias(SearchViewFilter::class, 'Ibexa\Platform\Search\View\SearchViewFilter');

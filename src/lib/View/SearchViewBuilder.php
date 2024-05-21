@@ -106,5 +106,3 @@ class SearchViewBuilder implements ViewBuilder
         ];
     }
 }
-
-class_alias(SearchViewBuilder::class, 'Ibexa\Platform\Search\View\SearchViewBuilder');
