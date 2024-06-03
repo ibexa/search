@@ -144,9 +144,11 @@ class PagerSearchContentToDataMapper
     protected function setTranslatedContentTypesNames(array &$data, array $contentTypeIds): void
     {
         // load list of content types with proper translated names
-        $contentTypes = $this->contentTypeService->loadContentTypeList(
-            array_unique($contentTypeIds),
-            $this->userLanguagePreferenceProvider->getPreferredLanguages()
+        $contentTypes = iterator_to_array(
+            $this->contentTypeService->loadContentTypeList(
+                array_unique($contentTypeIds),
+                $this->userLanguagePreferenceProvider->getPreferredLanguages()
+            )
         );
 
         foreach ($data as $idx => $item) {
