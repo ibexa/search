@@ -34,5 +34,3 @@ class DateIntervalType extends AbstractType
             ->addModelTransformer(new DateIntervalTransformer());
     }
 }
-
-class_alias(DateIntervalType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\DateIntervalType');

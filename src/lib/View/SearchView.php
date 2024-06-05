@@ -13,5 +13,3 @@ use Ibexa\Core\MVC\Symfony\View\BaseView;
 class SearchView extends BaseView
 {
 }
-
-class_alias(SearchView::class, 'Ibexa\Platform\Search\View\SearchView');

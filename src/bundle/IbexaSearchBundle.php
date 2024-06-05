@@ -26,5 +26,3 @@ class IbexaSearchBundle extends Bundle
         $core->addConfigParser(new SuggestionParser());
     }
 }
-
-class_alias(IbexaSearchBundle::class, 'Ibexa\Platform\Bundle\Search\IbexaPlatformSearchBundle');

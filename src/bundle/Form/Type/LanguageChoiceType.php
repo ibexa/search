@@ -39,5 +39,3 @@ class LanguageChoiceType extends AbstractType
             ]);
     }
 }
-
-class_alias(LanguageChoiceType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\LanguageChoiceType');

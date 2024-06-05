@@ -95,5 +95,3 @@ class ContentTypeChoiceLoader implements ChoiceLoaderInterface
         return $this->loadChoiceList($value)->getValuesForChoices($choices);
     }
 }
-
-class_alias(ContentTypeChoiceLoader::class, 'Ibexa\Platform\Bundle\Search\Form\ChoiceLoader\ContentTypeChoiceLoader');

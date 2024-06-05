@@ -103,5 +103,3 @@ final class SearchType extends AbstractType
         ]);
     }
 }
-
-class_alias(SearchType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\SearchType');

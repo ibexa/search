@@ -54,5 +54,3 @@ class Search extends AbstractParser
         }
     }
 }
-
-class_alias(Search::class, 'Ibexa\Platform\Bundle\Search\DependencyInjection\Configuration\Parser\Search');

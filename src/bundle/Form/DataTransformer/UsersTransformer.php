@@ -93,5 +93,3 @@ class UsersTransformer implements DataTransformerInterface
         );
     }
 }
-
-class_alias(UsersTransformer::class, 'Ibexa\Platform\Bundle\Search\Form\DataTransformer\UsersTransformer');

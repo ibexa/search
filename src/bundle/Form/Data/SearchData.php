@@ -231,5 +231,3 @@ class SearchData
             null !== $subtree;
     }
 }
-
-class_alias(SearchData::class, 'Ibexa\Platform\Bundle\Search\Form\Data\SearchData');

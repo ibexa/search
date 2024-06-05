@@ -10,19 +10,14 @@
         "psr-4": {
             "Ibexa\\Search\\": "src/lib/",
             "Ibexa\\Bundle\\Search\\": "src/bundle/",
-            "Ibexa\\Contracts\\Search\\": "src/contracts/",
-            "Ibexa\\Platform\\Bundle\\Search\\": "src/bundle/",
-            "Ibexa\\Platform\\Search\\": "src/lib/"
+            "Ibexa\\Contracts\\Search\\": "src/contracts/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Ibexa\\Tests\\Bundle\\Search\\": "tests/bundle/",
             "Ibexa\\Tests\\Contracts\\Search\\": "tests/contracts/",
-            "Ibexa\\Tests\\Search\\": "tests/lib/",
-            "Ibexa\\Platform\\Tests\\Contracts\\Search\\": "tests/contracts/",
-            "Ibexa\\Platform\\Tests\\Bundle\\Search\\": "tests/bundle/",
-            "Ibexa\\Platform\\Tests\\Search\\": "tests/lib/"
+            "Ibexa\\Tests\\Search\\": "tests/lib/"
         }
     },
     "require": {

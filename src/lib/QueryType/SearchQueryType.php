@@ -176,5 +176,3 @@ class SearchQueryType extends OptionsResolverBasedQueryType
         return $aggregation;
     }
 }
-
-class_alias(SearchQueryType::class, 'Ibexa\Platform\Search\QueryType\SearchQueryType');

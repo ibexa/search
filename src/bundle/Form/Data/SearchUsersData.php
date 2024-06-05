@@ -42,5 +42,3 @@ class SearchUsersData
         $this->possibleUsers = $possibleUsers;
     }
 }
-
-class_alias(SearchUsersData::class, 'Ibexa\Platform\Bundle\Search\Form\Data\SearchUsersData');

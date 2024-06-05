@@ -61,5 +61,3 @@ class SearchUsersType extends AbstractType
         ]);
     }
 }
-
-class_alias(SearchUsersType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\SearchUsersType');

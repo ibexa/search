@@ -48,5 +48,3 @@ class SectionChoiceType extends AbstractType
         return ChoiceType::class;
     }
 }
-
-class_alias(SectionChoiceType::class, 'Ibexa\Platform\Bundle\Search\Form\Type\SectionChoiceType');

@@ -54,5 +54,3 @@ class DateIntervalTransformer implements DataTransformerInterface
         ];
     }
 }
-
-class_alias(DateIntervalTransformer::class, 'Ibexa\Platform\Bundle\Search\Form\DataTransformer\DateIntervalTransformer');
