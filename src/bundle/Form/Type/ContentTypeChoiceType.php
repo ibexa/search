@@ -30,7 +30,7 @@ class ContentTypeChoiceType extends AbstractType
         $this->contentTypeChoiceLoader = $contentTypeChoiceLoader;
     }
 
-    public function getParent()
+    public function getParent(): ?string
     {
         return ChoiceType::class;
     }
