@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\EventDispatcher\EventListener;
 
-use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface;
 use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\SearchService as SearchServiceInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
@@ -33,8 +33,8 @@ use Psr\Log\LoggerInterface;
 
 final class ContentSuggestionSubscriberTest extends TestCase
 {
-    /** @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider&\PHPUnit\Framework\MockObject\MockObject */
-    private RepositoryConfigurationProvider $configProviderMock;
+    /** @var \Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface&\PHPUnit\Framework\MockObject\MockObject */
+    private RepositoryConfigurationProviderInterface $configProviderMock;
 
     private ?Query $capturedQuery;
 
@@ -45,7 +45,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->configProviderMock = $this->createMock(RepositoryConfigurationProvider::class);
+        $this->configProviderMock = $this->createMock(RepositoryConfigurationProviderInterface::class);
         $this->capturedQuery = null;
         $this->searchServiceSupportsScoring = false;
         $this->loggerMock = $this->createMock(LoggerInterface::class);

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Search\SortingDefinition\Provider;
 
-use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentName;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentTranslatedName;
@@ -22,8 +22,8 @@ final class NameSortingDefinitionProviderTest extends TestCase
     /** @var \Symfony\Contracts\Translation\TranslatorInterface&\PHPUnit\Framework\MockObject\MockObject */
     private TranslatorInterface $translator;
 
-    /** @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider&\PHPUnit\Framework\MockObject\MockObject */
-    private RepositoryConfigurationProvider $configurationProvider;
+    /** @var \Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface&\PHPUnit\Framework\MockObject\MockObject */
+    private RepositoryConfigurationProviderInterface $configurationProvider;
 
     private NameSortingDefinitionProvider $provider;
 
@@ -32,7 +32,7 @@ final class NameSortingDefinitionProviderTest extends TestCase
         $this->translator = $this->createMock(TranslatorInterface::class);
         $this->translator->method('trans')->willReturnArgument(0);
 
-        $this->configurationProvider = $this->createMock(RepositoryConfigurationProvider::class);
+        $this->configurationProvider = $this->createMock(RepositoryConfigurationProviderInterface::class);
 
         $this->provider = new NameSortingDefinitionProvider(
             $this->configurationProvider,

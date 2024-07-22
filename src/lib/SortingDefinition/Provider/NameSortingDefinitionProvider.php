@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Search\SortingDefinition\Provider;
 
-use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentName;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentTranslatedName;
@@ -21,11 +21,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class NameSortingDefinitionProvider implements SortingDefinitionProviderInterface, TranslationContainerInterface
 {
-    private RepositoryConfigurationProvider $configurationProvider;
+    private RepositoryConfigurationProviderInterface $configurationProvider;
 
     private TranslatorInterface $translator;
 
-    public function __construct(RepositoryConfigurationProvider $configurationProvider, TranslatorInterface $translator)
+    public function __construct(RepositoryConfigurationProviderInterface $configurationProvider, TranslatorInterface $translator)
     {
         $this->configurationProvider = $configurationProvider;
         $this->translator = $translator;
