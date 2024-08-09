@@ -18,11 +18,8 @@ class SearchData
 {
     /**
      * @var int
-     *
-     * @Assert\Range(
-     *     max = 1000
-     * )
      */
+    #[Assert\Range(max: 1000)]
     private $limit;
 
     /** @var int */
