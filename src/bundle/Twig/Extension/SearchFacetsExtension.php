@@ -24,7 +24,7 @@ final class SearchFacetsExtension extends AbstractExtension
         return [
             new TwigFilter(
                 'ibexa_choices_as_facets',
-                [$this, 'getChoicesAsFacets']
+                $this->getChoicesAsFacets(...)
             ),
         ];
     }
@@ -46,7 +46,7 @@ final class SearchFacetsExtension extends AbstractExtension
 
         if ($comparator === null) {
             $comparator = static function (ChoiceView $choice, TermAggregationResultEntry $term): bool {
-                return $choice->data == $term->getKey();
+                return $choice->data === $term->getKey();
             };
         }
 
