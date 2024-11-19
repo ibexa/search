@@ -22,7 +22,7 @@
     },
     "require": {
         "php": " >=8.3",
-        "ibexa/core": "~5.0.x-dev",
+        "ibexa/core": "dev-ibx-8470-symfony-6 as 5.0.x-dev",
         "pagerfanta/pagerfanta": "^2.1",
         "symfony/config": "^5.0",
         "symfony/dependency-injection": "^5.0",
@@ -35,7 +35,7 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
         "ibexa/code-style": "^1.0",
-        "ibexa/doctrine-schema": "~5.0.x-dev",
+        "ibexa/doctrine-schema": "dev-ibx-8470-symfony-6 as 5.0.x-dev",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-phpunit": "^1.3",
