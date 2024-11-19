@@ -24,13 +24,13 @@
         "php": " >=8.3",
         "ibexa/core": "~5.0.x-dev",
         "pagerfanta/pagerfanta": "^2.1",
-        "symfony/config": "^5.0",
-        "symfony/dependency-injection": "^5.0",
-        "symfony/event-dispatcher": "^5.0",
-        "symfony/form": "^5.0",
-        "symfony/http-foundation": "^5.0",
-        "symfony/http-kernel": "^5.0",
-        "symfony/serializer": "^5.4"
+        "symfony/config": "^6.4",
+        "symfony/dependency-injection": "^6.4",
+        "symfony/event-dispatcher": "^6.4",
+        "symfony/form": "^6.4",
+        "symfony/http-foundation": "^6.4",
+        "symfony/http-kernel": "^6.4",
+        "symfony/serializer": "^6.4"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
