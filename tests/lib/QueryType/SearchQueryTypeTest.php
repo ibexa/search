@@ -62,7 +62,7 @@ final class SearchQueryTypeTest extends TestCase
             ->method('supports')
             ->willReturnMap($returnMap);
 
-        $this->assertEquals($expectedQuery, $this->queryType->getQuery($parameters));
+        self::assertEquals($expectedQuery, $this->queryType->getQuery($parameters));
     }
 
     /**
