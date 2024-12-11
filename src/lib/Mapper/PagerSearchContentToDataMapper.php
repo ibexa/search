@@ -21,6 +21,25 @@ use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use Ibexa\Core\Repository\LocationResolver\LocationResolver;
 use Pagerfanta\Pagerfanta;
 
+/**
+ * @phpstan-type TData = array{
+ *   content: \Ibexa\Contracts\Core\Repository\Values\Content\Content,
+ *   contentTypeId: int,
+ *   contentId: int,
+ *   name: string,
+ *   language: string,
+ *   contributor: \Ibexa\Contracts\Core\Repository\Values\User\User|null,
+ *   version: int,
+ *   content_type: \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType,
+ *   modified: \DateTimeInterface,
+ *   initialLanguageCode: string,
+ *   content_is_user: bool,
+ *   available_enabled_translations: iterable<\Ibexa\Contracts\Core\Repository\Values\Content\Language>,
+ *   available_translations: iterable<\Ibexa\Contracts\Core\Repository\Values\Content\Language>,
+ *   translation_language_code: string,
+ *   resolvedLocation: \Ibexa\Contracts\Core\Repository\Values\Content\Location
+ * }
+ */
 class PagerSearchContentToDataMapper
 {
     /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
@@ -138,8 +157,8 @@ class PagerSearchContentToDataMapper
     }
 
     /**
-     * @param array $data
-     * @param int[] $contentTypeIds
+     * @phpstan-param TData[] $data
+     * @phpstan-param int[] $contentTypeIds
      */
     protected function setTranslatedContentTypesNames(array &$data, array $contentTypeIds): void
     {

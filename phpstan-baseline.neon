@@ -231,17 +231,17 @@ parameters:
 			path: src/bundle/IbexaSearchBundle.php
 
 		-
+			message: "#^Cannot access offset int on iterable\\<Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\ContentType\\\\ContentType\\>\\.$#"
+			count: 1
+			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
+
+		-
 			message: "#^Method Ibexa\\\\Search\\\\Mapper\\\\PagerSearchContentToDataMapper\\:\\:map\\(\\) has parameter \\$pager with generic class Pagerfanta\\\\Pagerfanta but does not specify its types\\: T$#"
 			count: 1
 			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
 
 		-
 			message: "#^Method Ibexa\\\\Search\\\\Mapper\\\\PagerSearchContentToDataMapper\\:\\:map\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
-
-		-
-			message: "#^Method Ibexa\\\\Search\\\\Mapper\\\\PagerSearchContentToDataMapper\\:\\:setTranslatedContentTypesNames\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
 
