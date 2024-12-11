@@ -10,8 +10,9 @@ namespace Ibexa\Contracts\Search\Event;
 
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Model\SuggestionQuery;
+use Symfony\Contracts\EventDispatcher\Event;
 
-final class BuildSuggestionCollectionEvent
+final class BuildSuggestionCollectionEvent extends Event
 {
     private SuggestionCollection $suggestionCollection;
 
