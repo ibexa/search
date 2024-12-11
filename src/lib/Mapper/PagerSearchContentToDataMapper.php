@@ -76,6 +76,9 @@ class PagerSearchContentToDataMapper
         $this->locationResolver = $locationResolver;
     }
 
+    /**
+     * @phpstan-return TData[]
+     */
     public function map(Pagerfanta $pager): array
     {
         $data = [];

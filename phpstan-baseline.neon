@@ -241,11 +241,6 @@ parameters:
 			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
 
 		-
-			message: "#^Method Ibexa\\\\Search\\\\Mapper\\\\PagerSearchContentToDataMapper\\:\\:map\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
-
-		-
 			message: "#^Parameter \\#1 \\$array of function array_filter expects array, iterable\\<Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Language\\> given\\.$#"
 			count: 1
 			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
