@@ -12,28 +12,19 @@ use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
+use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 
 class ContentTypeChoiceLoader implements ChoiceLoaderInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    protected $contentTypeService;
-
-    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
-    private $userLanguagePreferenceProvider;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
-     * @param \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider
-     */
-    public function __construct(ContentTypeService $contentTypeService, UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider)
-    {
-        $this->contentTypeService = $contentTypeService;
-        $this->userLanguagePreferenceProvider = $userLanguagePreferenceProvider;
+    public function __construct(
+        protected ContentTypeService $contentTypeService,
+        private readonly UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider
+    ) {
     }
 
     /**
-     * {@inheritdoc}
+     * @return array<string, iterable<\Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType>>
      */
     public function getChoiceList(): array
     {
@@ -52,20 +43,14 @@ class ContentTypeChoiceLoader implements ChoiceLoaderInterface
         return $contentTypesList;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function loadChoiceList(callable $value = null)
+    public function loadChoiceList(callable $value = null): ChoiceListInterface
     {
         $choices = $this->getChoiceList();
 
         return new ArrayChoiceList($choices, $value);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function loadChoicesForValues(array $values, callable $value = null)
+    public function loadChoicesForValues(array $values, callable $value = null): array
     {
         // Optimize
         $values = array_filter($values);
@@ -76,10 +61,7 @@ class ContentTypeChoiceLoader implements ChoiceLoaderInterface
         return $this->loadChoiceList($value)->getChoicesForValues($values);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function loadValuesForChoices(array $choices, callable $value = null)
+    public function loadValuesForChoices(array $choices, callable $value = null): array
     {
         // Optimize
         $choices = array_filter($choices);
