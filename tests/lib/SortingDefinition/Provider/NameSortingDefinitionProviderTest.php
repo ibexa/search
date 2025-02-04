@@ -44,7 +44,7 @@ final class NameSortingDefinitionProviderTest extends TestCase
     {
         $this->setSearchEngine('legacy');
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 new SortingDefinition(
                     'name_asc',
@@ -71,7 +71,7 @@ final class NameSortingDefinitionProviderTest extends TestCase
     {
         $this->setSearchEngine('solr');
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 new SortingDefinition(
                     'name_asc',

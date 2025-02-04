@@ -11,20 +11,15 @@ namespace Ibexa\Bundle\Search\Form\ChoiceLoader;
 use Ibexa\Contracts\Core\Repository\LanguageService;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
+use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 
 class ConfiguredLanguagesChoiceLoader implements ChoiceLoaderInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\LanguageService */
-    private $languageService;
+    private LanguageService $languageService;
 
-    /** @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface */
-    private $configResolver;
+    private ConfigResolverInterface $configResolver;
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\LanguageService $languageService
-     * @param \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface $configResolver
-     */
     public function __construct(LanguageService $languageService, ConfigResolverInterface $configResolver)
     {
         $this->languageService = $languageService;
@@ -32,27 +27,21 @@ class ConfiguredLanguagesChoiceLoader implements ChoiceLoaderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Language[]
      */
     public function getChoiceList(): array
     {
         return $this->getPriorityOrderedLanguages();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function loadChoiceList(callable $value = null)
+    public function loadChoiceList(callable $value = null): ChoiceListInterface
     {
         $choices = $this->getChoiceList();
 
         return new ArrayChoiceList($choices, $value);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function loadChoicesForValues(array $values, callable $value = null)
+    public function loadChoicesForValues(array $values, callable $value = null): array
     {
         // Optimize
         $values = array_filter($values);
@@ -63,10 +52,7 @@ class ConfiguredLanguagesChoiceLoader implements ChoiceLoaderInterface
         return $this->loadChoiceList($value)->getChoicesForValues($values);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function loadValuesForChoices(array $choices, callable $value = null)
+    public function loadValuesForChoices(array $choices, callable $value = null): array
     {
         // Optimize
         $choices = array_filter($choices);
@@ -78,7 +64,7 @@ class ConfiguredLanguagesChoiceLoader implements ChoiceLoaderInterface
     }
 
     /**
-     * Sort languages based on siteaccess languages order.
+     * Sort languages based on SiteAccess languages order.
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\Content\Language[]
      */

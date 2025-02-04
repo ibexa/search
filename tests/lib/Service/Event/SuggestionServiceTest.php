@@ -57,7 +57,7 @@ final class SuggestionServiceTest extends TestCase
             );
 
         $this->innerServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('suggest')
             ->with($query)
             ->willReturn($suggestionCollection);
@@ -75,18 +75,18 @@ final class SuggestionServiceTest extends TestCase
         $beforeEvent->stopPropagation();
 
         $this->eventDispatcherMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('dispatch')
             ->willReturn($beforeEvent);
 
         $this->innerServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('suggest');
 
         $service = new SuggestionService($this->innerServiceMock, $this->eventDispatcherMock);
 
-        self::expectException(LogicException::class);
-        self::expectExceptionMessage('The suggestion collection must be set when the propagation is stopped.');
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('The suggestion collection must be set when the propagation is stopped.');
         $service->suggest($query);
     }
 }

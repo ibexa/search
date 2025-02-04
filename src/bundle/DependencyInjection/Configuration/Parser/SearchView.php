@@ -12,6 +12,6 @@ use Ibexa\Bundle\Core\DependencyInjection\Configuration\Parser\View;
 
 class SearchView extends View
 {
-    public const NODE_KEY = 'search_view';
-    public const INFO = 'Template for displaying main search form and results';
+    public const string NODE_KEY = 'search_view';
+    public const string INFO = 'Template for displaying main search form and results';
 }
