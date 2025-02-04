@@ -186,7 +186,17 @@ parameters:
 			path: src/bundle/Form/Type/UserType.php
 
 		-
+			message: "#^Method Ibexa\\\\Contracts\\\\Search\\\\Mapper\\\\SearchHitToContentSuggestionMapperInterface\\:\\:map\\(\\) has parameter \\$searchHit with generic class Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit but does not specify its types\\: T$#"
+			count: 1
+			path: src/contracts/Mapper/SearchHitToContentSuggestionMapperInterface.php
+
+		-
 			message: "#^Method Ibexa\\\\Search\\\\Mapper\\\\PagerSearchContentToDataMapper\\:\\:map\\(\\) has parameter \\$pager with generic class Pagerfanta\\\\Pagerfanta but does not specify its types\\: T$#"
+			count: 1
+			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$searchHit contains generic class Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit but does not specify its types\\: T$#"
 			count: 1
 			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
 
@@ -196,7 +206,12 @@ parameters:
 			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
 
 		-
-			message: "#^Property Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit\\:\\:\\$score \\(float\\) on left side of \\?\\? is not nullable\\.$#"
+			message: "#^Method Ibexa\\\\Search\\\\Mapper\\\\SearchHitToContentSuggestionMapper\\:\\:map\\(\\) has parameter \\$searchHit with generic class Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit but does not specify its types\\: T$#"
+			count: 1
+			path: src/lib/Mapper/SearchHitToContentSuggestionMapper.php
+
+		-
+			message: "#^Property Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit\\<Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\ValueObject\\>\\:\\:\\$score \\(float\\) on left side of \\?\\? is not nullable\\.$#"
 			count: 1
 			path: src/lib/Mapper/SearchHitToContentSuggestionMapper.php
 
