@@ -34,12 +34,6 @@ final class SearchType extends AbstractType
         $this->configResolver = $configResolver;
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
-     *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -90,11 +84,6 @@ final class SearchType extends AbstractType
         );
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
