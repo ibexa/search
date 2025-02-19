@@ -35,6 +35,7 @@
     "require-dev": {
         "ibexa/code-style": "~2.0.0",
         "ibexa/doctrine-schema": "~5.0.x-dev",
+        "ibexa/rector": "~5.0.x-dev",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-phpunit": "^1.3",
