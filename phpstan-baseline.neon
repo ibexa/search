@@ -161,31 +161,6 @@ parameters:
 			path: src/bundle/Form/DataTransformer/UsersTransformer.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Type\\\\DateIntervalType\\:\\:buildForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/Form/Type/DateIntervalType.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Type\\\\SearchType\\:\\:buildForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/Form/Type/SearchType.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Type\\\\SearchType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/bundle/Form/Type/SearchType.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Type\\\\SearchUsersType\\:\\:buildForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/Form/Type/SearchUsersType.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Type\\\\UserType\\:\\:buildForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/Form/Type/UserType.php
-
-		-
 			message: "#^Method Ibexa\\\\Contracts\\\\Search\\\\Mapper\\\\SearchHitToContentSuggestionMapperInterface\\:\\:map\\(\\) has parameter \\$searchHit with generic class Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit but does not specify its types\\: T$#"
 			count: 1
 			path: src/contracts/Mapper/SearchHitToContentSuggestionMapperInterface.php
