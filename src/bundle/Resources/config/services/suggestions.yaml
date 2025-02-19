@@ -4,7 +4,7 @@ services:
         autowire: true
         public: false
 
-    Ibexa\Bundle\Search\ArgumentResolver\SuggestionQueryArgumentResolver:
+    Ibexa\Bundle\Search\ValueResolver\SuggestionQueryArgumentResolver:
         tags:
             - { name: 'controller.argument_value_resolver' }
 

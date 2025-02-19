@@ -6,27 +6,22 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Bundle\Search\ArgumentResolver;
+namespace Ibexa\Bundle\Search\ValueResolver;
 
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Search\Model\SuggestionQuery;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
+use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-final class SuggestionQueryArgumentResolver implements ArgumentValueResolverInterface
+final class SuggestionQueryArgumentResolver implements ValueResolverInterface
 {
     private ConfigResolverInterface $configResolver;
 
     public function __construct(ConfigResolverInterface $configResolver)
     {
         $this->configResolver = $configResolver;
-    }
-
-    public function supports(Request $request, ArgumentMetadata $argument): bool
-    {
-        return SuggestionQuery::class === $argument->getType();
     }
 
     /**
@@ -36,6 +31,10 @@ final class SuggestionQueryArgumentResolver implements ArgumentValueResolverInte
      */
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
+        if (!$this->supports($argument)) {
+            return [];
+        }
+
         $defaultLimit = $this->configResolver->getParameter('search.suggestion.result_limit');
         $query = $request->query->get('query');
         $limit = $request->query->getInt('limit', $defaultLimit);
@@ -46,5 +45,10 @@ final class SuggestionQueryArgumentResolver implements ArgumentValueResolverInte
         }
 
         yield new SuggestionQuery($query, $limit, $language);
+    }
+
+    private function supports(ArgumentMetadata $argument): bool
+    {
+        return SuggestionQuery::class === $argument->getType();
     }
 }
