@@ -15,9 +15,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class DateIntervalType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
