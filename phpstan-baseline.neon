@@ -1,216 +1,409 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\DependencyInjection\\\\Configuration\\\\Parser\\\\Search\\:\\:mapConfig\\(\\) has parameter \\$scopeSettings with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\DependencyInjection\\Configuration\\Parser\\Search\:\:mapConfig\(\) has parameter \$scopeSettings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/DependencyInjection/Configuration/Parser/Search.php
 
 		-
-			message: "#^Parameter \\#1 \\$array of function usort expects TArray of array\\<Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\ContentType\\\\ContentType\\>, iterable\\<Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\ContentType\\\\ContentType\\> given\\.$#"
+			message: '#^Parameter \#1 \$array of function usort expects TArray of array\<Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\ContentType\>, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\ContentType\> given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/bundle/Form/ChoiceLoader/ContentTypeChoiceLoader.php
 
 		-
-			message: "#^Parameter \\#1 \\$string1 of function strnatcasecmp expects string, string\\|null given\\.$#"
+			message: '#^Parameter \#1 \$string1 of function strnatcasecmp expects string, string\|null given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/bundle/Form/ChoiceLoader/ContentTypeChoiceLoader.php
 
 		-
-			message: "#^Parameter \\#2 \\$string2 of function strnatcasecmp expects string, string\\|null given\\.$#"
+			message: '#^Parameter \#2 \$string2 of function strnatcasecmp expects string, string\|null given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/bundle/Form/ChoiceLoader/ContentTypeChoiceLoader.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:__construct\\(\\) has parameter \\$contentTypes with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:__construct\(\) has parameter \$contentTypes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:__construct\\(\\) has parameter \\$created with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:__construct\(\) has parameter \$created with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:__construct\\(\\) has parameter \\$lastModified with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:__construct\(\) has parameter \$lastModified with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:getContentTypes\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:getContentTypes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:getCreated\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:getCreated\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:getLastModified\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:getLastModified\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:getSearchUsersData\\(\\) should return Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchUsersData\\|null but returns array\\<Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\User\\\\User\\>\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:getSearchUsersData\(\) should return Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData\|null but returns array\<Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\>\.$#'
+			identifier: return.type
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:setContentTypes\\(\\) has parameter \\$contentTypes with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:setContentTypes\(\) has parameter \$contentTypes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:setCreated\\(\\) has parameter \\$created with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:setCreated\(\) has parameter \$created with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:setLastModified\\(\\) has parameter \\$lastModified with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:setLastModified\(\) has parameter \$lastModified with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Property Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:\\$created type has no value type specified in iterable type array\\.$#"
+			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:\$created type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Property Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:\\$creator \\(Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\User\\\\User\\) does not accept Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\User\\\\User\\|null\\.$#"
+			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:\$creator \(Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\) does not accept Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\|null\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Property Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:\\$lastModified type has no value type specified in iterable type array\\.$#"
+			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:\$lastModified type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Property Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:\\$query \\(string\\) does not accept string\\|null\\.$#"
+			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:\$query \(string\) does not accept string\|null\.$#'
+			identifier: assign.propertyType
 			count: 2
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Property Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:\\$searchUsersData \\(array\\<Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\User\\\\User\\>\\) does not accept Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchUsersData\\|null\\.$#"
+			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:\$searchUsersData \(array\<Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\>\) does not accept Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData\|null\.$#'
+			identifier: assign.propertyType
 			count: 2
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Property Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchData\\:\\:\\$section \\(Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Section\\) does not accept Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Section\\|null\\.$#"
+			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:\$section \(Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Section\) does not accept Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Section\|null\.$#'
+			identifier: assign.propertyType
 			count: 2
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchUsersData\\:\\:__construct\\(\\) has parameter \\$possibleUsers with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData\:\:__construct\(\) has parameter \$possibleUsers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchUsersData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchUsersData\\:\\:getPossibleUsers\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData\:\:getPossibleUsers\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchUsersData.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchUsersData\\:\\:setPossibleUsers\\(\\) has parameter \\$possibleUsers with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData\:\:setPossibleUsers\(\) has parameter \$possibleUsers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/Data/SearchUsersData.php
 
 		-
-			message: "#^Property Ibexa\\\\Bundle\\\\Search\\\\Form\\\\Data\\\\SearchUsersData\\:\\:\\$query \\(string\\) does not accept string\\|null\\.$#"
+			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData\:\:\$query \(string\) does not accept string\|null\.$#'
+			identifier: assign.propertyType
 			count: 2
 			path: src/bundle/Form/Data/SearchUsersData.php
 
 		-
-			message: "#^Class Ibexa\\\\Bundle\\\\Search\\\\Form\\\\DataTransformer\\\\DateIntervalTransformer implements generic interface Symfony\\\\Component\\\\Form\\\\DataTransformerInterface but does not specify its types\\: T, R$#"
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: src/bundle/Form/DataTransformer/DateIntervalTransformer.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\DataTransformer\\\\DateIntervalTransformer\\:\\:reverseTransform\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\DataTransformer\\DateIntervalTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
+			identifier: missingType.generics
 			count: 1
 			path: src/bundle/Form/DataTransformer/DateIntervalTransformer.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\DataTransformer\\\\DateIntervalTransformer\\:\\:reverseTransform\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\DataTransformer\\DateIntervalTransformer\:\:reverseTransform\(\) has parameter \$value with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/DataTransformer/DateIntervalTransformer.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\DataTransformer\\\\DateIntervalTransformer\\:\\:transform\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\DataTransformer\\DateIntervalTransformer\:\:reverseTransform\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/Form/DataTransformer/DateIntervalTransformer.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\Search\\\\Form\\\\DataTransformer\\\\DateIntervalTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\DataTransformer\\DateIntervalTransformer\:\:transform\(\) has Symfony\\Component\\Form\\Exception\\TransformationFailedException in PHPDoc @throws tag but it''s not thrown\.$#'
+			identifier: throws.unusedType
 			count: 1
 			path: src/bundle/Form/DataTransformer/DateIntervalTransformer.php
 
 		-
-			message: "#^Class Ibexa\\\\Bundle\\\\Search\\\\Form\\\\DataTransformer\\\\UserTransformer implements generic interface Symfony\\\\Component\\\\Form\\\\DataTransformerInterface but does not specify its types\\: T, R$#"
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\DataTransformer\\DateIntervalTransformer\:\:transform\(\) has parameter \$value with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/bundle/Form/DataTransformer/DateIntervalTransformer.php
+
+		-
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\DataTransformer\\DateIntervalTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/bundle/Form/DataTransformer/DateIntervalTransformer.php
+
+		-
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\DataTransformer\\UserTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
+			identifier: missingType.generics
 			count: 1
 			path: src/bundle/Form/DataTransformer/UserTransformer.php
 
 		-
-			message: "#^Class Ibexa\\\\Bundle\\\\Search\\\\Form\\\\DataTransformer\\\\UsersTransformer implements generic interface Symfony\\\\Component\\\\Form\\\\DataTransformerInterface but does not specify its types\\: T, R$#"
+			message: '#^Instanceof between Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User and Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: src/bundle/Form/DataTransformer/UserTransformer.php
+
+		-
+			message: '#^Method Ibexa\\Bundle\\Search\\Form\\DataTransformer\\UserTransformer\:\:transform\(\) has Symfony\\Component\\Form\\Exception\\TransformationFailedException in PHPDoc @throws tag but it''s not thrown\.$#'
+			identifier: throws.unusedType
+			count: 1
+			path: src/bundle/Form/DataTransformer/UserTransformer.php
+
+		-
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\DataTransformer\\UsersTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
+			identifier: missingType.generics
 			count: 1
 			path: src/bundle/Form/DataTransformer/UsersTransformer.php
 
 		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type string\\|null\\.$#"
+			message: '#^Instanceof between Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData and Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
 			count: 1
 			path: src/bundle/Form/DataTransformer/UsersTransformer.php
 
 		-
-			message: "#^Method Ibexa\\\\Contracts\\\\Search\\\\Mapper\\\\SearchHitToContentSuggestionMapperInterface\\:\\:map\\(\\) has parameter \\$searchHit with generic class Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit but does not specify its types\\: T$#"
+			message: '#^PHPDoc tag @return with type mixed is not subtype of native type string\|null\.$#'
+			identifier: return.phpDocType
+			count: 1
+			path: src/bundle/Form/DataTransformer/UsersTransformer.php
+
+		-
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\Type\\ContentTypeChoiceType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/bundle/Form/Type/ContentTypeChoiceType.php
+
+		-
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\Type\\DateIntervalType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/bundle/Form/Type/DateIntervalType.php
+
+		-
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\Type\\LanguageChoiceType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/bundle/Form/Type/LanguageChoiceType.php
+
+		-
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\Type\\SearchType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/bundle/Form/Type/SearchType.php
+
+		-
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\Type\\SearchUsersType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/bundle/Form/Type/SearchUsersType.php
+
+		-
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\Type\\SectionChoiceType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/bundle/Form/Type/SectionChoiceType.php
+
+		-
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\Type\\SortingDefinitionChoiceType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/bundle/Form/Type/SortingDefinitionChoiceType.php
+
+		-
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\Type\\UserType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/bundle/Form/Type/UserType.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\Search\\Mapper\\SearchHitToContentSuggestionMapperInterface\:\:map\(\) has parameter \$searchHit with generic class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\SearchHit but does not specify its types\: T$#'
+			identifier: missingType.generics
 			count: 1
 			path: src/contracts/Mapper/SearchHitToContentSuggestionMapperInterface.php
 
 		-
-			message: "#^Method Ibexa\\\\Search\\\\Mapper\\\\PagerSearchContentToDataMapper\\:\\:map\\(\\) has parameter \\$pager with generic class Pagerfanta\\\\Pagerfanta but does not specify its types\\: T$#"
+			message: '#^Method Ibexa\\Search\\Mapper\\PagerSearchContentToDataMapper\:\:map\(\) has parameter \$pager with generic class Pagerfanta\\Pagerfanta but does not specify its types\: T$#'
+			identifier: missingType.generics
 			count: 1
 			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
 
 		-
-			message: "#^PHPDoc tag @var for variable \\$searchHit contains generic class Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit but does not specify its types\\: T$#"
+			message: '#^PHPDoc tag @var for variable \$searchHit contains generic class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\SearchHit but does not specify its types\: T$#'
+			identifier: missingType.generics
 			count: 1
 			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
 
 		-
-			message: "#^Parameter \\#1 \\$array of function array_filter expects array, iterable\\<Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Language\\> given\\.$#"
+			message: '#^Parameter \#1 \$array of function array_filter expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Language\> given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
 
 		-
-			message: "#^Method Ibexa\\\\Search\\\\Mapper\\\\SearchHitToContentSuggestionMapper\\:\\:map\\(\\) has parameter \\$searchHit with generic class Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit but does not specify its types\\: T$#"
+			message: '#^Parameter &\$data by\-ref type of method Ibexa\\Search\\Mapper\\PagerSearchContentToDataMapper\:\:setTranslatedContentTypesNames\(\) expects array\<array\{content\: Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Content, contentTypeId\: int, contentId\: int, name\: string, language\: string, contributor\: Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\|null, version\: int, content_type\: Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\ContentType, \.\.\.\}\>, non\-empty\-array\<array\{content\?\: Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Content, contentTypeId\?\: int, contentId\: int, name\: string, language\: string, contributor\: Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\|null, version\: int, content_type\: Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\ContentType, \.\.\.\}\> given\.$#'
+			identifier: parameterByRef.type
+			count: 3
+			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
+
+		-
+			message: '#^Method Ibexa\\Search\\Mapper\\SearchHitToContentSuggestionMapper\:\:map\(\) has parameter \$searchHit with generic class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\SearchHit but does not specify its types\: T$#'
+			identifier: missingType.generics
 			count: 1
 			path: src/lib/Mapper/SearchHitToContentSuggestionMapper.php
 
 		-
-			message: "#^Property Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\Content\\\\Search\\\\SearchHit\\<Ibexa\\\\Contracts\\\\Core\\\\Repository\\\\Values\\\\ValueObject\\>\\:\\:\\$score \\(float\\) on left side of \\?\\? is not nullable\\.$#"
+			message: '#^Property Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\SearchHit\<Ibexa\\Contracts\\Core\\Repository\\Values\\ValueObject\>\:\:\$score \(float\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
 			count: 1
 			path: src/lib/Mapper/SearchHitToContentSuggestionMapper.php
 
 		-
-			message: "#^Method Ibexa\\\\Search\\\\QueryType\\\\SearchQueryType\\:\\:doGetQuery\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Search\\QueryType\\SearchQueryType\:\:doGetQuery\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/QueryType/SearchQueryType.php
 
 		-
-			message: "#^Method Ibexa\\\\Search\\\\View\\\\SearchViewBuilder\\:\\:buildView\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Search\\Serializer\\Normalizer\\Suggestion\\ParentLocationCollectionNormalizer\:\:normalize\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/Serializer/Normalizer/Suggestion/ParentLocationCollectionNormalizer.php
+
+		-
+			message: '#^PHPDoc tag @return has invalid value \(array\<int,mixed\>\.\)\: Unexpected token "\.", expected TOKEN_HORIZONTAL_WS at offset 174 on line 5$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/lib/Serializer/Normalizer/Suggestion/ParentLocationCollectionNormalizer.php
+
+		-
+			message: '#^Method Ibexa\\Search\\Serializer\\Normalizer\\Suggestion\\SuggestionCollectionNormalizer\:\:normalize\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/Serializer/Normalizer/Suggestion/SuggestionCollectionNormalizer.php
+
+		-
+			message: '#^PHPDoc tag @return has invalid value \(array\<string,mixed\>\.\)\: Unexpected token "\.", expected TOKEN_HORIZONTAL_WS at offset 173 on line 5$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/lib/Serializer/Normalizer/Suggestion/SuggestionCollectionNormalizer.php
+
+		-
+			message: '#^Method Ibexa\\Search\\View\\SearchViewBuilder\:\:buildView\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/View/SearchViewBuilder.php
 
 		-
-			message: "#^Method Ibexa\\\\Search\\\\View\\\\SearchViewBuilder\\:\\:getSearchLanguageFilter\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Ibexa\\Search\\View\\SearchViewBuilder\:\:getSearchLanguageFilter\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/View/SearchViewBuilder.php
 
 		-
-			message: "#^Method Ibexa\\\\Search\\\\View\\\\SearchViewProvider\\:\\:buildSearchListView\\(\\) has parameter \\$viewConfig with no value type specified in iterable type array\\.$#"
+			message: '#^PHPDoc tag @var for variable \$form contains generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/lib/View/SearchViewBuilder.php
+
+		-
+			message: '#^Method Ibexa\\Search\\View\\SearchViewProvider\:\:buildSearchListView\(\) has parameter \$viewConfig with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/View/SearchViewProvider.php
 
 		-
-			message: "#^Method Ibexa\\\\Search\\\\View\\\\SearchViewProvider\\:\\:getView\\(\\) should return Ibexa\\\\Core\\\\MVC\\\\Symfony\\\\View\\\\View but returns null\\.$#"
+			message: '#^Method Ibexa\\Search\\View\\SearchViewProvider\:\:getView\(\) should return Ibexa\\Core\\MVC\\Symfony\\View\\View but returns null\.$#'
+			identifier: return.type
 			count: 1
 			path: src/lib/View/SearchViewProvider.php
+
+		-
+			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) with ''Ibexa\\\\Contracts\\\\Core\\\\Collection\\\\MutableArrayList'' and Ibexa\\Contracts\\Search\\Model\\Suggestion\\ParentLocationCollection will always evaluate to true\.$#'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 1
+			path: tests/contracts/Model/Suggestion/ParentCollectionTest.php
+
+		-
+			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) with ''Ibexa\\\\Contracts\\\\Search\\\\Model\\\\Suggestion\\\\ParentLocationCollection'' and Ibexa\\Contracts\\Search\\Model\\Suggestion\\ParentLocationCollection will always evaluate to true\.$#'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 1
+			path: tests/contracts/Model/Suggestion/ParentCollectionTest.php
+
+		-
+			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) with ''Ibexa\\\\Contracts\\\\Core\\\\Collection\\\\MutableArrayList'' and Ibexa\\Contracts\\Search\\Model\\Suggestion\\SuggestionCollection will always evaluate to true\.$#'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 1
+			path: tests/contracts/Model/Suggestion/SuggestionCollectionTest.php
+
+		-
+			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) with ''Ibexa\\\\Contracts\\\\Search\\\\Model\\\\Suggestion\\\\SuggestionCollection'' and Ibexa\\Contracts\\Search\\Model\\Suggestion\\SuggestionCollection will always evaluate to true\.$#'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 1
+			path: tests/contracts/Model/Suggestion/SuggestionCollectionTest.php
+
+		-
+			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) with ''Ibexa\\\\Contracts\\\\Search\\\\Model\\\\Suggestion\\\\Suggestion'' and Ibexa\\Contracts\\Search\\Model\\Suggestion\\Suggestion will always evaluate to true\.$#'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 1
+			path: tests/contracts/Model/Suggestion/SuggestionTest.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\\Symfony\\Contracts\\Translation\\TranslatorInterface&\\PHPUnit\\Framework\\MockObject\\MockObject\)\)\: Unexpected token "\)", expected TOKEN_HORIZONTAL_WS at offset 100 on line 1$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: tests/lib/SortingDefinition/Provider/RelevanceSortingDefinitionProviderTest.php
