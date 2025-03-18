@@ -20,11 +20,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class SearchType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
-    private $permissionResolver;
+    private PermissionResolver $permissionResolver;
 
-    /** @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface */
-    private $configResolver;
+    private ConfigResolverInterface $configResolver;
 
     public function __construct(
         PermissionResolver $permissionResolver,
