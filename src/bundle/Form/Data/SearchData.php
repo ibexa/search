@@ -38,7 +38,6 @@ class SearchData
 
     private ?Language $searchLanguage;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\User\User[] */
     private ?SearchUsersData $searchUsersData;
 
     private ?SortingDefinitionInterface $sortingDefinition;
