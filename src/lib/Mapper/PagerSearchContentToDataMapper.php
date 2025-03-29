@@ -42,23 +42,17 @@ use Pagerfanta\Pagerfanta;
  */
 class PagerSearchContentToDataMapper
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    private $contentTypeService;
+    private ContentTypeService $contentTypeService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
-    private $userService;
+    private UserService $userService;
 
-    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
-    private $userLanguagePreferenceProvider;
+    private UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider;
 
-    /** @var \Ibexa\Core\Helper\TranslationHelper */
-    protected $translationHelper;
+    protected TranslationHelper $translationHelper;
 
-    /** @var \Ibexa\Contracts\Core\Repository\LanguageService */
-    private $languageService;
+    private LanguageService $languageService;
 
-    /** @var \Ibexa\Core\Repository\LocationResolver\LocationResolver */
-    private $locationResolver;
+    private LocationResolver $locationResolver;
 
     public function __construct(
         ContentTypeService $contentTypeService,

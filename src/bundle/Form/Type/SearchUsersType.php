@@ -19,14 +19,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchUsersType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Repository */
-    private $repository;
+    private Repository $repository;
 
-    /** @var \Ibexa\Contracts\Core\Repository\SearchService */
-    private $searchService;
+    private SearchService $searchService;
 
-    /** @var string */
-    private $userContentTypeIdentifier;
+    private string $userContentTypeIdentifier;
 
     public function __construct(
         Repository $repository,

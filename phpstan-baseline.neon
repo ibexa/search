@@ -61,12 +61,6 @@ parameters:
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:getSearchUsersData\(\) should return Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData\|null but returns array\<Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/bundle/Form/Data/SearchData.php
-
-		-
 			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:setContentTypes\(\) has parameter \$contentTypes with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -91,33 +85,9 @@ parameters:
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
-			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:\$creator \(Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\) does not accept Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\|null\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: src/bundle/Form/Data/SearchData.php
-
-		-
 			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:\$lastModified type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/bundle/Form/Data/SearchData.php
-
-		-
-			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:\$query \(string\) does not accept string\|null\.$#'
-			identifier: assign.propertyType
-			count: 2
-			path: src/bundle/Form/Data/SearchData.php
-
-		-
-			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:\$searchUsersData \(array\<Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\>\) does not accept Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData\|null\.$#'
-			identifier: assign.propertyType
-			count: 2
-			path: src/bundle/Form/Data/SearchData.php
-
-		-
-			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchData\:\:\$section \(Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Section\) does not accept Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Section\|null\.$#'
-			identifier: assign.propertyType
-			count: 2
 			path: src/bundle/Form/Data/SearchData.php
 
 		-
@@ -136,12 +106,6 @@ parameters:
 			message: '#^Method Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData\:\:setPossibleUsers\(\) has parameter \$possibleUsers with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/bundle/Form/Data/SearchUsersData.php
-
-		-
-			message: '#^Property Ibexa\\Bundle\\Search\\Form\\Data\\SearchUsersData\:\:\$query \(string\) does not accept string\|null\.$#'
-			identifier: assign.propertyType
-			count: 2
 			path: src/bundle/Form/Data/SearchUsersData.php
 
 		-

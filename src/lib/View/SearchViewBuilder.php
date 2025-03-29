@@ -20,20 +20,15 @@ use Pagerfanta\Pagerfanta;
 
 class SearchViewBuilder implements ViewBuilder
 {
-    /** @var \Ibexa\Core\MVC\Symfony\View\Configurator */
-    private $viewConfigurator;
+    private Configurator $viewConfigurator;
 
-    /** @var \Ibexa\Core\MVC\Symfony\View\ParametersInjector */
-    private $viewParametersInjector;
+    private ParametersInjector $viewParametersInjector;
 
-    /** @var \Ibexa\Contracts\Core\Repository\SearchService */
-    private $searchService;
+    private SearchService $searchService;
 
-    /** @var \Ibexa\Search\Mapper\PagerSearchContentToDataMapper */
-    private $pagerSearchContentToDataMapper;
+    private PagerSearchContentToDataMapper $pagerSearchContentToDataMapper;
 
-    /** @var \Ibexa\Core\QueryType\QueryType */
-    private $searchQueryType;
+    private QueryType $searchQueryType;
 
     public function __construct(
         Configurator $viewConfigurator,

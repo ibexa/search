@@ -10,11 +10,10 @@ namespace Ibexa\Bundle\Search\Form\Data;
 
 class SearchUsersData
 {
-    /** @var string */
-    private $query;
+    private ?string $query;
 
     /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content[] */
-    private $possibleUsers;
+    private array $possibleUsers;
 
     public function __construct(array $possibleUsers = [], ?string $query = null)
     {

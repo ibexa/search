@@ -16,41 +16,29 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class SearchData
 {
-    /**
-     * @var int
-     */
     #[Assert\Range(max: 1000)]
-    private $limit;
+    private int $limit;
 
-    /** @var int */
-    private $page;
+    private int $page;
 
-    /** @var string */
-    private $query;
+    private ?string $query;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Section */
-    private $section;
+    private ?Section $section;
 
     /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType[] */
-    private $contentTypes;
+    private array $contentTypes;
 
-    /** @var array */
-    private $lastModified;
+    private array $lastModified;
 
-    /** @var array */
-    private $created;
+    private array $created;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\User\User */
-    private $creator;
+    private ?User $creator;
 
-    /** @var string|null */
-    private $subtree;
+    private ?string $subtree;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Language|null */
-    private $searchLanguage;
+    private ?Language $searchLanguage;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\User\User[] */
-    private $searchUsersData;
+    private ?SearchUsersData $searchUsersData;
 
     private ?SortingDefinitionInterface $sortingDefinition;
 
@@ -224,7 +212,7 @@ class SearchData
             null !== $section ||
             !empty($lastModified) ||
             !empty($created) ||
-            !empty($creator) ||
+            $creator instanceof User ||
             null !== $subtree;
     }
 }

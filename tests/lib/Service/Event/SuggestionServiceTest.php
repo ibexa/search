@@ -15,17 +15,16 @@ use Ibexa\Contracts\Search\Service\SuggestionServiceInterface;
 use Ibexa\Search\Model\SuggestionQuery;
 use Ibexa\Search\Service\Event\SuggestionService;
 use LogicException;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\EventDispatcher\Event;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 final class SuggestionServiceTest extends TestCase
 {
-    /** @var \Ibexa\Contracts\Search\Service\SuggestionServiceInterface|\PHPUnit\Framework\MockObject\MockObject */
-    private $innerServiceMock;
+    private SuggestionServiceInterface&MockObject $innerServiceMock;
 
-    /** @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface|\PHPUnit\Framework\MockObject\MockObject */
-    private $eventDispatcherMock;
+    private EventDispatcherInterface&MockObject $eventDispatcherMock;
 
     protected function setUp(): void
     {
