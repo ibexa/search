@@ -9,15 +9,13 @@ declare(strict_types=1);
 namespace Ibexa\Search\Serializer\Normalizer\Suggestion;
 
 use Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion;
-use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 final class ContentSuggestionNormalizer implements
     NormalizerInterface,
-    NormalizerAwareInterface,
-    CacheableSupportsMethodInterface
+    NormalizerAwareInterface
 {
     use NormalizerAwareTrait;
 
@@ -26,7 +24,7 @@ final class ContentSuggestionNormalizer implements
      *
      * @return array<string, mixed>
      */
-    public function normalize($object, string $format = null, array $context = []): array
+    public function normalize(mixed $object, string $format = null, array $context = []): array
     {
         $content = $object->getContent();
 
@@ -41,13 +39,15 @@ final class ContentSuggestionNormalizer implements
         ];
     }
 
-    public function supportsNormalization($data, string $format = null): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof ContentSuggestion;
     }
 
-    public function hasCacheableSupportsMethod(): bool
+    public function getSupportedTypes(?string $format): array
     {
-        return true;
+        return [
+            ContentSuggestion::class => true,
+        ];
     }
 }
