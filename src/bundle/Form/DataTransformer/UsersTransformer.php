@@ -47,7 +47,7 @@ class UsersTransformer implements DataTransformerInterface
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
-    public function transform($value): ?string
+    public function transform(mixed $value): ?string
     {
         if (null === $value) {
             return null;
@@ -63,7 +63,7 @@ class UsersTransformer implements DataTransformerInterface
     /**
      * @param string|null $value
      */
-    public function reverseTransform($value): SearchUsersData
+    public function reverseTransform(mixed $value): SearchUsersData
     {
         if ($value === null) {
             return new SearchUsersData();
