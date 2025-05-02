@@ -9,15 +9,13 @@ declare(strict_types=1);
 namespace Ibexa\Search\Serializer\Normalizer\Suggestion;
 
 use Ibexa\Contracts\Search\Model\Suggestion\ParentLocationCollection;
-use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 final class ParentLocationCollectionNormalizer implements
     NormalizerInterface,
-    NormalizerAwareInterface,
-    CacheableSupportsMethodInterface
+    NormalizerAwareInterface
 {
     use NormalizerAwareTrait;
 
@@ -27,7 +25,7 @@ final class ParentLocationCollectionNormalizer implements
      *
      * @return array<int,mixed>.
      */
-    public function normalize($object, string $format = null, array $context = []): array
+    public function normalize(mixed $object, string $format = null, array $context = []): array
     {
         $normalizedData = [];
 
@@ -38,13 +36,15 @@ final class ParentLocationCollectionNormalizer implements
         return $normalizedData;
     }
 
-    public function supportsNormalization($data, string $format = null): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof ParentLocationCollection;
     }
 
-    public function hasCacheableSupportsMethod(): bool
+    public function getSupportedTypes(?string $format): array
     {
-        return true;
+        return [
+            ParentLocationCollection::class => true,
+        ];
     }
 }
