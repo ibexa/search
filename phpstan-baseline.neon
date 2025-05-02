@@ -151,24 +151,6 @@ parameters:
 			path: src/bundle/Form/DataTransformer/DateIntervalTransformer.php
 
 		-
-			message: '#^Class Ibexa\\Bundle\\Search\\Form\\DataTransformer\\UserTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/bundle/Form/DataTransformer/UserTransformer.php
-
-		-
-			message: '#^Instanceof between Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User and Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User will always evaluate to true\.$#'
-			identifier: instanceof.alwaysTrue
-			count: 1
-			path: src/bundle/Form/DataTransformer/UserTransformer.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\Search\\Form\\DataTransformer\\UserTransformer\:\:transform\(\) has Symfony\\Component\\Form\\Exception\\TransformationFailedException in PHPDoc @throws tag but it''s not thrown\.$#'
-			identifier: throws.unusedType
-			count: 1
-			path: src/bundle/Form/DataTransformer/UserTransformer.php
-
-		-
 			message: '#^Class Ibexa\\Bundle\\Search\\Form\\DataTransformer\\UsersTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
 			identifier: missingType.generics
 			count: 1

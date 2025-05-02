@@ -14,11 +14,18 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\Term
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry;
 use Symfony\Component\Form\ChoiceList\View\ChoiceGroupView;
 use Symfony\Component\Form\ChoiceList\View\ChoiceView;
+use Symfony\Contracts\Translation\TranslatableInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 final class SearchFacetsExtension extends AbstractExtension
 {
+    public function __construct(
+        private readonly TranslatorInterface $translator,
+    ) {
+    }
+
     public function getFilters(): array
     {
         return [
@@ -64,8 +71,13 @@ final class SearchFacetsExtension extends AbstractExtension
 
             $term = $this->findTermEntry($terms, $choice, $comparator);
             if ($term !== null) {
+                $label = $choice->label;
+                if ($label instanceof TranslatableInterface) {
+                    $label = $label->trans($this->translator);
+                }
+
                 $facet = FacetView::createFromChoiceView($choice, $term);
-                $facet->label = sprintf('%s (%d)', $choice->label, $term->getCount());
+                $facet->label = sprintf('%s (%d)', $label, $term->getCount());
                 $facets[$key] = $facet;
             }
         }
