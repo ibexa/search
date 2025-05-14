@@ -35,7 +35,7 @@ services:
             $viewConfigurator: '@Ibexa\Core\MVC\Symfony\View\Configurator\ViewProvider'
             $viewParametersInjector: '@Ibexa\Core\MVC\Symfony\View\ParametersInjector\EventDispatcherInjector'
             $searchService: '@ibexa.api.service.search'
-            $pagerSearchContentToDataMapper: '@Ibexa\Search\Mapper\PagerSearchContentToDataMapper'
+            $pagerSearchContentToDataMapper: '@Ibexa\Contracts\Search\Mapper\PagerSearchDataMapper'
             $searchQueryType: '@Ibexa\Search\QueryType\SearchQueryType'
         tags:
             - { name: ibexa.view.builder }

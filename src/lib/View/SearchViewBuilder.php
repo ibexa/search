@@ -10,38 +10,42 @@ namespace Ibexa\Search\View;
 
 use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
+use Ibexa\Contracts\Search\Mapper\PagerSearchDataMapper;
 use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
 use Ibexa\Core\MVC\Symfony\View\Configurator;
 use Ibexa\Core\MVC\Symfony\View\ParametersInjector;
 use Ibexa\Core\Pagination\Pagerfanta\ContentSearchHitAdapter;
 use Ibexa\Core\QueryType\QueryType;
-use Ibexa\Search\Mapper\PagerSearchContentToDataMapper;
 use Pagerfanta\Pagerfanta;
 
 class SearchViewBuilder implements ViewBuilder
 {
-    private Configurator $viewConfigurator;
-
-    private ParametersInjector $viewParametersInjector;
-
-    private SearchService $searchService;
-
-    private PagerSearchContentToDataMapper $pagerSearchContentToDataMapper;
-
-    private QueryType $searchQueryType;
-
+    /**
+     * @param \Ibexa\Contracts\Search\Mapper\PagerSearchDataMapper<array{
+     *    content: \Ibexa\Contracts\Core\Repository\Values\Content\Content,
+     *    contentTypeId: int,
+     *    contentId: int,
+     *    name: string,
+     *    language: string,
+     *    contributor: \Ibexa\Contracts\Core\Repository\Values\User\User|null,
+     *    version: int,
+     *    content_type: \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType,
+     *    modified: \DateTimeInterface,
+     *    initialLanguageCode: string,
+     *    content_is_user: bool,
+     *    available_enabled_translations: iterable<\Ibexa\Contracts\Core\Repository\Values\Content\Language>,
+     *    available_translations: iterable<\Ibexa\Contracts\Core\Repository\Values\Content\Language>,
+     *    translation_language_code: string,
+     *    resolvedLocation: \Ibexa\Contracts\Core\Repository\Values\Content\Location
+     *  }> $pagerSearchContentToDataMapper
+     */
     public function __construct(
-        Configurator $viewConfigurator,
-        ParametersInjector $viewParametersInjector,
-        SearchService $searchService,
-        PagerSearchContentToDataMapper $pagerSearchContentToDataMapper,
-        QueryType $searchQueryType
+        private readonly Configurator $viewConfigurator,
+        private readonly ParametersInjector $viewParametersInjector,
+        private readonly SearchService $searchService,
+        private readonly PagerSearchDataMapper $pagerSearchContentToDataMapper,
+        private readonly QueryType $searchQueryType
     ) {
-        $this->viewConfigurator = $viewConfigurator;
-        $this->viewParametersInjector = $viewParametersInjector;
-        $this->searchService = $searchService;
-        $this->pagerSearchContentToDataMapper = $pagerSearchContentToDataMapper;
-        $this->searchQueryType = $searchQueryType;
     }
 
     public function matches($argument): bool
