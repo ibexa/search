@@ -29,4 +29,6 @@ services:
             $translationHelper: '@Ibexa\Core\Helper\TranslationHelper'
             $languageService: '@ibexa.api.service.language'
 
+    Ibexa\Contracts\Search\Mapper\PagerSearchDataMapper: '@Ibexa\Search\Mapper\PagerSearchContentToDataMapper'
+
     Ibexa\Search\QueryType\SearchQueryType: ~

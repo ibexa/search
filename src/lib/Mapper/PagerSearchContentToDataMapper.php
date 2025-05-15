@@ -16,6 +16,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
+use Ibexa\Contracts\Search\Mapper\PagerSearchDataMapper;
 use Ibexa\Core\Helper\TranslationHelper;
 use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use Ibexa\Core\Repository\LocationResolver\LocationResolver;
@@ -39,8 +40,10 @@ use Pagerfanta\Pagerfanta;
  *   translation_language_code: string,
  *   resolvedLocation: \Ibexa\Contracts\Core\Repository\Values\Content\Location
  * }
+ *
+ * @phpstan-implements PagerSearchDataMapper<TData>
  */
-class PagerSearchContentToDataMapper
+final class PagerSearchContentToDataMapper implements PagerSearchDataMapper
 {
     private ContentTypeService $contentTypeService;
 
@@ -48,7 +51,7 @@ class PagerSearchContentToDataMapper
 
     private UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider;
 
-    protected TranslationHelper $translationHelper;
+    private TranslationHelper $translationHelper;
 
     private LanguageService $languageService;
 
@@ -71,14 +74,13 @@ class PagerSearchContentToDataMapper
     }
 
     /**
-     * @phpstan-return TData[]
+     * @param Pagerfanta<\Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit<\Ibexa\Contracts\Core\Repository\Values\Content\Content>> $pager
      */
     public function map(Pagerfanta $pager): array
     {
         $data = [];
         $contentTypeIds = [];
 
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit $searchHit */
         foreach ($pager as $searchHit) {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content $content */
             $content = $searchHit->valueObject;
@@ -119,7 +121,7 @@ class PagerSearchContentToDataMapper
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\Content\Language[]
      */
-    protected function getAvailableTranslations(
+    private function getAvailableTranslations(
         Content $content,
         bool $filterDisabled = false
     ): iterable {
@@ -139,12 +141,12 @@ class PagerSearchContentToDataMapper
         );
     }
 
-    protected function isContentIsUser(Content $content): bool
+    private function isContentIsUser(Content $content): bool
     {
         return $this->userService->isUser($content);
     }
 
-    protected function getContributor(ContentInfo $contentInfo): ?User
+    private function getContributor(ContentInfo $contentInfo): ?User
     {
         try {
             return $this->userService->loadUser($contentInfo->ownerId);
@@ -157,7 +159,7 @@ class PagerSearchContentToDataMapper
      * @phpstan-param TData[] $data
      * @phpstan-param int[] $contentTypeIds
      */
-    protected function setTranslatedContentTypesNames(array &$data, array $contentTypeIds): void
+    private function setTranslatedContentTypesNames(array &$data, array $contentTypeIds): void
     {
         // load list of content types with proper translated names
         $contentTypes = iterator_to_array(
