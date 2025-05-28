@@ -7,3 +7,9 @@ services:
     Ibexa\Bundle\Search\Twig\Extension\SearchFacetsExtension:
         tags:
             -   name: twig.extension
+
+    Ibexa\Bundle\Search\Twig\Extension\UrlGeneratorExtension:
+        arguments:
+            $eventDispatcher: '@event_dispatcher'
+        tags:
+            - { name: twig.extension }
