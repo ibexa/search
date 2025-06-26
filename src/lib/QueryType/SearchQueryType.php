@@ -100,9 +100,8 @@ class SearchQueryType extends OptionsResolverBasedQueryType
             $criteria[] = new Criterion\ContentTypeId(array_column($searchData->getContentTypes(), 'id'));
         }
 
-        if (!empty($searchData->getLastModified())) {
-            $modified = $searchData->getLastModified();
-
+        $modified = $searchData->getLastModified();
+        if (!empty($modified) && $modified['start_date'] !== null && $modified['end_date'] !== null) {
             $criteria[] = new Criterion\DateMetadata(
                 Criterion\DateMetadata::MODIFIED,
                 Criterion\Operator::BETWEEN,
@@ -113,9 +112,8 @@ class SearchQueryType extends OptionsResolverBasedQueryType
             );
         }
 
-        if (!empty($searchData->getCreated())) {
-            $created = $searchData->getCreated();
-
+        $created = $searchData->getCreated();
+        if (!empty($created) && $created['start_date'] !== null && $created['end_date'] !== null) {
             $criteria[] = new Criterion\DateMetadata(
                 Criterion\DateMetadata::CREATED,
                 Criterion\Operator::BETWEEN,
