@@ -11,10 +11,21 @@ namespace Ibexa\Bundle\Search\Form\ChoiceList\View;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry;
 use Symfony\Component\Form\ChoiceList\View\ChoiceView;
 
+/**
+ * @phpstan-template TKey of object|scalar
+ */
 final class FacetView extends ChoiceView
 {
+    /**
+     * @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry<TKey>|null
+     */
     public ?TermAggregationResultEntry $term = null;
 
+    /**
+     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry<TKey>|null $term
+     *
+     * @phpstan-return \Ibexa\Bundle\Search\Form\ChoiceList\View\FacetView<TKey>
+     */
     public static function createFromChoiceView(ChoiceView $choiceView, ?TermAggregationResultEntry $term): self
     {
         $facet = new self(
@@ -27,6 +38,7 @@ final class FacetView extends ChoiceView
 
         $facet->term = $term;
 
+        /** @phpstan-var \Ibexa\Bundle\Search\Form\ChoiceList\View\FacetView<TKey> */
         return $facet;
     }
 }

@@ -37,8 +37,11 @@ final class SearchFacetsExtension extends AbstractExtension
     }
 
     /**
-     * @param \Symfony\Component\Form\ChoiceList\View\ChoiceView[]|\Symfony\Component\Form\ChoiceList\View\ChoiceGroupView[] $choices
-     * @param callable(ChoiceView, TermAggregationResultEntry): bool|null $comparator
+     * @phpstan-template TKey of object|scalar
+     *
+     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResult<TKey>|null $terms
+     * @phpstan-param \Symfony\Component\Form\ChoiceList\View\ChoiceView[]|\Symfony\Component\Form\ChoiceList\View\ChoiceGroupView[] $choices
+     * @phpstan-param callable(ChoiceView, TermAggregationResultEntry<TKey>): bool|null $comparator
      *
      * @return \Symfony\Component\Form\ChoiceList\View\ChoiceView[]|\Symfony\Component\Form\ChoiceList\View\ChoiceGroupView[]
      */
@@ -86,7 +89,12 @@ final class SearchFacetsExtension extends AbstractExtension
     }
 
     /**
-     * @param callable(ChoiceView, TermAggregationResultEntry): bool $comparator
+     * @phpstan-template TKey of object|scalar
+     *
+     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResult<TKey> $terms
+     * @phpstan-param callable(ChoiceView, TermAggregationResultEntry<TKey>): bool $comparator
+     *
+     * @phpstan-return \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry<TKey>|null
      */
     private function findTermEntry(
         TermAggregationResult $terms,
