@@ -43,7 +43,12 @@ class IbexaSearchExtension extends Extension implements PrependExtensionInterfac
                     ],
                     'output_dir' => __DIR__ . '/../Resources/translations/',
                     'output_format' => 'xliff',
-                    'excluded_names' => ['*.module.js'],
+                    'excluded_names' => [
+                        '*.module.js',
+                        // [Workaround] Skipped due to the bug in symfony/type-info component
+                        'FacetGroupView.php',
+                        'FacetView.php',
+                    ],
                     'excluded_dirs' => [],
                     'extractors' => [],
                 ],
