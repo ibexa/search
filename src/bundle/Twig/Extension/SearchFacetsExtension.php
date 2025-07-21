@@ -12,6 +12,7 @@ use Ibexa\Bundle\Search\Form\ChoiceList\View\FacetGroupView;
 use Ibexa\Bundle\Search\Form\ChoiceList\View\FacetView;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResult;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry;
+use JMS\TranslationBundle\Annotation\Ignore;
 use Symfony\Component\Form\ChoiceList\View\ChoiceGroupView;
 use Symfony\Component\Form\ChoiceList\View\ChoiceView;
 use Symfony\Contracts\Translation\TranslatableInterface;
@@ -76,7 +77,7 @@ final class SearchFacetsExtension extends AbstractExtension
             if ($term !== null) {
                 $label = $choice->label;
                 if ($label instanceof TranslatableInterface) {
-                    $label = $label->trans($this->translator);
+                    $label = /** @Ignore */ $label->trans($this->translator);
                 }
 
                 $facet = FacetView::createFromChoiceView($choice, $term);
