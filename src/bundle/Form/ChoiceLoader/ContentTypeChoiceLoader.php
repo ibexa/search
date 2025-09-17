@@ -55,7 +55,7 @@ class ContentTypeChoiceLoader implements ChoiceLoaderInterface
     /**
      * {@inheritdoc}
      */
-    public function loadChoiceList(callable $value = null)
+    public function loadChoiceList(?callable $value = null)
     {
         $choices = $this->getChoiceList();
 
@@ -65,7 +65,7 @@ class ContentTypeChoiceLoader implements ChoiceLoaderInterface
     /**
      * {@inheritdoc}
      */
-    public function loadChoicesForValues(array $values, callable $value = null)
+    public function loadChoicesForValues(array $values, ?callable $value = null)
     {
         // Optimize
         $values = array_filter($values);
@@ -79,7 +79,7 @@ class ContentTypeChoiceLoader implements ChoiceLoaderInterface
     /**
      * {@inheritdoc}
      */
-    public function loadValuesForChoices(array $choices, callable $value = null)
+    public function loadValuesForChoices(array $choices, ?callable $value = null)
     {
         // Optimize
         $choices = array_filter($choices);

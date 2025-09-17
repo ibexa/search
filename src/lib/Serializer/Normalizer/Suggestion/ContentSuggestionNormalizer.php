@@ -26,7 +26,7 @@ final class ContentSuggestionNormalizer implements
      *
      * @return array<string, mixed>
      */
-    public function normalize($object, string $format = null, array $context = []): array
+    public function normalize($object, ?string $format = null, array $context = []): array
     {
         $content = $object->getContent();
 
@@ -41,7 +41,7 @@ final class ContentSuggestionNormalizer implements
         ];
     }
 
-    public function supportsNormalization($data, string $format = null): bool
+    public function supportsNormalization($data, ?string $format = null): bool
     {
         return $data instanceof ContentSuggestion;
     }
