@@ -25,7 +25,7 @@ final class SuggestionCollectionNormalizer implements
      *
      * @return array<string,mixed>.
      */
-    public function normalize(mixed $object, string $format = null, array $context = []): array
+    public function normalize(mixed $object, ?string $format = null, array $context = []): array
     {
         $suggestionCollection = [];
 

@@ -18,7 +18,7 @@ abstract class Suggestion extends ValueObject
 
     public function __construct(
         float $score,
-        string $name = null
+        ?string $name = null
     ) {
         $this->score = $score;
         $this->name = $name;

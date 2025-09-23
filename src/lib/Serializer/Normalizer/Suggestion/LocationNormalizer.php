@@ -18,7 +18,7 @@ final class LocationNormalizer implements NormalizerInterface
      *
      * @return array<string, mixed>
      */
-    public function normalize(mixed $object, string $format = null, array $context = []): array
+    public function normalize(mixed $object, ?string $format = null, array $context = []): array
     {
         return [
             'id' => $object->getContentInfo()->getId(),

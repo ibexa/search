@@ -25,7 +25,7 @@ final class ParentLocationCollectionNormalizer implements
      *
      * @return array<int,mixed>.
      */
-    public function normalize(mixed $object, string $format = null, array $context = []): array
+    public function normalize(mixed $object, ?string $format = null, array $context = []): array
     {
         $normalizedData = [];
 
