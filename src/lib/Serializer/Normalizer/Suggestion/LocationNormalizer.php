@@ -18,7 +18,7 @@ final class LocationNormalizer implements NormalizerInterface
      *
      * @return array<string, mixed>
      */
-    public function normalize($object, string $format = null, array $context = []): array
+    public function normalize($object, ?string $format = null, array $context = []): array
     {
         return [
             'id' => $object->getContentInfo()->getId(),
@@ -27,7 +27,7 @@ final class LocationNormalizer implements NormalizerInterface
         ];
     }
 
-    public function supportsNormalization($data, string $format = null): bool
+    public function supportsNormalization($data, ?string $format = null): bool
     {
         return $data instanceof Location;
     }
