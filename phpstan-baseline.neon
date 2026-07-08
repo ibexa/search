@@ -115,7 +115,7 @@ parameters:
 			path: src/bundle/Form/DataTransformer/DateIntervalTransformer.php
 
 		-
-			message: '#^Class Ibexa\\Bundle\\Search\\Form\\DataTransformer\\DateIntervalTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\DataTransformer\\DateIntervalTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: TValue, TTransformedValue$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/bundle/Form/DataTransformer/DateIntervalTransformer.php
@@ -145,7 +145,7 @@ parameters:
 			path: src/bundle/Form/DataTransformer/DateIntervalTransformer.php
 
 		-
-			message: '#^Class Ibexa\\Bundle\\Search\\Form\\DataTransformer\\UsersTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
+			message: '#^Class Ibexa\\Bundle\\Search\\Form\\DataTransformer\\UsersTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: TValue, TTransformedValue$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/bundle/Form/DataTransformer/UsersTransformer.php
