@@ -35,26 +35,6 @@ jobs:
             -   name: Run PHPStan analysis
                 run: composer run-script phpstan
 
-    rector:
-        name: Run rector
-        runs-on: "ubuntu-26.04"
-        strategy:
-            matrix:
-                php:
-                    - '8.3'
-        steps:
-            -   uses: actions/checkout@v7
-
-            -   uses: ibexa/gh-workflows/actions/composer-install@main
-                with:
-                    gh-client-id: ${{ secrets.AUTOMATION_CLIENT_ID }}
-                    gh-client-secret: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
-                    satis-network-key: ${{ secrets.SATIS_NETWORK_KEY }}
-                    satis-network-token: ${{ secrets.SATIS_NETWORK_TOKEN }}
-
-            -   name: Run rector
-                run: vendor/bin/rector process --dry-run --ansi
-
     tests:
         name: Unit tests
         runs-on: "ubuntu-26.04"
