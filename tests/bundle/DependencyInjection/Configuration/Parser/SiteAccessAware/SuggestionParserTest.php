@@ -13,10 +13,10 @@ use Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension;
 use Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\SiteAccessAware\SuggestionParser;
 use Ibexa\Core\MVC\Exception\ParameterNotFoundException;
 use Ibexa\Tests\Bundle\Core\DependencyInjection\Configuration\Parser\AbstractParserTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 
-/**
- * @covers \Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\SiteAccessAware\SuggestionParser
- */
+#[CoversClass(SuggestionParser::class)]
 final class SuggestionParserTest extends AbstractParserTestCase
 {
     protected function getContainerExtensions(): array
@@ -29,12 +29,11 @@ final class SuggestionParserTest extends AbstractParserTestCase
     }
 
     /**
-     * @dataProvider dataProviderForTestSettings
-     *
      * @param array<string,mixed> $config
      * @param array<string,mixed> $expected
      * @param array<string> $expectedNotSet
      */
+    #[DataProvider('dataProviderForTestSettings')]
     public function testSettings(array $config, array $expected, array $expectedNotSet = []): void
     {
         $this->load([
@@ -62,7 +61,7 @@ final class SuggestionParserTest extends AbstractParserTestCase
      *     },
      * >
      */
-    public function dataProviderForTestSettings(): iterable
+    public static function dataProviderForTestSettings(): iterable
     {
         yield 'empty configuration' => [
             [],
