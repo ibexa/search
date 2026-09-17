@@ -155,7 +155,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
             ->method('findContent')->willReturnCallback(function (Query $query): SearchResult {
                 $this->capturedQuery = $query;
 
-                return new SearchResult(['searchHits' => [$this->createMock(SearchHit::class)]]);
+                return new SearchResult(['searchHits' => [$this->createStub(SearchHit::class)]]);
             });
 
         return $searchServiceMock;
@@ -191,8 +191,8 @@ final class ContentSuggestionSubscriberTest extends TestCase
             ->willReturn(
                 new ContentSuggestionModel(
                     10.0,
-                    $this->createMock(Content::class),
-                    $this->createMock(ContentType::class),
+                    $this->createStub(Content::class),
+                    $this->createStub(ContentType::class),
                     '1/2/3',
                     [
                         new Location(['id' => 1, 'path' => [1, 2, 3]]),

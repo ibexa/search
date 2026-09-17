@@ -26,8 +26,8 @@ final class SuggestionCollectionTest extends TestCase
         self::assertInstanceOf(MutableArrayList::class, $collection);
         self::assertInstanceOf(SuggestionCollection::class, $collection);
 
-        $contentMock = $this->createMock(Content::class);
-        $contentTypeMock = $this->createMock(ContentType::class);
+        $contentMock = $this->createStub(Content::class);
+        $contentTypeMock = $this->createStub(ContentType::class);
 
         $collection->append(new ContentSuggestion(10, $contentMock, $contentTypeMock, '1/2/3', [new Location()]));
         $collection->append(new ContentSuggestion(20, $contentMock, $contentTypeMock, '1/3/5', [new Location()]));
