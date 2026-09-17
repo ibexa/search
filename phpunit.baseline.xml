@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<files version="1">
+ <file path="vendor/symfony/deprecation-contracts/function.php">
+  <line number="25" hash="c6af5d66288d0667e424978000f29571e4954b81">
+   <issue><![CDATA[Since symfony/config 7.4: Setting a default value to a required node is deprecated. Remove the default value from the node "min_query_length" or make it optional.]]></issue>
+   <issue><![CDATA[Since symfony/config 7.4: Setting a default value to a required node is deprecated. Remove the default value from the node "result_limit" or make it optional.]]></issue>
+   <issue><![CDATA[Since symfony/config 7.4: Setting a default value to a required node is deprecated. Remove the default value from the node "min_query_length" or make it optional.]]></issue>
+   <issue><![CDATA[Since symfony/config 7.4: Setting a default value to a required node is deprecated. Remove the default value from the node "result_limit" or make it optional.]]></issue>
+  </line>
+ </file>
+ <file path="vendor/league/flysystem/src/Local/LocalFilesystemAdapter.php">
+  <line number="84" hash="ceb043f6ab1e59b0d2e3038886d66ec328517fc4">
+   <issue><![CDATA[League\Flysystem\Local\LocalFilesystemAdapter::__construct(): Implicitly marking parameter $visibility as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+  <line number="87" hash="165df3579a764873c0a79588b58033eeea0f5bc2">
+   <issue><![CDATA[League\Flysystem\Local\LocalFilesystemAdapter::__construct(): Implicitly marking parameter $mimeTypeDetector as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+</files>
