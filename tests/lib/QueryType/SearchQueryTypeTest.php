@@ -19,22 +19,22 @@ use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Search\QueryType\SearchQueryType;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 final class SearchQueryTypeTest extends TestCase
 {
-    private const EXPECTED_QUERY_STRING = 'Ibexa';
-    private const EXPECTED_SECTION_ID = 2;
-    private const EXPECTED_CONTENT_TYPE_IDS = [3, 5, 7];
-    private const EXPECTED_USER_ID = 11;
-    private const EXPECTED_SUBTREE = '/13/17/19/';
-    private const EXPECTED_DATE_RANGE = [1431993600, 1587340800];
+    private const string EXPECTED_QUERY_STRING = 'Ibexa';
+    private const int EXPECTED_SECTION_ID = 2;
+    private const array EXPECTED_CONTENT_TYPE_IDS = [3, 5, 7];
+    private const int EXPECTED_USER_ID = 11;
+    private const string EXPECTED_SUBTREE = '/13/17/19/';
+    private const array EXPECTED_DATE_RANGE = [1431993600, 1587340800];
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\SearchService */
-    private SearchService $searchService;
+    private SearchService&MockObject $searchService;
 
-    /** @var \Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface&\PHPUnit\Framework\MockObject\Stub */
-    private SortingDefinitionRegistryInterface $sortingDefinitionRegistry;
+    private SortingDefinitionRegistryInterface&Stub $sortingDefinitionRegistry;
 
     private SearchQueryType $queryType;
 

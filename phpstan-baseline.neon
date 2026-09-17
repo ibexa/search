@@ -229,6 +229,12 @@ parameters:
 			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
 
 		-
+			message: '#^Parameter &\$data by\-ref type of method Ibexa\\Search\\Mapper\\PagerSearchContentToDataMapper\:\:setTranslatedContentTypesNames\(\) expects array\<array\{content\: Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Content, contentTypeId\: int, contentId\: int, name\: string, language\: string, contributor\: Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\|null, version\: int, content_type\: Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\ContentType, \.\.\.\}\>, non\-empty\-array\<array\{content\: Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Content, contentTypeId\?\: int, contentId\: int, name\: string, language\: string, contributor\: Ibexa\\Contracts\\Core\\Repository\\Values\\User\\User\|null, version\: int, content_type\: Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\ContentType, \.\.\.\}\> given\.$#'
+			identifier: parameterByRef.type
+			count: 1
+			path: src/lib/Mapper/PagerSearchContentToDataMapper.php
+
+		-
 			message: '#^Method Ibexa\\Search\\Mapper\\SearchHitToContentSuggestionMapper\:\:map\(\) has parameter \$searchHit with generic class Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Search\\SearchHit but does not specify its types\: T$#'
 			identifier: missingType.generics
 			count: 1
