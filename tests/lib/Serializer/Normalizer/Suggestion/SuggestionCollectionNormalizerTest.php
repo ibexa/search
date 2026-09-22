@@ -30,7 +30,7 @@ final class SuggestionCollectionNormalizerTest extends TestCase
 
     public function testNormalize(): void
     {
-        $suggestionItemMock = $this->createStub(Suggestion::class);
+        $suggestionItemMock = self::createStub(Suggestion::class);
         $suggestionCollection = new SuggestionCollection([$suggestionItemMock]);
         $suggestionCollection->increaseTotalCount(100);
 
