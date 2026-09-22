@@ -14,6 +14,8 @@ use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion\LogicalAnd;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchResult;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -76,14 +78,14 @@ class UsersTransformer implements DataTransformerInterface
 
         $searchService = $this->searchService;
 
-        $result = $this->repository->sudo(static function () use ($searchService, $filter) {
+        $result = $this->repository->sudo(static function () use ($searchService, $filter): SearchResult {
             return $searchService->findContent(new Query([
                 'filter' => $filter,
             ]));
         });
 
         return new SearchUsersData(
-            array_map(static function (SearchHit $searchHit) {
+            array_map(static function (SearchHit $searchHit): ValueObject {
                 return $searchHit->valueObject;
             }, $result->searchHits),
             $value
