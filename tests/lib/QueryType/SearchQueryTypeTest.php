@@ -41,7 +41,7 @@ final class SearchQueryTypeTest extends TestCase
     protected function setUp(): void
     {
         $this->searchService = $this->createMock(SearchService::class);
-        $this->sortingDefinitionRegistry = $this->createStub(SortingDefinitionRegistryInterface::class);
+        $this->sortingDefinitionRegistry = self::createStub(SortingDefinitionRegistryInterface::class);
         $this->queryType = new SearchQueryType(
             $this->searchService,
             $this->sortingDefinitionRegistry
