@@ -86,6 +86,18 @@ final class SuggestionParserTest extends AbstractParserTestCase
                 'search.suggestion.result_limit' => 10,
             ],
         ];
+
+        yield 'search without suggestion still resolves to defaults' => [
+            [
+                'search' => [
+                    'suggestion' => [],
+                ],
+            ],
+            [
+                'search.suggestion.min_query_length' => 3,
+                'search.suggestion.result_limit' => 5,
+            ],
+        ];
     }
 
     private function assertConfigResolverParameterIsNotSet(string $parameterName, ?string $scope = null): void
