@@ -21,7 +21,7 @@
         }
     },
     "require": {
-        "php": " >=8.3",
+        "php": ">=8.5",
         "ibexa/core": "~6.0.x-dev",
         "pagerfanta/pagerfanta": "^3.6.2",
         "symfony/config": "^8.1",
