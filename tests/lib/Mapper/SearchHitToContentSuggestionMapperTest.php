@@ -18,6 +18,7 @@ use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class SearchHitToContentSuggestionMapperTest extends TestCase
@@ -101,7 +102,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
+     * @return MockObject|ConfigResolverInterface
      */
     private function getConfigResolverMock(): ConfigResolverInterface
     {
@@ -112,7 +113,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface
+     * @return MockObject|ParentLocationProviderInterface
      */
     private function getParentLocationProviderMock(): ParentLocationProviderInterface
     {

@@ -11,6 +11,7 @@ namespace Ibexa\Tests\Search\QueryType;
 use Ibexa\Bundle\Search\Form\Data\SearchData;
 use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
@@ -18,6 +19,7 @@ use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Search\QueryType\SearchQueryType;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class SearchQueryTypeTest extends TestCase
@@ -29,10 +31,10 @@ final class SearchQueryTypeTest extends TestCase
     private const EXPECTED_SUBTREE = '/13/17/19/';
     private const EXPECTED_DATE_RANGE = [1431993600, 1587340800];
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\SearchService */
+    /** @var MockObject&SearchService */
     private SearchService $searchService;
 
-    /** @var \Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface&\PHPUnit\Framework\MockObject\MockObject */
+    /** @var SortingDefinitionRegistryInterface&MockObject */
     private SortingDefinitionRegistryInterface $sortingDefinitionRegistry;
 
     private SearchQueryType $queryType;
@@ -50,7 +52,7 @@ final class SearchQueryTypeTest extends TestCase
     /**
      * @dataProvider dataProviderForGetQuery
      *
-     * @param array{searchData: \Ibexa\Bundle\Search\Form\Data\SearchData} $parameters
+     * @param array{searchData: SearchData} $parameters
      * @param array<int, array<int, mixed>> $returnMap
      */
     public function testGetQuery(
@@ -67,8 +69,8 @@ final class SearchQueryTypeTest extends TestCase
 
     /**
      * @return iterable<array{
-     *     array{searchData?: \Ibexa\Bundle\Search\Form\Data\SearchData},
-     *     \Ibexa\Contracts\Core\Repository\Values\Content\Query,
+     *     array{searchData?: SearchData},
+     *     Query,
      *     array<int, array<int, mixed>>
      * }>
      */
@@ -129,7 +131,7 @@ final class SearchQueryTypeTest extends TestCase
     /**
      * @param array<int> $ids
      *
-     * @return array<\Ibexa\Core\Repository\Values\ContentType\ContentType>
+     * @return array<ContentType>
      */
     private function createContentTypesList(array $ids): array
     {
@@ -167,8 +169,8 @@ final class SearchQueryTypeTest extends TestCase
     }
 
     /**
-     * @param array<\Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause>|null $expectedSortClauses
-     * @param array<\Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation> $expectedAggregations
+     * @param array<SortClause>|null $expectedSortClauses
+     * @param array<Aggregation> $expectedAggregations
      */
     private function createExpectedQueryForAllCriteria(
         ?array $expectedSortClauses = null,
@@ -208,14 +210,14 @@ final class SearchQueryTypeTest extends TestCase
     }
 
     /**
-     * @return array<\Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation>
+     * @return array<Aggregation>
      */
     private function createExpectedAggregations(): array
     {
-        $contentTypeTermAggregation = new Query\Aggregation\ContentTypeTermAggregation('content_types');
+        $contentTypeTermAggregation = new Aggregation\ContentTypeTermAggregation('content_types');
         $contentTypeTermAggregation->setLimit(SearchService::CAPABILITY_AGGREGATIONS);
 
-        $sectionTermAggregation = new Query\Aggregation\SectionTermAggregation('sections');
+        $sectionTermAggregation = new Aggregation\SectionTermAggregation('sections');
         $sectionTermAggregation->setLimit(SearchService::CAPABILITY_AGGREGATIONS);
 
         return [

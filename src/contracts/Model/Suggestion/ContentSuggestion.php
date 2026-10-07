@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Contracts\Search\Model\Suggestion;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 
 final class ContentSuggestion extends Suggestion
@@ -22,7 +23,7 @@ final class ContentSuggestion extends Suggestion
     private ParentLocationCollection $parentsLocation;
 
     /**
-     * @param array<\Ibexa\Contracts\Core\Repository\Values\Content\Location> $parentLocations
+     * @param array<Location> $parentLocations
      */
     public function __construct(
         float $score,

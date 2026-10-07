@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 class SearchViewProvider implements ViewProvider
 {
-    /** @var \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface */
+    /** @var MatcherFactoryInterface */
     protected $matcherFactory;
 
     public function __construct(MatcherFactoryInterface $matcherFactory)

@@ -10,6 +10,7 @@ namespace Ibexa\Bundle\Search\Form\Data;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -31,10 +32,10 @@ class SearchData
     /** @var string */
     private $query;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Section */
+    /** @var Section */
     private $section;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType[] */
+    /** @var ContentType[] */
     private $contentTypes;
 
     /** @var array */
@@ -43,16 +44,16 @@ class SearchData
     /** @var array */
     private $created;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\User\User */
+    /** @var User */
     private $creator;
 
     /** @var string|null */
     private $subtree;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Language|null */
+    /** @var Language|null */
     private $searchLanguage;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\User\User[] */
+    /** @var User[] */
     private $searchUsersData;
 
     private ?SortingDefinitionInterface $sortingDefinition;

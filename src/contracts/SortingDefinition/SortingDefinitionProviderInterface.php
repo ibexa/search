@@ -11,7 +11,7 @@ namespace Ibexa\Contracts\Search\SortingDefinition;
 interface SortingDefinitionProviderInterface
 {
     /**
-     * @return \Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface[]
+     * @return SortingDefinitionInterface[]
      */
     public function getSortingDefinitions(): array;
 }

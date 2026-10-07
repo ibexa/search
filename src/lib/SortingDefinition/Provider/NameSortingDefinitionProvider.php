@@ -10,6 +10,7 @@ namespace Ibexa\Search\SortingDefinition\Provider;
 
 use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentName;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentTranslatedName;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinition;
@@ -25,8 +26,10 @@ final class NameSortingDefinitionProvider implements SortingDefinitionProviderIn
 
     private TranslatorInterface $translator;
 
-    public function __construct(RepositoryConfigurationProvider $configurationProvider, TranslatorInterface $translator)
-    {
+    public function __construct(
+        RepositoryConfigurationProvider $configurationProvider,
+        TranslatorInterface $translator
+    ) {
         $this->configurationProvider = $configurationProvider;
         $this->translator = $translator;
     }
@@ -39,8 +42,10 @@ final class NameSortingDefinitionProvider implements SortingDefinitionProviderIn
         ];
     }
 
-    private function createSortingDefinition(int $priority, bool $reverse): SortingDefinitionInterface
-    {
+    private function createSortingDefinition(
+        int $priority,
+        bool $reverse
+    ): SortingDefinitionInterface {
         $identifier = $this->getIdentifier($reverse);
 
         return new SortingDefinition(
@@ -67,7 +72,7 @@ final class NameSortingDefinitionProvider implements SortingDefinitionProviderIn
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[]
+     * @return SortClause[]
      */
     private function getSortClauses(bool $reverse): array
     {

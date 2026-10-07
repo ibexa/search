@@ -11,12 +11,13 @@ namespace Ibexa\Tests\Search\Serializer\Normalizer\Suggestion;
 use Ibexa\Contracts\Search\Model\Suggestion\Suggestion;
 use Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection;
 use Ibexa\Search\Serializer\Normalizer\Suggestion\SuggestionCollectionNormalizer;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 final class SuggestionCollectionNormalizerTest extends TestCase
 {
-    /** @var \Symfony\Component\Serializer\Normalizer\NormalizerInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var NormalizerInterface|MockObject */
     private NormalizerInterface $normalizer;
 
     private SuggestionCollectionNormalizer $suggestionCollectionNormalizer;

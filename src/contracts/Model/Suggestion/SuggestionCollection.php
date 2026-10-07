@@ -20,8 +20,10 @@ final class SuggestionCollection extends MutableArrayList
 {
     private int $totalCount;
 
-    public function __construct(array $items = [], int $totalCount = 0)
-    {
+    public function __construct(
+        array $items = [],
+        int $totalCount = 0
+    ) {
         parent::__construct($items);
         $this->items = $items;
         $this->totalCount = $totalCount;

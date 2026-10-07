@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Search\Provider;
 
 use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Search\Provider\ParentLocationProviderInterface;
 
 final class ParentLocationProvider implements ParentLocationProviderInterface
@@ -23,7 +24,7 @@ final class ParentLocationProvider implements ParentLocationProviderInterface
     /**
      * @param array<int> $parentLocationIds
      *
-     * @return array<\Ibexa\Contracts\Core\Repository\Values\Content\Location>
+     * @return array<Location>
      */
     public function provide(array $parentLocationIds): array
     {

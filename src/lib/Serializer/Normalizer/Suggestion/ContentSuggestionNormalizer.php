@@ -22,12 +22,15 @@ final class ContentSuggestionNormalizer implements
     use NormalizerAwareTrait;
 
     /**
-     * @param \Ibexa\Contracts\Search\Model\Suggestion\ContentSuggestion $object
+     * @param ContentSuggestion $object
      *
      * @return array<string, mixed>
      */
-    public function normalize($object, ?string $format = null, array $context = []): array
-    {
+    public function normalize(
+        $object,
+        ?string $format = null,
+        array $context = []
+    ): array {
         $content = $object->getContent();
 
         return [
@@ -41,8 +44,10 @@ final class ContentSuggestionNormalizer implements
         ];
     }
 
-    public function supportsNormalization($data, ?string $format = null): bool
-    {
+    public function supportsNormalization(
+        $data,
+        ?string $format = null
+    ): bool {
         return $data instanceof ContentSuggestion;
     }
 

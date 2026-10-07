@@ -53,7 +53,7 @@ final class SortingDefinitionRegistryTest extends TestCase
     }
 
     /**
-     * @param \Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface[] $definitions
+     * @param SortingDefinitionInterface[] $definitions
      */
     private function createProvider(array $definitions): SortingDefinitionProviderInterface
     {
