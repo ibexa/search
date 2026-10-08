@@ -24,18 +24,22 @@ final class SuggestionQueryArgumentResolver implements ArgumentValueResolverInte
         $this->configResolver = $configResolver;
     }
 
-    public function supports(Request $request, ArgumentMetadata $argument): bool
-    {
+    public function supports(
+        Request $request,
+        ArgumentMetadata $argument
+    ): bool {
         return SuggestionQuery::class === $argument->getType();
     }
 
     /**
-     * @return iterable<\Ibexa\Search\Model\SuggestionQuery>
+     * @return iterable<SuggestionQuery>
      *
      * @throw \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
      */
-    public function resolve(Request $request, ArgumentMetadata $argument): iterable
-    {
+    public function resolve(
+        Request $request,
+        ArgumentMetadata $argument
+    ): iterable {
         $defaultLimit = $this->configResolver->getParameter('search.suggestion.result_limit');
         $query = $request->query->get('query');
         $limit = $request->query->getInt('limit', $defaultLimit);

@@ -9,7 +9,10 @@ declare(strict_types=1);
 namespace Ibexa\Bundle\Search\Form\DataTransformer;
 
 use DateTime;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Translates timestamp and DataInterval to domain specific timestamp date range.
@@ -21,7 +24,7 @@ class DateIntervalTransformer implements DataTransformerInterface
      *
      * @return array|null
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function transform($value)
     {
@@ -34,9 +37,9 @@ class DateIntervalTransformer implements DataTransformerInterface
      * @return array|null
      *
      * @throws \Exception
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws TransformationFailedException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      */
     public function reverseTransform($value)
     {

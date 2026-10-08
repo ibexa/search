@@ -13,6 +13,7 @@ use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\SearchService as SearchServiceInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentName;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentTranslatedName;
 use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
@@ -28,19 +29,20 @@ use Ibexa\Core\Repository\SiteAccessAware\SearchService;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber;
 use Ibexa\Search\Model\SuggestionQuery;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
 final class ContentSuggestionSubscriberTest extends TestCase
 {
-    /** @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider&\PHPUnit\Framework\MockObject\MockObject */
+    /** @var RepositoryConfigurationProvider&MockObject */
     private RepositoryConfigurationProvider $configProviderMock;
 
     private ?Query $capturedQuery;
 
     private bool $searchServiceSupportsScoring = false;
 
-    /** @var \Psr\Log\LoggerInterface&\PHPUnit\Framework\MockObject\MockObject */
+    /** @var LoggerInterface&MockObject */
     private LoggerInterface $loggerMock;
 
     protected function setUp(): void
@@ -225,7 +227,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
     }
 
     /**
-     * @return array<\Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause>
+     * @return array<SortClause>
      */
     private function getSortClauses(): array
     {

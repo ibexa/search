@@ -17,22 +17,23 @@ use Ibexa\Core\Pagination\Pagerfanta\ContentSearchHitAdapter;
 use Ibexa\Core\QueryType\QueryType;
 use Ibexa\Search\Mapper\PagerSearchContentToDataMapper;
 use Pagerfanta\Pagerfanta;
+use Symfony\Component\Form\FormInterface;
 
 class SearchViewBuilder implements ViewBuilder
 {
-    /** @var \Ibexa\Core\MVC\Symfony\View\Configurator */
+    /** @var Configurator */
     private $viewConfigurator;
 
-    /** @var \Ibexa\Core\MVC\Symfony\View\ParametersInjector */
+    /** @var ParametersInjector */
     private $viewParametersInjector;
 
-    /** @var \Ibexa\Contracts\Core\Repository\SearchService */
+    /** @var SearchService */
     private $searchService;
 
-    /** @var \Ibexa\Search\Mapper\PagerSearchContentToDataMapper */
+    /** @var PagerSearchContentToDataMapper */
     private $pagerSearchContentToDataMapper;
 
-    /** @var \Ibexa\Core\QueryType\QueryType */
+    /** @var QueryType */
     private $searchQueryType;
 
     public function __construct(
@@ -58,7 +59,7 @@ class SearchViewBuilder implements ViewBuilder
     {
         $view = new SearchView();
 
-        /** @var \Symfony\Component\Form\FormInterface $form */
+        /** @var FormInterface $form */
         $form = $parameters['form'];
 
         if ($form->isSubmitted() && $form->isValid()) {

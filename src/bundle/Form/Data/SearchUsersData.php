@@ -8,16 +8,20 @@ declare(strict_types=1);
 
 namespace Ibexa\Bundle\Search\Form\Data;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+
 class SearchUsersData
 {
     /** @var string */
     private $query;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content[] */
+    /** @var Content[] */
     private $possibleUsers;
 
-    public function __construct(array $possibleUsers = [], ?string $query = null)
-    {
+    public function __construct(
+        array $possibleUsers = [],
+        ?string $query = null
+    ) {
         $this->query = $query;
         $this->possibleUsers = $possibleUsers;
     }

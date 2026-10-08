@@ -22,13 +22,16 @@ final class SuggestionCollectionNormalizer implements
     use NormalizerAwareTrait;
 
     /**
-     * @param \Ibexa\Contracts\Search\Model\Suggestion\SuggestionCollection $object
+     * @param SuggestionCollection $object
      * @param array<string, mixed> $context
      *
      * @return array<string,mixed>.
      */
-    public function normalize($object, ?string $format = null, array $context = []): array
-    {
+    public function normalize(
+        $object,
+        ?string $format = null,
+        array $context = []
+    ): array {
         $suggestionCollection = [];
 
         foreach ($object as $parentLocation) {
@@ -41,8 +44,10 @@ final class SuggestionCollectionNormalizer implements
         ];
     }
 
-    public function supportsNormalization($data, ?string $format = null): bool
-    {
+    public function supportsNormalization(
+        $data,
+        ?string $format = null
+    ): bool {
         return $data instanceof SuggestionCollection;
     }
 

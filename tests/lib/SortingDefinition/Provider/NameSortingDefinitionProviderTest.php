@@ -14,15 +14,16 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentName;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentTranslatedName;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinition;
 use Ibexa\Search\SortingDefinition\Provider\NameSortingDefinitionProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class NameSortingDefinitionProviderTest extends TestCase
 {
-    /** @var \Symfony\Contracts\Translation\TranslatorInterface&\PHPUnit\Framework\MockObject\MockObject */
+    /** @var TranslatorInterface&MockObject */
     private TranslatorInterface $translator;
 
-    /** @var \Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider&\PHPUnit\Framework\MockObject\MockObject */
+    /** @var RepositoryConfigurationProvider&MockObject */
     private RepositoryConfigurationProvider $configurationProvider;
 
     private NameSortingDefinitionProvider $provider;

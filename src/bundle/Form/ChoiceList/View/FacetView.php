@@ -15,8 +15,10 @@ final class FacetView extends ChoiceView
 {
     public ?TermAggregationResultEntry $term = null;
 
-    public static function createFromChoiceView(ChoiceView $choiceView, ?TermAggregationResultEntry $term): self
-    {
+    public static function createFromChoiceView(
+        ChoiceView $choiceView,
+        ?TermAggregationResultEntry $term
+    ): self {
         $facet = new self(
             $choiceView->data,
             $choiceView->value,

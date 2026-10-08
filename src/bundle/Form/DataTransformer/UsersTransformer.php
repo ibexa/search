@@ -22,10 +22,10 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  */
 class UsersTransformer implements DataTransformerInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Repository */
+    /** @var Repository */
     private $repository;
 
-    /** @var \Ibexa\Contracts\Core\Repository\SearchService */
+    /** @var SearchService */
     private $searchService;
 
     /** @var string */
@@ -44,11 +44,11 @@ class UsersTransformer implements DataTransformerInterface
     /**
      * Transforms a domain specific User object into a Users's ID.
      *
-     * @param \Ibexa\Bundle\Search\Form\Data\SearchUsersData|null $value
+     * @param SearchUsersData|null $value
      *
      * @return mixed|null
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function transform($value): ?string
     {

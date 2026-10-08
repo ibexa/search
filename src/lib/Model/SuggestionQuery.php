@@ -16,8 +16,11 @@ final class SuggestionQuery
 
     private ?string $languageCode;
 
-    public function __construct(string $query, int $limit, ?string $languageCode = null)
-    {
+    public function __construct(
+        string $query,
+        int $limit,
+        ?string $languageCode = null
+    ) {
         $this->query = $query;
         $this->limit = $limit;
         $this->languageCode = $languageCode;
