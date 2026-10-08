@@ -45,7 +45,8 @@
         "phpstan/phpstan": "^2.0",
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-symfony": "^2.0",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.3"
+        "matthiasnoback/symfony-dependency-injection-test": "^4.3",
+        "ibexa/doctrine-migrations": "~4.6.x-dev"
     },
     "scripts": {
         "fix-cs": "php-cs-fixer fix --config=.php-cs-fixer.php --show-progress=dots",
