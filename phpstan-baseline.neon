@@ -379,13 +379,13 @@ parameters:
 			path: src/lib/QueryType/SearchQueryType.php
 
 		-
-			message: '#^PHPDoc tag @return has invalid value \(array\<int,mixed\>\.\)\: Unexpected token "\.", expected TOKEN_HORIZONTAL_WS at offset 174 on line 5$#'
+			message: '#^PHPDoc tag @return has invalid value \(array\<int,mixed\>\.\)\: Unexpected token "\.", expected TOKEN_HORIZONTAL_WS at offset 133 on line 5$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: src/lib/Serializer/Normalizer/Suggestion/ParentLocationCollectionNormalizer.php
 
 		-
-			message: '#^PHPDoc tag @return has invalid value \(array\<string,mixed\>\.\)\: Unexpected token "\.", expected TOKEN_HORIZONTAL_WS at offset 173 on line 5$#'
+			message: '#^PHPDoc tag @return has invalid value \(array\<string,mixed\>\.\)\: Unexpected token "\.", expected TOKEN_HORIZONTAL_WS at offset 132 on line 5$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: src/lib/Serializer/Normalizer/Suggestion/SuggestionCollectionNormalizer.php
