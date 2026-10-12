@@ -9,18 +9,19 @@ declare(strict_types=1);
 namespace Ibexa\Search\SortingDefinition;
 
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface;
+use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionProviderInterface;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 
 final class SortingDefinitionRegistry implements SortingDefinitionRegistryInterface
 {
-    /** @var iterable<\Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionProviderInterface> */
+    /** @var iterable<SortingDefinitionProviderInterface> */
     private iterable $providers;
 
-    /** @var \Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface[] */
+    /** @var SortingDefinitionInterface[] */
     private ?array $definitions = null;
 
     /**
-     * @param iterable<\Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionProviderInterface> $providers
+     * @param iterable<SortingDefinitionProviderInterface> $providers
      */
     public function __construct(iterable $providers)
     {
@@ -37,7 +38,7 @@ final class SortingDefinitionRegistry implements SortingDefinitionRegistryInterf
     }
 
     /**
-     * @return \Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface[]
+     * @return SortingDefinitionInterface[]
      */
     public function getSortingDefinitions(): array
     {
@@ -45,7 +46,7 @@ final class SortingDefinitionRegistry implements SortingDefinitionRegistryInterf
             $this->initialize();
         }
 
-        /** @var \Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface[] */
+        /** @var SortingDefinitionInterface[] */
         return $this->definitions;
     }
 
@@ -60,7 +61,10 @@ final class SortingDefinitionRegistry implements SortingDefinitionRegistryInterf
 
         usort(
             $this->definitions,
-            static function (SortingDefinitionInterface $a, SortingDefinitionInterface $b): int {
+            static function (
+                SortingDefinitionInterface $a,
+                SortingDefinitionInterface $b
+            ): int {
                 return $a->getPriority() <=> $b->getPriority();
             }
         );

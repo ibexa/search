@@ -30,10 +30,10 @@ final class SearchFacetsExtension extends AbstractExtension
     }
 
     /**
-     * @param \Symfony\Component\Form\ChoiceList\View\ChoiceView[]|\Symfony\Component\Form\ChoiceList\View\ChoiceGroupView[] $choices
+     * @param ChoiceView[]|ChoiceGroupView[] $choices
      * @param callable(ChoiceView, TermAggregationResultEntry): bool|null $comparator
      *
-     * @return \Symfony\Component\Form\ChoiceList\View\ChoiceView[]|\Symfony\Component\Form\ChoiceList\View\ChoiceGroupView[]
+     * @return ChoiceView[]|ChoiceGroupView[]
      */
     public function getChoicesAsFacets(
         array $choices,
@@ -45,7 +45,10 @@ final class SearchFacetsExtension extends AbstractExtension
         }
 
         if ($comparator === null) {
-            $comparator = static function (ChoiceView $choice, TermAggregationResultEntry $term): bool {
+            $comparator = static function (
+                ChoiceView $choice,
+                TermAggregationResultEntry $term
+            ): bool {
                 return $choice->data == $term->getKey();
             };
         }

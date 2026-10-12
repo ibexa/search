@@ -13,7 +13,7 @@ interface SortingDefinitionRegistryInterface
     public function getDefaultSortingDefinition(): ?SortingDefinitionInterface;
 
     /**
-     * @return \Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface[]
+     * @return SortingDefinitionInterface[]
      */
     public function getSortingDefinitions(): array;
 }

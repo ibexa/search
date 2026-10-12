@@ -10,6 +10,7 @@ namespace Ibexa\Tests\Search\Service;
 
 use Ibexa\Search\Model\SuggestionQuery;
 use Ibexa\Search\Service\SuggestionService;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
@@ -29,7 +30,7 @@ final class SuggestionServiceTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|\Symfony\Contracts\EventDispatcher\EventDispatcherInterface
+     * @return MockObject|EventDispatcherInterface
      */
     private function getEventDispatcherMock(): EventDispatcherInterface
     {
