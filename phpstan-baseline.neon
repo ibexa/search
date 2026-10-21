@@ -311,9 +311,3 @@ parameters:
 			identifier: staticMethod.alreadyNarrowedType
 			count: 1
 			path: tests/contracts/Model/Suggestion/SuggestionTest.php
-
-		-
-			message: '#^PHPDoc tag @var has invalid value \(\\Symfony\\Contracts\\Translation\\TranslatorInterface&\\PHPUnit\\Framework\\MockObject\\MockObject\)\)\: Unexpected token "\)", expected TOKEN_HORIZONTAL_WS at offset 100 on line 1$#'
-			identifier: phpDoc.parseError
-			count: 1
-			path: tests/lib/SortingDefinition/Provider/RelevanceSortingDefinitionProviderTest.php

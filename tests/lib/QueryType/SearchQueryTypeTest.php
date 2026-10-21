@@ -20,7 +20,6 @@ use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionRegistryInterface;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Search\QueryType\SearchQueryType;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
@@ -33,7 +32,7 @@ final class SearchQueryTypeTest extends TestCase
     private const string EXPECTED_SUBTREE = '/13/17/19/';
     private const array EXPECTED_DATE_RANGE = [1431993600, 1587340800];
 
-    private SearchService & MockObject $searchService;
+    private SearchService & Stub $searchService;
 
     private SortingDefinitionRegistryInterface & Stub $sortingDefinitionRegistry;
 
@@ -41,7 +40,7 @@ final class SearchQueryTypeTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->searchService = $this->createMock(SearchService::class);
+        $this->searchService = self::createStub(SearchService::class);
         $this->sortingDefinitionRegistry = self::createStub(SortingDefinitionRegistryInterface::class);
         $this->queryType = new SearchQueryType(
             $this->searchService,

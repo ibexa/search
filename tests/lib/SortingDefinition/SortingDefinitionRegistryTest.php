@@ -57,7 +57,7 @@ final class SortingDefinitionRegistryTest extends TestCase
      */
     private function createProvider(array $definitions): SortingDefinitionProviderInterface
     {
-        $provider = $this->createMock(SortingDefinitionProviderInterface::class);
+        $provider = self::createStub(SortingDefinitionProviderInterface::class);
         $provider->method('getSortingDefinitions')->willReturn($definitions);
 
         return $provider;
@@ -65,7 +65,7 @@ final class SortingDefinitionRegistryTest extends TestCase
 
     private function createSortingDefinition(int $priority): SortingDefinitionInterface
     {
-        $definition = $this->createMock(SortingDefinitionInterface::class);
+        $definition = self::createStub(SortingDefinitionInterface::class);
         $definition->method('getPriority')->willReturn($priority);
 
         return $definition;

@@ -29,28 +29,23 @@ use Ibexa\Core\Repository\SiteAccessAware\SearchService;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Search\EventDispatcher\EventListener\ContentSuggestionSubscriber;
 use Ibexa\Search\Model\SuggestionQuery;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
 final class ContentSuggestionSubscriberTest extends TestCase
 {
-    /** @var RepositoryConfigurationProviderInterface&MockObject */
-    private RepositoryConfigurationProviderInterface $configProviderMock;
+    private RepositoryConfigurationProviderInterface & Stub $configProviderMock;
 
     private ?Query $capturedQuery;
 
     private bool $searchServiceSupportsScoring = false;
 
-    /** @var LoggerInterface&MockObject */
-    private LoggerInterface $loggerMock;
-
     protected function setUp(): void
     {
-        $this->configProviderMock = $this->createMock(RepositoryConfigurationProviderInterface::class);
+        $this->configProviderMock = self::createStub(RepositoryConfigurationProviderInterface::class);
         $this->capturedQuery = null;
         $this->searchServiceSupportsScoring = false;
-        $this->loggerMock = $this->createMock(LoggerInterface::class);
     }
 
     public function testSubscribedEvents(): void
@@ -113,11 +108,12 @@ final class ContentSuggestionSubscriberTest extends TestCase
         $sortingDefinitionRegistry = $this->getSortingDefinitionRegistryMock();
 
         $subscriber = new ContentSuggestionSubscriber($searchService, $mapper, $sortingDefinitionRegistry);
-        $subscriber->setLogger($this->loggerMock);
+        $loggerMock = $this->createMock(LoggerInterface::class);
+        $subscriber->setLogger($loggerMock);
 
         $event = new BuildSuggestionCollectionEvent($query);
 
-        $this->loggerMock
+        $loggerMock
             ->expects($this->once())
             ->method('error');
 
@@ -147,7 +143,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
     private function getSearchServiceMock(): SearchService
     {
-        $searchServiceMock = $this->createMock(SearchService::class);
+        $searchServiceMock = self::createStub(SearchService::class);
         $searchServiceMock
             ->method('supports')
             ->willReturnCallback(function ($capability): bool {
@@ -165,7 +161,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
     private function getSearchServiceMockWithException(): SearchService
     {
-        $searchServiceMock = $this->createMock(SearchService::class);
+        $searchServiceMock = self::createStub(SearchService::class);
         $searchServiceMock
             ->method('findContent')
             ->willThrowException(
@@ -185,7 +181,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
     private function getSearchHitToContentSuggestionMapperMock(): SearchHitToContentSuggestionMapperInterface
     {
-        $searchHitToContentSuggestionMapperMock = $this->createMock(
+        $searchHitToContentSuggestionMapperMock = self::createStub(
             SearchHitToContentSuggestionMapperInterface::class
         );
         $searchHitToContentSuggestionMapperMock
@@ -207,7 +203,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
     private function getSortingDefinitionRegistryMock(): SortingDefinitionRegistryInterface
     {
-        $sortingDefinitionRegistryMock = $this->createMock(SortingDefinitionRegistryInterface::class);
+        $sortingDefinitionRegistryMock = self::createStub(SortingDefinitionRegistryInterface::class);
 
         $sortingDefinitionRegistryMock
             ->method('getDefaultSortingDefinition')
@@ -218,7 +214,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
 
     private function getSortingDefinitionMock(): SortingDefinitionInterface
     {
-        $sortingDefinitionMock = $this->createMock(SortingDefinitionInterface::class);
+        $sortingDefinitionMock = self::createStub(SortingDefinitionInterface::class);
         $sortingDefinitionMock
             ->method('getSortClauses')
             ->willReturn($this->getSortClauses());

@@ -14,26 +14,24 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentName;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\ContentTranslatedName;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinition;
 use Ibexa\Search\SortingDefinition\Provider\NameSortingDefinitionProvider;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class NameSortingDefinitionProviderTest extends TestCase
 {
-    /** @var TranslatorInterface&MockObject */
-    private TranslatorInterface $translator;
+    private TranslatorInterface & Stub $translator;
 
-    /** @var RepositoryConfigurationProviderInterface&MockObject */
-    private RepositoryConfigurationProviderInterface $configurationProvider;
+    private RepositoryConfigurationProviderInterface & Stub $configurationProvider;
 
     private NameSortingDefinitionProvider $provider;
 
     protected function setUp(): void
     {
-        $this->translator = $this->createMock(TranslatorInterface::class);
+        $this->translator = self::createStub(TranslatorInterface::class);
         $this->translator->method('trans')->willReturnArgument(0);
 
-        $this->configurationProvider = $this->createMock(RepositoryConfigurationProviderInterface::class);
+        $this->configurationProvider = self::createStub(RepositoryConfigurationProviderInterface::class);
 
         $this->provider = new NameSortingDefinitionProvider(
             $this->configurationProvider,

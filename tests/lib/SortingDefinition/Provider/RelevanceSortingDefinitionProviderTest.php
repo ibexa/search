@@ -14,36 +14,25 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\DateModified
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Score;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinition;
 use Ibexa\Search\SortingDefinition\Provider\RelevanceSortingDefinitionProvider;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class RelevanceSortingDefinitionProviderTest extends TestCase
 {
-    /** @var \Symfony\Contracts\Translation\TranslatorInterface&\PHPUnit\Framework\MockObject\MockObject) */
-    private TranslatorInterface $translator;
-
-    /** @var SearchService&MockObject */
-    private SearchService $searchService;
-
-    private RelevanceSortingDefinitionProvider $provider;
+    private TranslatorInterface & Stub $translator;
 
     protected function setUp(): void
     {
-        $this->translator = $this->createMock(TranslatorInterface::class);
+        $this->translator = self::createStub(TranslatorInterface::class);
         $this->translator->method('trans')->willReturnArgument(0);
-
-        $this->searchService = $this->createMock(SearchService::class);
-
-        $this->provider = new RelevanceSortingDefinitionProvider(
-            $this->searchService,
-            $this->translator
-        );
     }
 
     public function testGetSortingDefinitionsWithScoringCapability(): void
     {
-        $this->searchService
+        $searchService = $this->createMock(SearchService::class);
+        $searchService
+            ->expects($this->once())
             ->method('supports')
             ->with(SearchService::CAPABILITY_SCORING)
             ->willReturn(true);
@@ -59,13 +48,15 @@ final class RelevanceSortingDefinitionProviderTest extends TestCase
                     100
                 ),
             ],
-            $this->provider->getSortingDefinitions()
+            (new RelevanceSortingDefinitionProvider($searchService, $this->translator))->getSortingDefinitions()
         );
     }
 
     public function testGetSortingDefinitionsWithoutScoringCapability(): void
     {
-        $this->searchService
+        $searchService = $this->createMock(SearchService::class);
+        $searchService
+            ->expects($this->once())
             ->method('supports')
             ->with(SearchService::CAPABILITY_SCORING)
             ->willReturn(false);
@@ -81,7 +72,7 @@ final class RelevanceSortingDefinitionProviderTest extends TestCase
                     100
                 ),
             ],
-            $this->provider->getSortingDefinitions()
+            (new RelevanceSortingDefinitionProvider($searchService, $this->translator))->getSortingDefinitions()
         );
     }
 }

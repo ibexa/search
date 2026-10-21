@@ -18,7 +18,7 @@ use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Search\Mapper\SearchHitToContentSuggestionMapper;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 final class SearchHitToContentSuggestionMapperTest extends TestCase
@@ -102,22 +102,22 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
     }
 
     /**
-     * @return MockObject&ConfigResolverInterface
+     * @return Stub&ConfigResolverInterface
      */
     private function getConfigResolverMock(): ConfigResolverInterface
     {
-        $configResolverMock = $this->createMock(ConfigResolverInterface::class);
+        $configResolverMock = self::createStub(ConfigResolverInterface::class);
         $configResolverMock->method('getParameter')->willReturn(5);
 
         return $configResolverMock;
     }
 
     /**
-     * @return MockObject&ParentLocationProviderInterface
+     * @return Stub&ParentLocationProviderInterface
      */
     private function getParentLocationProviderMock(): ParentLocationProviderInterface
     {
-        $configResolverMock = $this->createMock(ParentLocationProviderInterface::class);
+        $configResolverMock = self::createStub(ParentLocationProviderInterface::class);
         $configResolverMock->method('provide')->willReturnCallback(static function (array $locationIds): array {
             $locations = [];
 
