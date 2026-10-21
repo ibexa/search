@@ -15,14 +15,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SectionChoiceType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\SectionService */
+    /** @var SectionService */
     private $sectionService;
 
-    /**
-     * SectionChoiceType constructor.
-     *
-     * @param \Ibexa\Contracts\Core\Repository\SectionService $sectionService
-     */
     public function __construct(SectionService $sectionService)
     {
         $this->sectionService = $sectionService;

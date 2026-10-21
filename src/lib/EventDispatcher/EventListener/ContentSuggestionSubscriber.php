@@ -76,8 +76,10 @@ final class ContentSuggestionSubscriber implements EventSubscriberInterface, Log
         return $event;
     }
 
-    private function getQuery(string $value, int $limit): Query
-    {
+    private function getQuery(
+        string $value,
+        int $limit
+    ): Query {
         $query = new Query();
         $query->query = new Query\Criterion\FullText($value);
         $query->limit = $limit;

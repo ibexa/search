@@ -10,6 +10,7 @@ namespace Ibexa\Search\SortingDefinition\Provider;
 
 use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\DateModified;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Score;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinition;
@@ -22,8 +23,10 @@ final class RelevanceSortingDefinitionProvider implements SortingDefinitionProvi
 
     private TranslatorInterface $translator;
 
-    public function __construct(SearchService $searchService, TranslatorInterface $translator)
-    {
+    public function __construct(
+        SearchService $searchService,
+        TranslatorInterface $translator
+    ) {
         $this->searchService = $searchService;
         $this->translator = $translator;
     }
@@ -51,7 +54,7 @@ final class RelevanceSortingDefinitionProvider implements SortingDefinitionProvi
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[]
+     * @return SortClause[]
      */
     public function getSortClauses(): array
     {

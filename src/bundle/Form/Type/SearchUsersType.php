@@ -19,10 +19,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchUsersType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Repository */
+    /** @var Repository */
     private $repository;
 
-    /** @var \Ibexa\Contracts\Core\Repository\SearchService */
+    /** @var SearchService */
     private $searchService;
 
     /** @var string */
@@ -38,8 +38,10 @@ class SearchUsersType extends AbstractType
         $this->userContentTypeIdentifier = $userContentTypeIdentifier;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder->addViewTransformer(
             new UsersTransformer(
                 $this->repository,

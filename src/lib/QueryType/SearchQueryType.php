@@ -37,7 +37,7 @@ class SearchQueryType extends OptionsResolverBasedQueryType
 
     protected function doGetQuery(array $parameters): Query
     {
-        /** @var \Ibexa\Bundle\Search\Form\Data\SearchData $searchData */
+        /** @var SearchData $searchData */
         $searchData = $parameters['search_data'];
 
         $query = new Query();
@@ -86,7 +86,7 @@ class SearchQueryType extends OptionsResolverBasedQueryType
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion[]
+     * @return Criterion[]
      */
     protected function buildCriteria(SearchData $searchData): array
     {

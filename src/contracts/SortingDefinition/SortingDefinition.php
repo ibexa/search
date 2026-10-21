@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Contracts\Search\SortingDefinition;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
+
 /**
  * Default SortingDefinitionInterface implementation.
  */
@@ -17,16 +19,20 @@ final class SortingDefinition implements SortingDefinitionInterface
 
     private string $label;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[] */
+    /** @var SortClause[] */
     private array $sortClauses;
 
     private int $priority;
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[] $sortClauses
+     * @param SortClause[] $sortClauses
      */
-    public function __construct(string $identifier, string $label, array $sortClauses, int $priority = 0)
-    {
+    public function __construct(
+        string $identifier,
+        string $label,
+        array $sortClauses,
+        int $priority = 0
+    ) {
         $this->identifier = $identifier;
         $this->label = $label;
         $this->sortClauses = $sortClauses;

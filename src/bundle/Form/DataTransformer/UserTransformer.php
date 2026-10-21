@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Bundle\Search\Form\DataTransformer;
 
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -19,12 +20,9 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  */
 class UserTransformer implements DataTransformerInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
+    /** @var UserService */
     protected $userService;
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\UserService $userService
-     */
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
@@ -33,11 +31,11 @@ class UserTransformer implements DataTransformerInterface
     /**
      * Transforms a domain specific User object into a Users's ID.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\User\User|null $value
+     * @param User|null $value
      *
      * @return mixed|null
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function transform($value)
     {
@@ -57,10 +55,8 @@ class UserTransformer implements DataTransformerInterface
      *
      * @param mixed|null $value
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\User\User|null
-     *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException if the given value is not an integer
+     * @throws UnauthorizedException
+     * @throws TransformationFailedException if the given value is not an integer
      *                                                                         or if the value can not be transformed
      */
     public function reverseTransform($value): ?User
