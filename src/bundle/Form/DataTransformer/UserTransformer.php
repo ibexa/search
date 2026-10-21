@@ -23,9 +23,6 @@ class UserTransformer implements DataTransformerInterface
     /** @var UserService */
     protected $userService;
 
-    /**
-     * @param UserService $userService
-     */
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
@@ -57,8 +54,6 @@ class UserTransformer implements DataTransformerInterface
      * Transforms a Users's ID integer into a domain specific User object.
      *
      * @param mixed|null $value
-     *
-     * @return User|null
      *
      * @throws UnauthorizedException
      * @throws TransformationFailedException if the given value is not an integer

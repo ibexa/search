@@ -26,17 +26,12 @@ class IbexaSearchExtension extends Extension implements PrependExtensionInterfac
 
     /**
      * Allow an extension to prepend the extension configurations.
-     *
-     * @param ContainerBuilder $container
      */
     public function prepend(ContainerBuilder $container): void
     {
         $this->prependJMSTranslation($container);
     }
 
-    /**
-     * @param ContainerBuilder $container
-     */
     public function prependJMSTranslation(ContainerBuilder $container): void
     {
         $container->prependExtensionConfig('jms_translation', [

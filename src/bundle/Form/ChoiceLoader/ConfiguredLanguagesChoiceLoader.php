@@ -22,10 +22,6 @@ class ConfiguredLanguagesChoiceLoader implements ChoiceLoaderInterface
     /** @var ConfigResolverInterface */
     private $configResolver;
 
-    /**
-     * @param LanguageService $languageService
-     * @param ConfigResolverInterface $configResolver
-     */
     public function __construct(
         LanguageService $languageService,
         ConfigResolverInterface $configResolver

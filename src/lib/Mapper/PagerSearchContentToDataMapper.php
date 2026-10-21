@@ -122,9 +122,6 @@ class PagerSearchContentToDataMapper
     }
 
     /**
-     * @param Content $content
-     * @param bool $filterDisabled
-     *
      * @return Language[]
      */
     protected function getAvailableTranslations(

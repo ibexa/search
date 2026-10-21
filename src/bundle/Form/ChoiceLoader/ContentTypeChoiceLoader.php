@@ -22,10 +22,6 @@ class ContentTypeChoiceLoader implements ChoiceLoaderInterface
     /** @var UserLanguagePreferenceProviderInterface */
     private $userLanguagePreferenceProvider;
 
-    /**
-     * @param ContentTypeService $contentTypeService
-     * @param UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider
-     */
     public function __construct(
         ContentTypeService $contentTypeService,
         UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider

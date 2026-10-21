@@ -20,8 +20,6 @@ class SectionChoiceType extends AbstractType
 
     /**
      * SectionChoiceType constructor.
-     *
-     * @param SectionService $sectionService
      */
     public function __construct(SectionService $sectionService)
     {

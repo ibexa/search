@@ -37,9 +37,6 @@ final class SearchType extends AbstractType
     }
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     *
      * @throws InvalidArgumentException
      */
     public function buildForm(
