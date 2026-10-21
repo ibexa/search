@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Contracts\Search\Mapper;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
 use Pagerfanta\Pagerfanta;
 
 /**
@@ -16,7 +18,7 @@ use Pagerfanta\Pagerfanta;
 interface PagerSearchDataMapper
 {
     /**
-     * @param Pagerfanta<\Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit<\Ibexa\Contracts\Core\Repository\Values\Content\Content>> $pager
+     * @param Pagerfanta<SearchHit<Content>> $pager
      *
      * @phpstan-return TData[]
      */
