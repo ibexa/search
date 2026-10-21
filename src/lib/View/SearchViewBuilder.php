@@ -9,7 +9,11 @@ declare(strict_types=1);
 namespace Ibexa\Search\View;
 
 use Ibexa\Contracts\Core\Repository\SearchService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Search\Mapper\PagerSearchDataMapper;
 use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
 use Ibexa\Core\MVC\Symfony\View\Configurator;
@@ -17,26 +21,27 @@ use Ibexa\Core\MVC\Symfony\View\ParametersInjector;
 use Ibexa\Core\Pagination\Pagerfanta\ContentSearchHitAdapter;
 use Ibexa\Core\QueryType\QueryType;
 use Pagerfanta\Pagerfanta;
+use Symfony\Component\Form\FormInterface;
 
 class SearchViewBuilder implements ViewBuilder
 {
     /**
-     * @param \Ibexa\Contracts\Search\Mapper\PagerSearchDataMapper<array{
-     *    content: \Ibexa\Contracts\Core\Repository\Values\Content\Content,
+     * @param PagerSearchDataMapper<array{
+     *    content: Content,
      *    contentTypeId: int,
      *    contentId: int,
      *    name: string,
      *    language: string,
-     *    contributor: \Ibexa\Contracts\Core\Repository\Values\User\User|null,
+     *    contributor: User|null,
      *    version: int,
-     *    content_type: \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType,
+     *    content_type: ContentType,
      *    modified: \DateTimeInterface,
      *    initialLanguageCode: string,
      *    content_is_user: bool,
-     *    available_enabled_translations: iterable<\Ibexa\Contracts\Core\Repository\Values\Content\Language>,
-     *    available_translations: iterable<\Ibexa\Contracts\Core\Repository\Values\Content\Language>,
+     *    available_enabled_translations: iterable<Language>,
+     *    available_translations: iterable<Language>,
      *    translation_language_code: string,
-     *    resolvedLocation: \Ibexa\Contracts\Core\Repository\Values\Content\Location
+     *    resolvedLocation: Location
      *  }> $pagerSearchContentToDataMapper
      */
     public function __construct(
@@ -45,8 +50,7 @@ class SearchViewBuilder implements ViewBuilder
         private readonly SearchService $searchService,
         private readonly PagerSearchDataMapper $pagerSearchContentToDataMapper,
         private readonly QueryType $searchQueryType
-    ) {
-    }
+    ) {}
 
     public function matches($argument): bool
     {
@@ -57,7 +61,7 @@ class SearchViewBuilder implements ViewBuilder
     {
         $view = new SearchView();
 
-        /** @var \Symfony\Component\Form\FormInterface $form */
+        /** @var FormInterface $form */
         $form = $parameters['form'];
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Contracts\Search\SortingDefinition;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
+
 interface SortingDefinitionInterface
 {
     public function getIdentifier(): string;
@@ -17,7 +19,7 @@ interface SortingDefinitionInterface
     public function getPriority(): int;
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[]
+     * @return SortClause[]
      */
     public function getSortClauses(): array;
 }

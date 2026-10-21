@@ -15,6 +15,8 @@ use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Search\Mapper\PagerSearchDataMapper;
 use Ibexa\Core\Helper\TranslationHelper;
@@ -74,7 +76,7 @@ final class PagerSearchContentToDataMapper implements PagerSearchDataMapper
     }
 
     /**
-     * @param Pagerfanta<\Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit<\Ibexa\Contracts\Core\Repository\Values\Content\Content>> $pager
+     * @param Pagerfanta<SearchHit<Content>> $pager
      */
     public function map(Pagerfanta $pager): array
     {
@@ -82,7 +84,7 @@ final class PagerSearchContentToDataMapper implements PagerSearchDataMapper
         $contentTypeIds = [];
 
         foreach ($pager as $searchHit) {
-            /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content $content */
+            /** @var Content $content */
             $content = $searchHit->valueObject;
             $contentInfo = $content->contentInfo;
 
@@ -116,10 +118,7 @@ final class PagerSearchContentToDataMapper implements PagerSearchDataMapper
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
-     * @param bool $filterDisabled
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Language[]
+     * @return Language[]
      */
     private function getAvailableTranslations(
         Content $content,
@@ -159,8 +158,10 @@ final class PagerSearchContentToDataMapper implements PagerSearchDataMapper
      * @phpstan-param TData[] $data
      * @phpstan-param int[] $contentTypeIds
      */
-    private function setTranslatedContentTypesNames(array &$data, array $contentTypeIds): void
-    {
+    private function setTranslatedContentTypesNames(
+        array &$data,
+        array $contentTypeIds
+    ): void {
         // load list of content types with proper translated names
         $contentTypes = iterator_to_array(
             $this->contentTypeService->loadContentTypeList(
@@ -172,7 +173,7 @@ final class PagerSearchContentToDataMapper implements PagerSearchDataMapper
         foreach ($data as $idx => $item) {
             // get content type from bulk-loaded list or fallback to lazy loaded one if not present
             $contentTypeId = $item['contentTypeId'];
-            /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType */
+            /** @var ContentType $contentType */
             $contentType = $contentTypes[$contentTypeId] ?? $item['content']->getContentType();
 
             $data[$idx]['type'] = $contentType->getName();

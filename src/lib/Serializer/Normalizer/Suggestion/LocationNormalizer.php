@@ -14,12 +14,15 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 final class LocationNormalizer implements NormalizerInterface
 {
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $object
+     * @param Location $object
      *
      * @return array<string, mixed>
      */
-    public function normalize(mixed $object, ?string $format = null, array $context = []): array
-    {
+    public function normalize(
+        mixed $object,
+        ?string $format = null,
+        array $context = []
+    ): array {
         return [
             'id' => $object->getContentInfo()->getId(),
             'locationId' => $object->id,
@@ -27,8 +30,11 @@ final class LocationNormalizer implements NormalizerInterface
         ];
     }
 
-    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-    {
+    public function supportsNormalization(
+        mixed $data,
+        ?string $format = null,
+        array $context = []
+    ): bool {
         return $data instanceof Location;
     }
 

@@ -25,12 +25,14 @@ final class SuggestionQueryArgumentResolver implements ValueResolverInterface
     }
 
     /**
-     * @return iterable<\Ibexa\Search\Model\SuggestionQuery>
+     * @return iterable<SuggestionQuery>
      *
      * @throw \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
      */
-    public function resolve(Request $request, ArgumentMetadata $argument): iterable
-    {
+    public function resolve(
+        Request $request,
+        ArgumentMetadata $argument
+    ): iterable {
         if (!$this->supports($argument)) {
             return [];
         }

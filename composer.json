@@ -33,7 +33,8 @@
         "symfony/serializer": "^7.4"
     },
     "require-dev": {
-        "ibexa/code-style": "~2.0.0",
+        "ibexa/code-style": "~2.3.1",
+        "ibexa/doctrine-migrations": "~5.0.x-dev",
         "ibexa/doctrine-schema": "~5.0.x-dev",
         "ibexa/rector": "~5.0.x-dev",
         "matthiasnoback/symfony-dependency-injection-test": "^5.0",

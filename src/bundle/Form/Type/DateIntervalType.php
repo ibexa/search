@@ -15,8 +15,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class DateIntervalType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder
             ->add('start_date', DateType::class, [
                 'required' => false,

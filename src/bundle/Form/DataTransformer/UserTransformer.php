@@ -23,9 +23,6 @@ class UserTransformer implements DataTransformerInterface
 {
     protected UserService $userService;
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\UserService $userService
-     */
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
