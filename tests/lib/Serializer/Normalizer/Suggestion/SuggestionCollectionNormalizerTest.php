@@ -36,7 +36,7 @@ final class SuggestionCollectionNormalizerTest extends TestCase
         $suggestionCollection->increaseTotalCount(100);
 
         $this->normalizer
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('normalize')
             ->with($suggestionItemMock)
             ->willReturn(['mocked_normalized_data']);

@@ -34,8 +34,11 @@ final class SuggestionParserTest extends AbstractParserTestCase
      * @param array<string> $expectedNotSet
      */
     #[DataProvider('dataProviderForTestSettings')]
-    public function testSettings(array $config, array $expected, array $expectedNotSet = []): void
-    {
+    public function testSettings(
+        array $config,
+        array $expected,
+        array $expectedNotSet = []
+    ): void {
         $this->load([
             'system' => [
                 'ibexa_demo_site' => $config,

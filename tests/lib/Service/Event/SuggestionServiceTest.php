@@ -38,7 +38,7 @@ final class SuggestionServiceTest extends TestCase
         $suggestionCollection = new SuggestionCollection();
         $callCount = 0;
         $this->eventDispatcherMock
-            ->expects(self::exactly(2))
+            ->expects($this->exactly(2))
             ->method('dispatch')
             ->willReturnCallback(
                 static function (Event $event) use (&$callCount, $query, $suggestionCollection): Event {
@@ -56,7 +56,7 @@ final class SuggestionServiceTest extends TestCase
             );
 
         $this->innerServiceMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('suggest')
             ->with($query)
             ->willReturn($suggestionCollection);
@@ -74,12 +74,12 @@ final class SuggestionServiceTest extends TestCase
         $beforeEvent->stopPropagation();
 
         $this->eventDispatcherMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('dispatch')
             ->willReturn($beforeEvent);
 
         $this->innerServiceMock
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('suggest');
 
         $service = new SuggestionService($this->innerServiceMock, $this->eventDispatcherMock);

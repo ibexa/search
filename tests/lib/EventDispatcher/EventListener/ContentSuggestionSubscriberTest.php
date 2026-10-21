@@ -118,7 +118,7 @@ final class ContentSuggestionSubscriberTest extends TestCase
         $event = new BuildSuggestionCollectionEvent($query);
 
         $this->loggerMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('error');
 
         $subscriber->onBuildSuggestionCollectionEvent($event);

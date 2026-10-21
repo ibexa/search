@@ -33,9 +33,9 @@ final class SearchQueryTypeTest extends TestCase
     private const string EXPECTED_SUBTREE = '/13/17/19/';
     private const array EXPECTED_DATE_RANGE = [1431993600, 1587340800];
 
-    private SearchService&MockObject $searchService;
+    private SearchService & MockObject $searchService;
 
-    private SortingDefinitionRegistryInterface&Stub $sortingDefinitionRegistry;
+    private SortingDefinitionRegistryInterface & Stub $sortingDefinitionRegistry;
 
     private SearchQueryType $queryType;
 
@@ -50,7 +50,7 @@ final class SearchQueryTypeTest extends TestCase
     }
 
     /**
-     * @param array{searchData: \Ibexa\Bundle\Search\Form\Data\SearchData} $parameters
+     * @param array{searchData: SearchData} $parameters
      * @param array<int, array<int, mixed>> $returnMap
      */
     #[DataProvider('dataProviderForGetQuery')]
