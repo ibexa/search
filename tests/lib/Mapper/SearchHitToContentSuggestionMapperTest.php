@@ -102,7 +102,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
     }
 
     /**
-     * @return MockObject|ConfigResolverInterface
+     * @return MockObject&ConfigResolverInterface
      */
     private function getConfigResolverMock(): ConfigResolverInterface
     {
@@ -113,7 +113,7 @@ final class SearchHitToContentSuggestionMapperTest extends TestCase
     }
 
     /**
-     * @return MockObject|ParentLocationProviderInterface
+     * @return MockObject&ParentLocationProviderInterface
      */
     private function getParentLocationProviderMock(): ParentLocationProviderInterface
     {

@@ -30,7 +30,7 @@ final class SuggestionServiceTest extends TestCase
     }
 
     /**
-     * @return MockObject|EventDispatcherInterface
+     * @return MockObject&EventDispatcherInterface
      */
     private function getEventDispatcherMock(): EventDispatcherInterface
     {

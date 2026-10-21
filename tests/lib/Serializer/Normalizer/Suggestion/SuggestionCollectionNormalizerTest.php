@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 final class SuggestionCollectionNormalizerTest extends TestCase
 {
-    /** @var NormalizerInterface|MockObject */
+    /** @var NormalizerInterface&MockObject */
     private NormalizerInterface $normalizer;
 
     private SuggestionCollectionNormalizer $suggestionCollectionNormalizer;

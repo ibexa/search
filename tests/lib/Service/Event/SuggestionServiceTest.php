@@ -22,10 +22,10 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 final class SuggestionServiceTest extends TestCase
 {
-    /** @var SuggestionServiceInterface|MockObject */
+    /** @var SuggestionServiceInterface&MockObject */
     private $innerServiceMock;
 
-    /** @var EventDispatcherInterface|MockObject */
+    /** @var EventDispatcherInterface&MockObject */
     private $eventDispatcherMock;
 
     protected function setUp(): void
