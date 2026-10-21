@@ -18,8 +18,10 @@ final class SuggestEvent extends AfterEvent
 
     private SuggestionCollection $suggestionCollection;
 
-    public function __construct(SuggestionQuery $query, SuggestionCollection $suggestionCollection)
-    {
+    public function __construct(
+        SuggestionQuery $query,
+        SuggestionCollection $suggestionCollection
+    ) {
         $this->query = $query;
         $this->suggestionCollection = $suggestionCollection;
     }

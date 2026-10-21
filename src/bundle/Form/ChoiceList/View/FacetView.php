@@ -17,17 +17,19 @@ use Symfony\Component\Form\ChoiceList\View\ChoiceView;
 final class FacetView extends ChoiceView
 {
     /**
-     * @phpstan-var \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry<TKey>|null
+     * @phpstan-var TermAggregationResultEntry<TKey>|null
      */
     public ?TermAggregationResultEntry $term = null;
 
     /**
-     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry<TKey>|null $term
+     * @phpstan-param TermAggregationResultEntry<TKey>|null $term
      *
-     * @phpstan-return \Ibexa\Bundle\Search\Form\ChoiceList\View\FacetView<TKey>
+     * @phpstan-return FacetView<TKey>
      */
-    public static function createFromChoiceView(ChoiceView $choiceView, ?TermAggregationResultEntry $term): self
-    {
+    public static function createFromChoiceView(
+        ChoiceView $choiceView,
+        ?TermAggregationResultEntry $term
+    ): self {
         $facet = new self(
             $choiceView->data,
             $choiceView->value,
@@ -38,7 +40,7 @@ final class FacetView extends ChoiceView
 
         $facet->term = $term;
 
-        /** @phpstan-var \Ibexa\Bundle\Search\Form\ChoiceList\View\FacetView<TKey> */
+        /** @phpstan-var FacetView<TKey> */
         return $facet;
     }
 }

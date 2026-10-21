@@ -24,8 +24,7 @@ final class SearchFacetsExtension extends AbstractExtension
 {
     public function __construct(
         private readonly TranslatorInterface $translator,
-    ) {
-    }
+    ) {}
 
     public function getFilters(): array
     {
@@ -40,11 +39,11 @@ final class SearchFacetsExtension extends AbstractExtension
     /**
      * @phpstan-template TKey of object|scalar
      *
-     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResult<TKey>|null $terms
-     * @phpstan-param \Symfony\Component\Form\ChoiceList\View\ChoiceView[]|\Symfony\Component\Form\ChoiceList\View\ChoiceGroupView[] $choices
+     * @phpstan-param TermAggregationResult<TKey>|null $terms
+     * @phpstan-param ChoiceView[]|ChoiceGroupView[] $choices
      * @phpstan-param callable(ChoiceView, TermAggregationResultEntry<TKey>): bool|null $comparator
      *
-     * @return \Symfony\Component\Form\ChoiceList\View\ChoiceView[]|\Symfony\Component\Form\ChoiceList\View\ChoiceGroupView[]
+     * @return ChoiceView[]|ChoiceGroupView[]
      */
     public function getChoicesAsFacets(
         array $choices,
@@ -56,7 +55,10 @@ final class SearchFacetsExtension extends AbstractExtension
         }
 
         if ($comparator === null) {
-            $comparator = static function (ChoiceView $choice, TermAggregationResultEntry $term): bool {
+            $comparator = static function (
+                ChoiceView $choice,
+                TermAggregationResultEntry $term
+            ): bool {
                 return $choice->data === $term->getKey();
             };
         }
@@ -92,10 +94,10 @@ final class SearchFacetsExtension extends AbstractExtension
     /**
      * @phpstan-template TKey of object|scalar
      *
-     * @phpstan-param \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResult<TKey> $terms
+     * @phpstan-param TermAggregationResult<TKey> $terms
      * @phpstan-param callable(ChoiceView, TermAggregationResultEntry<TKey>): bool $comparator
      *
-     * @phpstan-return \Ibexa\Contracts\Core\Repository\Values\Content\Search\AggregationResult\TermAggregationResultEntry<TKey>|null
+     * @phpstan-return TermAggregationResultEntry<TKey>|null
      */
     private function findTermEntry(
         TermAggregationResult $terms,

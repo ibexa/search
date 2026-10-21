@@ -35,8 +35,10 @@ class SearchUsersType extends AbstractType
         $this->userContentTypeIdentifier = $userContentTypeIdentifier;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder->addViewTransformer(
             new UsersTransformer(
                 $this->repository,

@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Bundle\Search;
 
+use Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension;
 use Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\Search;
 use Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\SearchView;
 use Ibexa\Bundle\Search\DependencyInjection\Configuration\Parser\SiteAccessAware\SuggestionParser;
@@ -18,7 +19,7 @@ class IbexaSearchBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {
-        /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $core */
+        /** @var IbexaCoreExtension $core */
         $core = $container->getExtension('ibexa');
 
         $core->addDefaultSettings(__DIR__ . '/Resources/config', ['default_settings.yaml']);

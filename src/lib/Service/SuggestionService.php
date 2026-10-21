@@ -25,7 +25,7 @@ final class SuggestionService implements SuggestionServiceInterface
 
     public function suggest(SuggestionQuery $query): SuggestionCollection
     {
-        /** @var \Ibexa\Contracts\Search\Event\BuildSuggestionCollectionEvent $event */
+        /** @var BuildSuggestionCollectionEvent $event */
         $event = $this->eventDispatcher->dispatch(
             new BuildSuggestionCollectionEvent(
                 $query

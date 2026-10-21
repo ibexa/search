@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\DateModified
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\Score;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinition;
 use Ibexa\Search\SortingDefinition\Provider\RelevanceSortingDefinitionProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -22,7 +23,7 @@ final class RelevanceSortingDefinitionProviderTest extends TestCase
     /** @var \Symfony\Contracts\Translation\TranslatorInterface&\PHPUnit\Framework\MockObject\MockObject) */
     private TranslatorInterface $translator;
 
-    /** @var \Ibexa\Contracts\Core\Repository\SearchService&\PHPUnit\Framework\MockObject\MockObject */
+    /** @var SearchService&MockObject */
     private SearchService $searchService;
 
     private RelevanceSortingDefinitionProvider $provider;

@@ -100,8 +100,10 @@ final class SuggestionParserTest extends AbstractParserTestCase
         ];
     }
 
-    private function assertConfigResolverParameterIsNotSet(string $parameterName, ?string $scope = null): void
-    {
+    private function assertConfigResolverParameterIsNotSet(
+        string $parameterName,
+        ?string $scope = null
+    ): void {
         $chainConfigResolver = $this->getConfigResolver();
         try {
             $chainConfigResolver->getParameter($parameterName, 'ibexa.site_access.config', $scope);

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Bundle\Search\Form\ChoiceLoader;
 
 use Ibexa\Contracts\Core\Repository\LanguageService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Language;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
@@ -20,14 +21,16 @@ class ConfiguredLanguagesChoiceLoader implements ChoiceLoaderInterface
 
     private ConfigResolverInterface $configResolver;
 
-    public function __construct(LanguageService $languageService, ConfigResolverInterface $configResolver)
-    {
+    public function __construct(
+        LanguageService $languageService,
+        ConfigResolverInterface $configResolver
+    ) {
         $this->languageService = $languageService;
         $this->configResolver = $configResolver;
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Language[]
+     * @return Language[]
      */
     public function getChoiceList(): array
     {
@@ -41,8 +44,10 @@ class ConfiguredLanguagesChoiceLoader implements ChoiceLoaderInterface
         return new ArrayChoiceList($choices, $value);
     }
 
-    public function loadChoicesForValues(array $values, ?callable $value = null): array
-    {
+    public function loadChoicesForValues(
+        array $values,
+        ?callable $value = null
+    ): array {
         // Optimize
         $values = array_filter($values);
         if (empty($values)) {
@@ -52,8 +57,10 @@ class ConfiguredLanguagesChoiceLoader implements ChoiceLoaderInterface
         return $this->loadChoiceList($value)->getChoicesForValues($values);
     }
 
-    public function loadValuesForChoices(array $choices, ?callable $value = null): array
-    {
+    public function loadValuesForChoices(
+        array $choices,
+        ?callable $value = null
+    ): array {
         // Optimize
         $choices = array_filter($choices);
         if (empty($choices)) {
@@ -66,7 +73,7 @@ class ConfiguredLanguagesChoiceLoader implements ChoiceLoaderInterface
     /**
      * Sort languages based on SiteAccess languages order.
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Language[]
+     * @return Language[]
      */
     private function getPriorityOrderedLanguages(): array
     {

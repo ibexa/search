@@ -32,8 +32,10 @@ final class SearchType extends AbstractType
         $this->configResolver = $configResolver;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder
             ->add('query', CoreTextType::class, ['required' => false])
             ->add('page', HiddenType::class, ['empty_data' => 1])

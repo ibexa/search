@@ -11,6 +11,7 @@ namespace Ibexa\Tests\Search\QueryType;
 use Ibexa\Bundle\Search\Form\Data\SearchData;
 use Ibexa\Contracts\Core\Repository\SearchService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
 use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
@@ -67,8 +68,8 @@ final class SearchQueryTypeTest extends TestCase
 
     /**
      * @return iterable<array{
-     *     array{searchData?: \Ibexa\Bundle\Search\Form\Data\SearchData},
-     *     \Ibexa\Contracts\Core\Repository\Values\Content\Query,
+     *     array{searchData?: SearchData},
+     *     Query,
      *     array<int, array<int, mixed>>
      * }>
      */
@@ -129,7 +130,7 @@ final class SearchQueryTypeTest extends TestCase
     /**
      * @param array<int> $ids
      *
-     * @return array<\Ibexa\Core\Repository\Values\ContentType\ContentType>
+     * @return array<ContentType>
      */
     private static function createContentTypesList(array $ids): array
     {
@@ -169,8 +170,8 @@ final class SearchQueryTypeTest extends TestCase
     }
 
     /**
-     * @param array<\Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause>|null $expectedSortClauses
-     * @param array<\Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation> $expectedAggregations
+     * @param array<SortClause>|null $expectedSortClauses
+     * @param array<Aggregation> $expectedAggregations
      */
     private static function createExpectedQueryForAllCriteria(
         ?array $expectedSortClauses = null,
@@ -210,14 +211,14 @@ final class SearchQueryTypeTest extends TestCase
     }
 
     /**
-     * @return array<\Ibexa\Contracts\Core\Repository\Values\Content\Query\Aggregation>
+     * @return array<Aggregation>
      */
     private static function createExpectedAggregations(): array
     {
-        $contentTypeTermAggregation = new Query\Aggregation\ContentTypeTermAggregation('content_types');
+        $contentTypeTermAggregation = new Aggregation\ContentTypeTermAggregation('content_types');
         $contentTypeTermAggregation->setLimit(SearchService::CAPABILITY_AGGREGATIONS);
 
-        $sectionTermAggregation = new Query\Aggregation\SectionTermAggregation('sections');
+        $sectionTermAggregation = new Aggregation\SectionTermAggregation('sections');
         $sectionTermAggregation->setLimit(SearchService::CAPABILITY_AGGREGATIONS);
 
         return [

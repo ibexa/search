@@ -10,6 +10,7 @@ namespace Ibexa\Bundle\Search\Form\Data;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Search\SortingDefinition\SortingDefinitionInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -25,7 +26,7 @@ class SearchData
 
     private ?Section $section;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType[] */
+    /** @var ContentType[] */
     private array $contentTypes;
 
     private array $lastModified;

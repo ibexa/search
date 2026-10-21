@@ -43,11 +43,11 @@ class UsersTransformer implements DataTransformerInterface
     /**
      * Transforms a domain specific User object into a Users's ID.
      *
-     * @param \Ibexa\Bundle\Search\Form\Data\SearchUsersData|null $value
+     * @param SearchUsersData|null $value
      *
      * @return mixed|null
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function transform(mixed $value): ?string
     {
