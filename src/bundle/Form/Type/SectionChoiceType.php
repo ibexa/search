@@ -18,9 +18,6 @@ class SectionChoiceType extends AbstractType
     /** @var SectionService */
     private $sectionService;
 
-    /**
-     * SectionChoiceType constructor.
-     */
     public function __construct(SectionService $sectionService)
     {
         $this->sectionService = $sectionService;
