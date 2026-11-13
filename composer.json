@@ -23,7 +23,7 @@
     "require": {
         "php": ">=8.5",
         "ibexa/core": "~6.0.x-dev",
-        "pagerfanta/pagerfanta": "^3.6.2",
+        "pagerfanta/pagerfanta": "^4.11",
         "symfony/config": "^8.1",
         "symfony/dependency-injection": "^8.1",
         "symfony/event-dispatcher": "^8.1",
